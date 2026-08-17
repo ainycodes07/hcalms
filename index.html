@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <!-- Primary SEO Meta Tags -->
+    <title>HCA — Humanitarian Code Academy | Code with Purpose</title>
+    <meta name="title" content="HCA — Humanitarian Code Academy | Code with Purpose">
+    <meta name="description"
+        content="Master Full Stack Web Development from scratch with Humanitarian Code Academy. Track your progress, complete quests, and build capstone projects.">
+    <meta name="keywords"
+        content="Humanitarian Code Academy, HCA, Full Stack Development, Learn Web Development, Coding Bootcamp, Web Dev Course">
+    <meta name="author" content="Humanitarian Code Academy">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ainycodes07.github.io/hca-lms/">
+
+    <!-- Theme Color for Browsers & Mobile -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/png" href="assets/images/hca-favicon.png">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ainycodes07.github.io/hca-lms/">
+    <meta property="og:title" content="HCA — Humanitarian Code Academy | Code with Purpose">
+    <meta property="og:description"
+        content="Master Full Stack Web Development from scratch with Humanitarian Code Academy. Track your progress, complete quests, and build capstone projects.">
+    <meta property="og:image" content="https://ainycodes07.github.io/hca-lms/assets/images/hca-cover.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Humanitarian Code Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ainycodes07.github.io/hca-lms/">
+    <meta name="twitter:title" content="HCA — Humanitarian Code Academy | Code with Purpose">
+    <meta name="twitter:description"
+        content="Master Full Stack Web Development from scratch with Humanitarian Code Academy. Track your progress, complete quests, and build capstone projects.">
+    <meta name="twitter:image" content="https://ainycodes07.github.io/hca-lms/assets/images/hca-cover.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+    <!-- SCREEN 1: LOADER -->
+    <div id="loaderScreen" class="fullscreen-layer">
+        <div class="loader-logo">
+            <img src="assets/images/hca-load-icon.png" alt="HCA" class="loader-logo-img"
+                onerror="this.style.display='none'; this.parentElement.querySelector('.loader-fallback').style.display='flex';">
+            <div class="loader-fallback"><i class="fa-solid fa-graduation-cap"></i></div>
+        </div>
+        <div class="loader-bar">
+            <div class="loader-bar-fill" id="loaderFill"></div>
+        </div>
+        <p class="loader-text">Loading your journey...</p>
+    </div>
+
+    <!-- SCREEN 2: PRESENTER -->
+    <div id="presenterScreen" class="fullscreen-layer" style="display:none;">
+        <p class="presents-line">Humanitarian Code Academy Presents</p>
+        <h1 class="presents-course">Full Stack Web Development</h1>
+        <p class="presents-tag">Code with Purpose</p>
+        <button id="enterBtn" class="btn btn-primary presents-btn">Enter Academy <i
+                class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+    <!-- MAIN APP -->
+    <div class="app" id="appRoot" style="display:none;">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-row">
+                <img src="assets/images/hca-badge-logo.png" alt="HCA Logo" class="logo-placeholder"
+                    onerror="this.style.display='flex'; this.innerHTML='<i class=\'fa-solid fa-graduation-cap\'></i>';">
+                <div class="brand-text">
+                    <div class="brand-name">Humanitarian</div>
+                    <div class="brand-sub">Code Academy</div>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <button class="nav-link active" data-tab="dashboard"><span class="nav-icon"><i
+                            class="fa-solid fa-house"></i></span><span class="nav-label">Dashboard</span></button>
+                <button class="nav-link" data-tab="semester"><span class="nav-icon"><i
+                            class="fa-solid fa-route"></i></span><span class="nav-label">Semester</span></button>
+                <button class="nav-link" data-tab="weekly"><span class="nav-icon"><i
+                            class="fa-solid fa-list-check"></i></span><span class="nav-label">Weekly
+                        Todo</span></button>
+                <button class="nav-link" data-tab="gradebook"><span class="nav-icon"><i
+                            class="fa-solid fa-chart-simple"></i></span><span class="nav-label">Grade
+                        Book</span></button>
+                <button class="nav-link" data-tab="profile"><span class="nav-icon"><i
+                            class="fa-solid fa-user"></i></span><span class="nav-label">Profile</span></button>
+            </nav>
+
+            <div class="theme-toggle-row">
+                <span class="nav-label"><i class="fa-solid fa-moon"></i></span>
+                <label class="switch">
+                    <input type="checkbox" id="themeSwitch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </aside>
+
+        <main>
+
+            <!-- DASHBOARD -->
+            <section id="dashboard" class="tab-content active">
+                <div class="page-header">
+                    <h1>Welcome back<span id="dashName"></span> <i class="fa-solid fa-hand-sparkles"></i></h1>
+                    <p>Your path from Frontend Beginner to Full Stack Developer.</p>
+                </div>
+                <div class="sem-grid" id="semGrid"></div>
+            </section>
+
+            <!-- SEMESTER -->
+            <section id="semester" class="tab-content">
+                <div class="page-header">
+                    <h1>Semester Path</h1>
+                    <p>Track your journey week by week.</p>
+                </div>
+                <div class="sem-select-row" id="semChips"></div>
+
+                <div class="top-progress-wrap">
+                    <h3 id="semTitle">Semester 1</h3>
+                    <div class="top-progress-track" id="topProgressTrack">
+                        <div class="top-progress-fill" id="topProgressFill"></div>
+                    </div>
+                </div>
+
+                <div class="path-wrap" id="pathWrap">
+                    <div class="path-line"></div>
+                </div>
+            </section>
+
+            <!-- WEEKLY TODO -->
+            <section id="weekly" class="tab-content">
+                <div class="page-header">
+                    <h1>Weekly Quests</h1>
+                    <p id="weeklySub">Everything you need to know, do, and track this week.</p>
+                </div>
+
+                <div class="week-summary-bar">
+                    <div>
+                        <strong id="weeklyWeekLabel">Week 1</strong>
+                        <div class="muted-sm" id="weeklyProgressLabel">0 / 0 completed</div>
+                    </div>
+                    <div class="week-summary-right">
+                        <div class="deadline-chip" id="weeklyDeadlineChip"><i class="fa-regular fa-clock"></i> --</div>
+                        <div class="progress-track" style="width:180px;">
+                            <div class="progress-fill" id="weeklyProgressFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs-inline" id="weeklyTabs">
+                    <button class="tab-btn active" data-wtab="overview"><i class="fa-solid fa-book-open"></i>
+                        Overview</button>
+                    <button class="tab-btn" data-wtab="tasks"><i class="fa-solid fa-square-check"></i> Mark as
+                        Done</button>
+                    <button class="tab-btn" data-wtab="notebook"><i class="fa-solid fa-note-sticky"></i> My
+                        Notebook</button>
+                    <button class="tab-btn" data-wtab="schedule"><i class="fa-solid fa-calendar-day"></i> Suggested
+                        Schedule</button>
+                </div>
+
+                <div id="wtab-overview" class="wtab-content active"></div>
+
+                <div id="wtab-tasks" class="wtab-content">
+                    <div class="task-list" id="taskList"></div>
+                </div>
+
+                <div id="wtab-notebook" class="wtab-content">
+                    <div class="notebook-wrap">
+                        <div class="notebook-add">
+                            <input type="text" id="notebookInput"
+                                placeholder="Add your own task or note for this week...">
+                            <input type="date" id="notebookDate">
+                            <button class="btn btn-primary" id="notebookAddBtn"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div id="notebookList" class="notebook-list"></div>
+                    </div>
+                </div>
+
+                <div id="wtab-schedule" class="wtab-content">
+                    <p class="muted-sm" style="margin-bottom:18px;">A suggested daily rhythm — adjust to your own life.
+                        Roughly 4-5 focused hours/day, 5-6 days/week.</p>
+                    <div class="schedule-list" id="scheduleList"></div>
+                </div>
+
+                <div class="weekly-path-wrap">
+                    <h3 style="font-size:15px;margin-bottom:4px;">This Semester's Path</h3>
+                    <p class="muted-sm" style="margin-bottom:6px;">Click any unlocked week to jump to it</p>
+                    <div class="weekly-path-scroll" id="weeklyPathScroll"></div>
+                </div>
+            </section>
+
+            <!-- GRADEBOOK -->
+            <section id="gradebook" class="tab-content">
+                <div class="page-header">
+                    <h1>Grade Book</h1>
+                    <p>All graded work, weighted as percentage of your total course.</p>
+                </div>
+
+                <div class="tabs-inline">
+                    <button class="tab-btn active" id="gbTabGrades">My Grades</button>
+                    <button class="tab-btn" id="gbTabScheme">Grading Scheme</button>
+                </div>
+
+                <div id="gbGrades">
+                    <div class="course-total-card">
+                        <div>
+                            <div class="muted-sm">TOTAL COURSE PROGRESS</div>
+                            <div class="course-total-pct" id="courseTotalPct">0%</div>
+                        </div>
+                        <div class="progress-track" style="flex:1;margin-left:24px;">
+                            <div class="progress-fill" id="courseTotalFill"></div>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Semester</th>
+                                <th>Item</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>% of Semester</th>
+                                <th>% of Course</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gradeRows"></tbody>
+                    </table>
+                </div>
+
+                <div id="gbScheme" style="display:none;">
+                    <table style="margin-bottom:24px;">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Weight (per semester)</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Study Concept Checks</td>
+                                <td>15%</td>
+                                <td>Marking a week's core study concept as covered</td>
+                            </tr>
+                            <tr>
+                                <td>Quizzes</td>
+                                <td>10%</td>
+                                <td>4 per semester — small coding problems</td>
+                            </tr>
+                            <tr>
+                                <td>Assignments</td>
+                                <td>15%</td>
+                                <td>4 per semester — labs, OSS contributions, builds</td>
+                            </tr>
+                            <tr>
+                                <td>Activity A</td>
+                                <td>10%</td>
+                                <td>4 per semester — internship/hackathon/OSS/volunteer</td>
+                            </tr>
+                            <tr>
+                                <td>Activity B</td>
+                                <td>10%</td>
+                                <td>4 per semester — blog/YouTube/freelance profile</td>
+                            </tr>
+                            <tr>
+                                <td>Midterm (2 projects)</td>
+                                <td>20%</td>
+                                <td>10% each — skill-test portfolio builds</td>
+                            </tr>
+                            <tr>
+                                <td>Final Project (4 phases)</td>
+                                <td>20%</td>
+                                <td>5% each phase — capstone-worthy build</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="muted-sm" style="margin-bottom:14px;">Each semester = 16.67% of the full course. All 6
+                        semesters sum to 100%.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Grade</th>
+                                <th>Range</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>A</td>
+                                <td>90–100%</td>
+                                <td>Pass</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>75–89%</td>
+                                <td>Pass</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>60–74%</td>
+                                <td>Pass</td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>50–59%</td>
+                                <td>Conditional Pass</td>
+                            </tr>
+                            <tr>
+                                <td>F</td>
+                                <td>Below 50%</td>
+                                <td>Fail — semester repeat required</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- PROFILE -->
+            <section id="profile" class="tab-content">
+                <div class="page-header">
+                    <h1>Profile</h1>
+                    <p>Manage your identity, badges and preferences.</p>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3><i class="fa-solid fa-id-badge"></i> Profile</h3>
+                        <input type="text" id="profileNameInput" placeholder="Your full name">
+                        <button class="btn btn-primary" id="saveProfileBtn">Save Name</button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fa-solid fa-award"></i> Badges Earned</h3>
+                        <div class="badge-grid" id="badgeGrid">
+                            <p class="muted-sm">Complete a semester to earn your first badge.</p>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fa-solid fa-share-nodes"></i> Share Your Progress</h3>
+                        <p class="muted-sm" style="margin-bottom:14px;">Generate an image of your current progress to
+                            share.</p>
+                        <div class="btn-row">
+                            <button class="btn btn-outline" id="shareImgBtn"><i class="fa-solid fa-download"></i>
+                                Download Progress Card</button>
+                            <button class="btn btn-outline" id="shareLinkedInBtn"><i class="fa-brands fa-linkedin"></i>
+                                Share on LinkedIn</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fa-solid fa-triangle-exclamation"></i> Danger Zone</h3>
+                        <p class="muted-sm" style="margin-bottom:14px;">This will erase all progress permanently.</p>
+                        <button class="btn btn-danger" id="resetBtn">Reset All Progress</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <canvas id="shareCanvas" width="1000" height="600" style="display:none;"></canvas>
+
+    <!-- CONGRATS MODAL -->
+    <div id="congratsModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-icon"><i class="fa-solid fa-trophy"></i></div>
+            <h2 id="congratsTitle">Congratulations!</h2>
+            <p id="congratsSub">You completed this week's quest.</p>
+            <div id="congratsTags" class="stack-tags"></div>
+            <div class="btn-row modal-btn-row">
+                <button class="btn btn-outline" id="congratsDownloadBtn"><i class="fa-solid fa-download"></i> Download
+                    Card</button>
+                <button class="btn btn-primary" id="congratsLinkedInBtn"><i class="fa-brands fa-linkedin"></i> Share on
+                    LinkedIn</button>
+            </div>
+            <button class="modal-close" id="congratsCloseBtn">Continue <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
