@@ -17,7 +17,8 @@ const ROADMAP = [
         type: "odd",
         challenge: "CSS Layout Puzzle — Build 3 responsive layouts with Flexbox & Grid.",
         video: 'Devlog #1 — "Why I\'m learning to code with purpose"',
-        what: "Master structural HTML5 semantic tags (<header>, <main>, <nav>, <article>, <footer>) and modern CSS layout techniques including Flexbox axis alignment, flex grow/shrink, CSS Grid template areas, and gap properties.",
+
+        what: "Master structural HTML5 semantic tags (<pre> < header >, < main >, < nav >, < article >, < footer > </pre> )and modern CSS layout techniques including Flexbox axis alignment, flex grow/shrink, CSS Grid template areas, and gap properties.",
         why: "Semantic markup is vital for Web Accessibility (WCAG 2.1), screen readers, and search engine optimization. Grid and Flexbox form the foundation of responsive UI layouts.",
         when: "~15 hours total time commitment across 7 days.",
         where: "freeCodeCamp Responsive Web Design Certification & MDN Web Docs HTML/CSS Guides.",
