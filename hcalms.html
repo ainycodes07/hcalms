@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LMS — Humanitarian Code Academy</title>
+
+  <!-- FAVICON LOGO -->
+  <link rel="icon" type="image/png" href="assets/images/hca-favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="css/lms-style.css">
+</head>
+
+<body>
+
+  <!-- LOAD SCREEN -->
+  <div id="loader">
+    <div class="loader-logo-placeholder">
+      <div class="loader-spinner"></div>
+      <img src="assets/images/hca-load-icon.png" class="load-icon">
+    </div>
+    <div style="text-align: center;">
+      <h3 class="brand-font" style="color:var(--ink)">Humanitarian Code Academy</h3>
+      <p style="font-size:0.85rem; color:var(--ink-dim); margin-top:0.25rem;">Code With Purpose · Initializing LMS...
+      </p>
+    </div>
+  </div>
+
+  <div class="app-container">
+
+    <!-- NAVIGATION SIDEBAR -->
+    <nav class="sidebar">
+      <div>
+        <div class="brand-header">
+          <div class="website-logo-placeholder">HCA</div>
+          <div>
+            <div class="brand-title brand-font">HCA LMS</div>
+            <div class="brand-subtitle">Code With Purpose</div>
+          </div>
+        </div>
+
+        <ul class="nav-list">
+          <li class="nav-item active" data-tab="dashboard">
+            <button title="Dashboard"><i class="fa-solid fa-chart-pie nav-icon"></i><span
+                class="nav-label">Dashboard</span></button>
+          </li>
+          <li class="nav-item" data-tab="learn">
+            <button title="Learn"><i class="fa-solid fa-graduation-cap nav-icon"></i><span
+                class="nav-label">Learn</span></button>
+          </li>
+          <li class="nav-item" data-tab="quests">
+            <button title="Quests"><i class="fa-solid fa-list-check nav-icon"></i><span
+                class="nav-label">Quests</span></button>
+          </li>
+          <li class="nav-item" data-tab="accountbook">
+            <button title="Account Book"><i class="fa-solid fa-wallet nav-icon"></i><span class="nav-label">Account
+                Book</span></button>
+          </li>
+          <li class="nav-item" data-tab="schedule">
+            <button title="Schedule"><i class="fa-solid fa-calendar-days nav-icon"></i><span
+                class="nav-label">Schedule</span></button>
+          </li>
+          <li class="nav-item" data-tab="mycourse">
+            <button title="My Course"><i class="fa-solid fa-book-bookmark nav-icon"></i><span class="nav-label">My
+                Course</span></button>
+          </li>
+          <li class="nav-item" data-tab="profile">
+            <button title="Profile"><i class="fa-solid fa-user nav-icon"></i><span
+                class="nav-label">Profile</span></button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <div class="user-avatar" id="sidebar-avatar-initial">D</div>
+          <div class="user-info">
+            <div class="user-name" id="sidebar-user-name">Developer</div>
+            <div class="user-title" id="sidebar-user-title">Aspiring Developer</div>
+          </div>
+        </div>
+        <button class="btn-secondary" id="theme-toggle-btn" onclick="toggleTheme()"
+          style="width:100%; font-size:0.8rem; padding:0.4rem;">
+          <span id="theme-icon"><i class="fa-solid fa-moon"></i></span> <span id="theme-text">Dark mode</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div class="page-title-group">
+          <h1 id="page-heading">Dashboard</h1>
+          <p id="page-subheading">Track your progress, active deadlines, and learning consistency</p>
+        </div>
+      </div>
+
+      <!-- TAB 1: DASHBOARD -->
+      <section id="tab-dashboard" class="tab-pane active">
+        <div class="card" style="background: linear-gradient(135deg, var(--plum-deep), var(--plum)); color: #FFF;">
+          <div
+            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+            <div>
+              <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; opacity:0.8;">Welcome
+                back</span>
+              <h2 class="brand-font" id="dash-user-name" style="font-size:1.8rem;">Developer</h2>
+            </div>
+            <div
+              style="background:rgba(255,255,255,0.15); padding:0.5rem 1rem; border-radius:12px; border:1px solid rgba(255,255,255,0.2);"
+              class="brand-font">
+              HCA · Full Stack Pathway
+            </div>
+          </div>
+          <p style="font-size:0.95rem; opacity:0.9;">Rank: <strong id="dash-user-title"
+              style="color:var(--gold);">Aspiring Developer</strong></p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h4>Full Course Progress</h4>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" id="full-course-progress-bar"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem; color:var(--ink-dim);">
+              <span id="full-course-progress-text">0%</span>
+              <span id="full-course-items-text">0 / 144 quest items complete</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Semester <span id="dash-sem-num">1</span>: <span id="dash-sem-name">Frontend Architecture</span></h4>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" id="current-sem-progress-bar"></div>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; font-size:0.85rem; color:var(--ink-dim); align-items:center;">
+              <span id="current-sem-progress-text">0%</span>
+              <span id="dash-sem-deadline-badge"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card current-quest-box">
+          <div
+            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+            <div>
+              <h3>This Week's Quests — <span id="dash-week-title">Week 1</span></h3>
+              <div id="dash-week-deadline" style="margin-top:0.25rem;"></div>
+            </div>
+            <button class="btn-secondary" onclick="switchTab('quests')" style="font-size:0.8rem;"><i
+                class="fa-solid fa-arrow-right"></i> Open Quests</button>
+          </div>
+          <div id="dash-quest-list"></div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card stat-card">
+            <span class="stat-label">Titles Earned</span>
+            <div id="dash-titles-list" style="font-size:0.9rem; font-weight:600; color:var(--ink);">None yet — reach 70%
+              in Semester 1 to unlock your first title.</div>
+          </div>
+          <div class="card stat-card">
+            <span class="stat-label">Portfolio Pieces</span>
+            <div class="stat-value" id="dash-portfolio-count">0 / 8</div>
+          </div>
+          <div class="card stat-card">
+            <span class="stat-label">Content Shipped</span>
+            <div class="stat-value" id="dash-content-count">0 / 144</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: LEARN (PATHWAY) -->
+      <section id="tab-learn" class="tab-pane">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span style="font-size:0.8rem; color:var(--gold); font-weight:700; text-transform:uppercase;">Learning
+            Pathway</span>
+          <h2 id="learn-sem-title" class="brand-font" style="font-size:2rem;">Semester 1 – Frontend Architecture</h2>
+          <p style="font-size:0.85rem; color:var(--ink-dim); margin-top:0.2rem;">Click any week below to open full
+            details (What, Why, When, Where & How).</p>
+          <div id="sem-switcher-buttons" class="sem-switcher-buttons-container"></div>
+        </div>
+
+        <div class="pathway-container" id="pathway-nodes-container"></div>
+      </section>
+
+      <!-- TAB 3: QUESTS -->
+      <section id="tab-quests" class="tab-pane">
+        <div class="quest-week-selector" id="quests-week-bar"></div>
+
+        <div class="card">
+          <div
+            style="margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <span style="font-size:0.8rem; font-weight:700; color:var(--gold);" id="quest-header-sem">SEMESTER 1 ·
+                WEEK 1</span>
+              <h2 id="quest-header-title" class="brand-font">HTML5 & CSS3 Semantics, Flexbox / Grid</h2>
+              <p id="quest-header-resource" style="font-size:0.85rem; color:var(--ink-dim); margin-top:0.25rem;">
+                Resource: freeCodeCamp Responsive Web Design</p>
+            </div>
+            <div id="quest-header-deadline"></div>
+          </div>
+
+          <div id="quest-items-container"></div>
+
+          <div style="margin-top:1.5rem; font-size:0.8rem; color:var(--ink-dim); text-align:center;">
+            <i class="fa-solid fa-gear"></i> Toggle state: <strong>1st click = Done (Green)</strong> · <strong>2nd click
+              = Incomplete (Red)</strong> · <strong>3rd click = Reset</strong>.<br>
+            <em>Completing all quests in a week unlocks the next week! Reaching 70% in a semester unlocks the next
+              semester immediately.</em>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: ACCOUNT BOOK -->
+      <section id="tab-accountbook" class="tab-pane">
+        <div class="card balance-card">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--gold); text-transform:uppercase;">Accountability,
+            Not A Bill</span>
+          <h2 class="brand-font">Account Book</h2>
+          <p style="font-size:0.85rem; color:var(--ink-dim); max-width:500px; margin:0.5rem auto;">
+            HCA is free. This tracks what you expected to earn against what you logged to maintain learning focus.
+          </p>
+          <div class="balance-amount negative" id="account-running-balance">-$0</div>
+          <div style="font-size:0.85rem; color:var(--ink-dim);">Monthly earning goal: $400 / month</div>
+        </div>
+
+        <div class="card">
+          <h4>Log earnings (add current or past months anytime)</h4>
+          <form class="earning-log-form" id="log-earning-form" onsubmit="handleLogEarning(event)"
+            style="margin-top:1rem;">
+            <select id="log-month-select" required></select>
+            <input type="number" id="log-amount-input" placeholder="Amount earned ($)" min="0" step="10" required>
+            <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> Save</button>
+          </form>
+
+          <div class="log-table-container">
+            <table class="log-table">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Target</th>
+                  <th>Logged Earned</th>
+                  <th>Net Balance</th>
+                </tr>
+              </thead>
+              <tbody id="account-log-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: SCHEDULE -->
+      <section id="tab-schedule" class="tab-pane">
+        <div class="schedule-tabs">
+          <button class="schedule-tab-btn active" id="sched-btn-daily" onclick="toggleSchedule('daily')">Daily
+            Schedule</button>
+          <button class="schedule-tab-btn" id="sched-btn-weekly" onclick="toggleSchedule('weekly')">Weekly
+            Schedule</button>
+        </div>
+
+        <!-- DETAILED DAILY SCHEDULE -->
+        <div id="sched-pane-daily" class="card">
+          <h3>Daily Learning Routine (~2.5 hrs/day)</h3>
+          <p style="font-size:0.85rem; color:var(--ink-dim); margin-bottom:1.5rem;">Consistency over intensity. Follow
+            this daily structure to maintain high velocity and momentum.</p>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-time">00:00 - 00:15<br><span
+                  style="font-size:0.75rem; color:var(--plum); font-weight:600;">(15 mins)</span></div>
+              <div class="timeline-body">
+                <h4>1. Daily Warmup & Quest Review</h4>
+                <p>Open HCA LMS, review today's quest item, clear workspace distractions, and inspect Git repository
+                  status.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">00:15 - 01:15<br><span
+                  style="font-size:0.75rem; color:var(--plum); font-weight:600;">(60 mins)</span></div>
+              <div class="timeline-body">
+                <h4>2. Deep Learning Block (Core Module Study)</h4>
+                <p>Work through freeCodeCamp, Odin Project, or Full Stack Open assigned modules without multi-tasking.
+                </p>
+                <ul>
+                  <li>Read concept documentation & write hands-on syntax snippets.</li>
+                  <li>Complete interactive practice exercises & algorithm katas.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">01:15 - 02:00<br><span
+                  style="font-size:0.75rem; color:var(--plum); font-weight:600;">(45 mins)</span></div>
+              <div class="timeline-body">
+                <h4>3. Practical Coding Sprint & Implementation</h4>
+                <p>Apply new concepts directly into real code projects or technical challenge briefs.</p>
+                <ul>
+                  <li>Build component layouts, backend routes, or database schemas.</li>
+                  <li>Commit working changes to local Git repository branches.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">02:00 - 02:30<br><span
+                  style="font-size:0.75rem; color:var(--plum); font-weight:600;">(30 mins)</span></div>
+              <div class="timeline-body">
+                <h4>4. Public Output & Quest Logging</h4>
+                <p>Document your progress and publicly publish proof-of-work.</p>
+                <ul>
+                  <li><strong>Odd Weeks:</strong> Record a 2-min devlog video demoing what you built.</li>
+                  <li><strong>Even Weeks:</strong> Draft a short technical blog post / guidebook entry.</li>
+                  <li>Mark finished items on your HCA LMS Quests checklist.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DETAILED WEEKLY SCHEDULE -->
+        <div id="sched-pane-weekly" class="card" style="display:none;">
+          <h3>Weekly Structure & Execution Cadence (16–18 hrs/week)</h3>
+          <p style="font-size:0.85rem; color:var(--ink-dim); margin-bottom:1.5rem;">The alternating Odd/Even week
+            strategy guarantees theoretical understanding + tangible public project output.</p>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-time">Monday – Wednesday<br><span
+                  style="font-size:0.75rem; color:var(--plum); font-weight:600;">~7.5 Hours</span></div>
+              <div class="timeline-body">
+                <h4>Phase 1: Foundations & Theory</h4>
+                <p>Absorb core architecture concepts, interactive course lessons, and syntax experiments.</p>
+                <ul>
+                  <li>Complete primary module readings (freeCodeCamp / Odin / Full Stack Open).</li>
+                  <li>Take structured notes and solve micro-challenges.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">Thursday – Friday<br><span
+                  style="font-size:0.75rem; color:var(--plum); font-weight:600;">~5 Hours</span></div>
+              <div class="timeline-body">
+                <h4>Phase 2: Project / Assignment Sprint</h4>
+                <p>Focus on real-world practical application depending on week type:</p>
+                <ul>
+                  <li><strong>Odd Weeks (Challenge Focus):</strong> Solve targeted technical katas & layout/logic
+                    puzzles.</li>
+                  <li><strong>Even Weeks (Assignment Focus):</strong> Build real-world Humanitarian assignment briefs
+                    (e.g., Disaster Info UI, Food Bank API).</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">Saturday<br><span
+                  style="font-size:0.75rem; color:var(--plum); font-weight:600;">~3 Hours</span></div>
+              <div class="timeline-body">
+                <h4>Phase 3: Code Polish, Testing & Deployment</h4>
+                <p>Refactor code for clean architecture, test responsiveness, and deploy live previews.</p>
+                <ul>
+                  <li>Push commits to GitHub and deploy to Vercel/Render/GitHub Pages.</li>
+                  <li>Verify Web Accessibility (WCAG) and browser compatibility.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">Sunday<br><span
+                  style="font-size:0.75rem; color:var(--plum); font-weight:600;">~2 Hours</span></div>
+              <div class="timeline-body">
+                <h4>Phase 4: Public Output, LMS Update & Rest</h4>
+                <p>Finalize content shipping and plan the upcoming week.</p>
+                <ul>
+                  <li>Publish Devlog Video (Odd Wk) or Blog Guidebook Chapter (Even Wk).</li>
+                  <li>Mark finished quest checkboxes on LMS to update your roadmap progress.</li>
+                  <li>Log account book earnings if applicable. Rest and reset!</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: MY COURSE -->
+      <section id="tab-mycourse" class="tab-pane">
+        <div style="margin-bottom:1.5rem;">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--gold);">FULL PROGRAM</span>
+          <h2 class="brand-font">My Course – Full Stack MERN Developer</h2>
+        </div>
+
+        <div class="grid-2" id="semester-cards-container"></div>
+      </section>
+
+      <!-- TAB 7: PROFILE -->
+      <section id="tab-profile" class="tab-pane">
+        <!-- DYNAMIC ENCOURAGEMENT BADGE BANNER -->
+        <div class="badge-encouragement-card">
+          <span
+            style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold); font-weight:800;">Milestone
+            Encouragement</span>
+          <h2 class="brand-font" id="badge-encouragement-text" style="font-size:1.4rem; margin-top:0.3rem;">
+            Reach 70% in Semester 1 to earn "Frontend Developer" proudly!
+          </h2>
+          <p style="font-size:0.85rem; opacity:0.9; margin-top:0.5rem;">Keep pushing through your weekly quests to
+            unlock your official industry title certificate.</p>
+        </div>
+
+        <div class="card">
+          <div style="display:flex; align-items:center; gap:1.5rem;">
+            <div class="user-avatar" id="profile-avatar-large" style="width:64px; height:64px; font-size:1.5rem;">J
+            </div>
+            <div style="flex:1;">
+              <label style="font-size:0.8rem; color:var(--ink-dim); font-weight:600;">Display Name</label>
+              <input type="text" id="profile-name-input" value="Developer" onchange="updateUserName(this.value)"
+                placeholder="Enter your full name..."
+                style="padding:0.6rem 0.8rem; border-radius:8px; font-size:1rem; font-weight:700; width:100%; display:block; margin-top:0.3rem;">
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Titles & Badges Earned</h4>
+          <div class="badges-flex-list" id="profile-titles-list"></div>
+        </div>
+
+        <!-- SINGLE SPOTIFY-STYLE ACHIEVEMENT CARD GENERATOR -->
+        <div class="card">
+          <h4>Downloadable Real-Time Achievement Card (Spotify Chart Style)</h4>
+          <p style="font-size:0.85rem; color:var(--ink-dim); margin-bottom:1rem;">Generate a high-res 2000x2000px
+            Spotify-chart style image card showcasing your real current progress, stats, and achievements since starting
+            the course.</p>
+          <button class="btn-primary" onclick="generateAchievementCard()"
+            style="width:100%; font-size:1rem; padding:0.85rem;"><i class="fa-solid fa-download"></i> Download Real-Time
+            Achievement Card (2000x2000px)</button>
+        </div>
+
+        <div class="card">
+          <h4>Appearance</h4>
+          <button class="btn-secondary" onclick="toggleTheme()" style="margin-top:0.5rem;">
+            <i class="fa-solid fa-moon"></i> Switch Theme
+          </button>
+        </div>
+
+        <div class="card" style="border-color:var(--rust);">
+          <h4 style="color:var(--rust);">Danger Zone</h4>
+          <p style="font-size:0.85rem; color:var(--ink-dim); margin-bottom:1rem;">Resets all quest states, semester
+            progress, and earnings data.</p>
+          <button class="btn-primary" onclick="resetAllProgress()" style="background:var(--rust);"><i
+              class="fa-solid fa-triangle-exclamation"></i> Reset All Progress</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- SIDEBAR DRAWER OVERLAY FOR WEEK DETAILS -->
+  <div class="drawer-overlay" id="week-drawer-overlay">
+    <div class="week-drawer">
+      <div class="drawer-header">
+        <div>
+          <span id="drawer-week-tag"
+            style="font-size:0.75rem; font-weight:800; color:var(--gold); text-transform:uppercase;">SEMESTER 1 · WEEK
+            1</span>
+          <h2 id="drawer-week-title" class="brand-font" style="font-size:1.3rem;">HTML5 & CSS3 Semantics</h2>
+        </div>
+        <button class="drawer-close-btn" onclick="closeWeekDrawer()" title="Close Details"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="drawer-body" id="drawer-body-content"></div>
+    </div>
+  </div>
+
+  <!-- CONGRATS & MILESTONE POPUP MODAL -->
+  <div class="modal-overlay" id="congrats-modal-overlay">
+    <div class="modal-card">
+      <div class="modal-icon-circle" id="modal-icon-el"><i class="fa-solid fa-trophy"></i></div>
+      <h2 class="brand-font" id="modal-title">Milestone Achieved!</h2>
+      <p id="modal-message">Congratulations! You reached 70% completion in Semester 1.</p>
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="closeCongratsModal()"><i class="fa-solid fa-check"></i> Continue
+          Learning</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIDDEN CANVAS FOR HIGH-RES 2000x2000 SPOTIFY STYLE CHART CARD GENERATION -->
+  <canvas id="card-canvas" width="2000" height="2000" style="display:none;"></canvas>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
