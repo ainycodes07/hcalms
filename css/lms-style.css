@@ -180,19 +180,14 @@
         margin-bottom: 2rem;
     }
 
-    .website-logo-placeholder {
+
+    .website-logo-placeholder img{
         width: 42px;
         height: 42px;
-        border-radius: 12px;
-        background: var(--plum-deep);
-        color: var(--gold);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: bold;
-        font-size: 1.1rem;
         flex-shrink: 0;
-        box-shadow: 0 4px 12px var(--shadow);
     }
 
     .brand-title {
