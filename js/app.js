@@ -92,19 +92,19 @@ const ROADMAP = [
             id: "s1_m_opt1",
             title: "Option A: Disaster Preparedness & Relief Info Portal",
             desc: "Build a responsive static emergency information hub featuring interactive emergency contact filters, supply checklists, and evacuation zone search.",
-            pdfBrief: "assets/project-briefs/sem1_midterm_option_a.pdf"
+            pdfBrief: "../assets/project-briefs/sem1_midterm_option_a.pdf"
           },
           {
             id: "s1_m_opt2",
             title: "Option B: Local Food Shelter & Volunteer Sign-up App",
             desc: "Develop an interactive community food pantry platform with dynamic volunteer shift filtering, registration form validation, and real-time shelter status UI.",
-            pdfBrief: "assets/project-briefs/sem1_midterm_option_b.pdf"
+            pdfBrief: "../assets/project-briefs/sem1_midterm_option_b.pdf"
           },
           {
             id: "s1_m_opt3",
             title: "Option C: Community Health Clinic Directory & Contact Platform",
             desc: "Create a web directory for non-profit medical clinics supporting searchable medical services, dynamic appointment requests, and location tags.",
-            pdfBrief: "assets/project-briefs/sem1_midterm_option_c.pdf"
+            pdfBrief: "../assets/project-briefs/sem1_midterm_option_c.pdf"
           }
         ],
         aiPrompt: "Act as a Senior Humanitarian Tech Lead and Frontend Educator. My current skill set includes HTML5, CSS3 (Flexbox & Grid), Responsive Web Design, Git/GitHub, and Vanilla JavaScript (DOM Manipulation, Event Listeners, and Form Validation). Generate 3 original humanitarian project ideas and detailed project briefs similar to a Disaster Preparedness Portal or Shelter Sign-up App. For each idea, provide: 1) Project Title & Humanitarian Mission Statement, 2) Core User Stories & Target Audience, 3) Technical Specifications matching Vanilla JS/HTML/CSS without frameworks, 4) Web Accessibility (WCAG 2.1) Guidelines, and 5) A 5-step Development Roadmap."
@@ -196,19 +196,19 @@ const ROADMAP = [
             id: "s1_f_opt1",
             title: "Option A: Community Resource Finder & Mutual Aid Network",
             desc: "Build a responsive web application for finding neighborhood mutual aid groups, emergency food distributions, and housing assistance with live category filtering and search.",
-            pdfBrief: "assets/project-briefs/sem1_final_option_a.pdf"
+            pdfBrief: "../assets/project-briefs/sem1_final_option_a.pdf"
           },
           {
             id: "s1_f_opt2",
             title: "Option B: Emergency Blood Donor Tracker & Request Portal",
             desc: "Develop a web platform connecting blood donors with local urgent hospital requests, featuring dynamic donor eligibility calculators and interactive request management.",
-            pdfBrief: "assets/project-briefs/sem1_final_option_b.pdf"
+            pdfBrief: "../assets/project-briefs/sem1_final_option_b.pdf"
           },
           {
             id: "s1_f_opt3",
             title: "Option C: Clean Water Point & Well Maintenance Tracker",
             desc: "Create an emergency water access tracker for rural communities that displays active clean water points, maintenance ticket submissions, and supply status badges.",
-            pdfBrief: "assets/project-briefs/sem1_final_option_c.pdf"
+            pdfBrief: "../assets/project-briefs/sem1_final_option_c.pdf"
           }
         ],
         aiPrompt: "Act as an Expert Software Architect and Humanitarian Advisor. Given my skills in HTML5, CSS3 (Flexbox/Grid), Git/GitHub, JS DOM manipulation, Array/Object methods, and WCAG Accessibility, generate 3 innovative capstone project briefs focused on social impact and community aid. Include detailed technical specifications, DOM architecture, data filtering requirements, accessibility criteria, and deployment instructions suitable for a student portfolio."
@@ -304,19 +304,19 @@ const ROADMAP = [
             id: "s2_m_opt1",
             title: "Option A: Disaster Alert Dashboard in React",
             desc: "Build a component-driven emergency alert application displaying live crisis alerts, priority filters, and interactive alert details using reusable React components.",
-            pdfBrief: "assets/project-briefs/sem2_midterm_option_a.pdf"
+            pdfBrief: "../assets/project-briefs/sem2_midterm_option_a.pdf"
           },
           {
             id: "s2_m_opt2",
             title: "Option B: Emergency Food Bank Supply Calculator",
             desc: "Develop an interactive React tool for calculating food distribution requirements based on family size, dietary needs, and regional supply inventories.",
-            pdfBrief: "assets/project-briefs/sem2_midterm_option_b.pdf"
+            pdfBrief: "../assets/project-briefs/sem2_midterm_option_b.pdf"
           },
           {
             id: "s2_m_opt3",
             title: "Option C: Refugee Resettlement Services & Housing Directory",
             desc: "Create a React directory application offering searchable temporary shelter listings, language assistance tags, and dynamic contact request components.",
-            pdfBrief: "assets/project-briefs/sem2_midterm_option_c.pdf"
+            pdfBrief: "../assets/project-briefs/sem2_midterm_option_c.pdf"
           }
         ],
         aiPrompt: "Act as a Lead React Engineer in a Humanitarian NGO. Based on my React skills (Components, Props, JSX, CSS Modules, and Event Handling), generate 3 original humanitarian project briefs. For each idea, include project objectives, component hierarchy trees, props specifications, user interactions, and step-by-step dev milestones."
@@ -408,19 +408,19 @@ const ROADMAP = [
             id: "s2_f_opt1",
             title: "Option A: Interactive Crisis Resource Map & Relief Hub",
             desc: "Build a comprehensive React SPA featuring an interactive crisis map, multi-category supply search, live shelter capacity indicators, and persistent user bookmarks.",
-            pdfBrief: "assets/project-briefs/sem2_final_option_a.pdf"
+            pdfBrief: "../assets/project-briefs/sem2_final_option_a.pdf"
           },
           {
             id: "s2_f_opt2",
             title: "Option B: Humanitarian Volunteer Skill Matcher & Dispatch Portal",
             desc: "Develop a React portal matching skilled volunteers (medical, translation, logistics) with urgent emergency tasks, complete with stateful application forms and admin filters.",
-            pdfBrief: "assets/project-briefs/sem2_final_option_b.pdf"
+            pdfBrief: "../assets/project-briefs/sem2_final_option_b.pdf"
           },
           {
             id: "s2_f_opt3",
             title: "Option C: Medical Aid Supply Chain & Inventory Tracker",
             desc: "Create an enterprise-grade medical supply tracking SPA managing clinic inventory levels, expiring medicine alerts, and automated requisition orders in React.",
-            pdfBrief: "assets/project-briefs/sem2_final_option_c.pdf"
+            pdfBrief: "../assets/project-briefs/sem2_final_option_c.pdf"
           }
         ],
         aiPrompt: "Act as a Senior React Architect. Given my mastery of React, Hooks (useState, useEffect), React Router v6, Context API / Redux, and REST API Integration, create 3 detailed project briefs for web applications solving real humanitarian issues. Provide functional specs, data models, component trees, state architecture, and deployment steps."
@@ -516,19 +516,19 @@ const ROADMAP = [
             id: "s3_m_opt1",
             title: "Option A: Food Bank Inventory Management REST API",
             desc: "Build a complete RESTful Express API for food banks to manage food item stock levels, category tags, batch expiration dates, and donor source tracking.",
-            pdfBrief: "assets/project-briefs/sem3_midterm_option_a.pdf"
+            pdfBrief: "../assets/project-briefs/sem3_midterm_option_a.pdf"
           },
           {
             id: "s3_m_opt2",
             title: "Option B: Humanitarian Volunteer Shift & Roster Scheduling API",
             desc: "Develop a backend scheduling API allowing emergency organizations to manage shift rosters, volunteer skill tags, capacity limits, and assignment status.",
-            pdfBrief: "assets/project-briefs/sem3_midterm_option_b.pdf"
+            pdfBrief: "../assets/project-briefs/sem3_midterm_option_b.pdf"
           },
           {
             id: "s3_m_opt3",
             title: "Option C: Medical Relief Clinic Patient Queue API",
             desc: "Create an Express API for field medical clinics managing patient intake queues, triage priority rankings, doctor assignments, and treatment logs.",
-            pdfBrief: "assets/project-briefs/sem3_midterm_option_c.pdf"
+            pdfBrief: "../assets/project-briefs/sem3_midterm_option_c.pdf"
           }
         ],
         aiPrompt: "Act as a Backend Systems Lead. Based on my skills in Node.js, Express.js, SQL/PostgreSQL, MongoDB/Mongoose, and RESTful API architecture, generate 3 backend project briefs tailored for humanitarian NGOs. Include data schemas, API routes, controller logic specifications, input validation requirements, and Postman testing plans."
@@ -620,19 +620,19 @@ const ROADMAP = [
             id: "s3_f_opt1",
             title: "Option A: Secure NGO Donor & Donation Tracking System API",
             desc: "Build a production REST API managing secure financial donation records, donor authentication, recurring gift schedules, and automated tax receipt generation.",
-            pdfBrief: "assets/project-briefs/sem3_final_option_a.pdf"
+            pdfBrief: "../assets/project-briefs/sem3_final_option_a.pdf"
           },
           {
             id: "s3_f_opt2",
             title: "Option B: Disaster Relief Asset Allocation & Supply Tracking API",
             desc: "Develop an enterprise API for international aid organizations tracking warehouse inventories, inter-facility transfers, and emergency distribution points.",
-            pdfBrief: "assets/project-briefs/sem3_final_option_b.pdf"
+            pdfBrief: "../assets/project-briefs/sem3_final_option_b.pdf"
           },
           {
             id: "s3_f_opt3",
             title: "Option C: Crisis Response Team Incident Management API",
             desc: "Create an API service managing emergency field incident reports, priority dispatch queues, multi-agency team assignments, and real-time status updates.",
-            pdfBrief: "assets/project-briefs/sem3_final_option_c.pdf"
+            pdfBrief: "../assets/project-briefs/sem3_final_option_c.pdf"
           }
         ],
         aiPrompt: "Act as an Enterprise Backend Architect and Cybersecurity Specialist. Given my skills in Node.js, Express, MongoDB/PostgreSQL, JWT Authentication, Bcrypt, Middleware, Express-Validator, and API Testing (Supertest/Mocha), produce 3 detailed production-grade backend project briefs for social impact projects. Detail security protocols, database schemas, authorization roles, and deployment configurations."
@@ -728,19 +728,19 @@ const ROADMAP = [
             id: "s4_m_opt1",
             title: "Option A: Integrated Emergency Logistics & Relief Platform",
             desc: "Build a full-stack MERN application connecting real-time supply logistics tracking on the backend with dynamic React inventory maps and driver assignment interfaces.",
-            pdfBrief: "assets/project-briefs/sem4_midterm_option_a.pdf"
+            pdfBrief: "../assets/project-briefs/sem4_midterm_option_a.pdf"
           },
           {
             id: "s4_m_opt2",
             title: "Option B: Full Stack Community Shelter & Bed Allocation Network",
             desc: "Develop a MERN network allowing emergency shelters to report live bed availability via an authenticated admin dashboard consumed by public shelter finders.",
-            pdfBrief: "assets/project-briefs/sem4_midterm_option_b.pdf"
+            pdfBrief: "../assets/project-briefs/sem4_midterm_option_b.pdf"
           },
           {
             id: "s4_m_opt3",
             title: "Option C: Crisis Mental Health Support & Counselor Matching Web App",
             desc: "Create a full-stack platform matching individuals seeking urgent counseling with verified volunteer therapists, featuring secure intake forms and shift rosters.",
-            pdfBrief: "assets/project-briefs/sem4_midterm_option_c.pdf"
+            pdfBrief: "../assets/project-briefs/sem4_midterm_option_c.pdf"
           }
         ],
         aiPrompt: "Act as a Full Stack MERN Lead. Based on my technical skills connecting React, Node.js, Express, and MongoDB/PostgreSQL with Authentication and State Management, generate 3 full-stack humanitarian application briefs. Include system architecture diagrams, database schema designs, REST endpoints, UI view wireframes, and cloud deployment plans."
@@ -832,25 +832,25 @@ const ROADMAP = [
             id: "s4_f_opt1",
             title: "Option A: AidLink — Global Humanitarian Coordination Network",
             desc: "Build an enterprise full-stack MERN application connecting international NGOs, local field teams, and donors for real-time crisis tracking, resource allocation, and audited aid distribution.",
-            pdfBrief: "assets/project-briefs/sem4_final_option_a.pdf"
+            pdfBrief: "../assets/project-briefs/sem4_final_option_a.pdf"
           },
           {
             id: "s4_f_opt2",
             title: "Option B: CommuniCare — Community Health & Mutual Aid Portal",
             desc: "Develop a full-stack platform managing decentralized healthcare requests, volunteer medical shifts, medicine inventories, and patient intake workflows for local aid clinics.",
-            pdfBrief: "assets/project-briefs/sem4_final_option_b.pdf"
+            pdfBrief: "../assets/project-briefs/sem4_final_option_b.pdf"
           },
           {
             id: "s4_f_opt3",
             title: "Option C: GiveTrace — Transparent Grant & Resource Distribution Engine",
             desc: "Create a transparent MERN engine tracking charitable grant disbursements, spending proofs, community audit logs, and impact metrics with role-based access control.",
-            pdfBrief: "assets/project-briefs/sem4_final_option_c.pdf"
+            pdfBrief: "../assets/project-briefs/sem4_final_option_c.pdf"
           },
           {
             id: "s4_f_opt4",
             title: "Option D: Custom MERN Humanitarian Application of Choice",
             desc: "Scope, design, and build a custom full-stack MERN web application solving an approved social-impact problem of your own choice following HCA Capstone Guidelines.",
-            pdfBrief: "assets/project-briefs/sem4_final_option_d.pdf"
+            pdfBrief: "../assets/project-briefs/sem4_final_option_d.pdf"
           }
         ],
         aiPrompt: "Act as a Chief Technology Officer for Social Impact. Based on my full-stack MERN expertise (React, Node.js, Express, MongoDB/PostgreSQL, TypeScript, Next.js, OWASP Security, CI/CD, and Production Cloud Deployment), generate 3 comprehensive capstone project briefs. Include full system design, database schemas, frontend view wireframes, API routes, security measures, performance goals, and deployment workflow."
