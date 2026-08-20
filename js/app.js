@@ -754,7 +754,7 @@ function getQuestItemsForWeek(wObj) {
        ========================================================================== */
 const DEFAULT_STATE = {
   user: {
-    name: "John Doe",
+    name: "Developer",
     titles: [],
     earnedBalanceLogs: {},
     shown70Popups: [],
@@ -771,7 +771,7 @@ let state =
 if (!state.startDate) state.startDate = new Date().toISOString();
 if (!state.user.shown70Popups) state.user.shown70Popups = [];
 if (!state.user.shown100Popups) state.user.shown100Popups = [];
-if (!state.user.name) state.user.name = "John Doe";
+if (!state.user.name) state.user.name = "Developer";
 
 function saveState() {
   localStorage.setItem("HCA_LMS_STATE_V3", JSON.stringify(state));
