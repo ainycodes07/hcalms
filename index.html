@@ -2,388 +2,667 @@
 <html lang="en" data-theme="light">
 
 <head>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary SEO Meta Tags -->
-    <title>HCA — Humanitarian Code Academy</title>
-    <meta name="title" content="HCA — Humanitarian Code Academy">
-    <meta name="description" content="Master Full Stack Web Development from scratch with Humanitarian Code Academy. Track your progress, complete quests, and build capstone projects.">
-    <meta name="keywords" content="Humanitarian Code Academy, HCA, Full Stack Development, Learn Web Development, Coding Bootcamp, Web Dev Course">
-    <meta name="author" content="Humanitarian Code Academy">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://humanitariancodeacademy.netlify.app/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HCA — Humanitarian Code Academy</title>
 
-    <!-- Favicon & Touch Icons -->
-    <link rel="icon" type="image/png" href="assets/images/hca-favicon.png">
-    <link rel="apple-touch-icon" href="assets/images/hca-favicon.png">
+  <!-- FAVICON LOGO -->
+  <link rel="icon" type="image/png" href="assets/images/hca-favicon.png">
 
-    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://humanitariancodeacademy.netlify.app/">
-    <meta property="og:title" content="HCA — Humanitarian Code Academy">
-    <meta property="og:description" content="Master Full Stack Web Development from scratch with Humanitarian Code Academy. Track your progress, complete quests, and build capstone projects.">
-    <meta property="og:image" content="https://humanitariancodeacademy.netlify.app/assets/images/hca-cover.png">
-    <meta property="og:site_name" content="Humanitarian Code Academy">
-    <meta property="og:locale" content="en_US">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap"
+    rel="stylesheet">
 
-    <!-- Twitter / X Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://humanitariancodeacademy.netlify.app/">
-    <meta name="twitter:title" content="HCA — Humanitarian Code Academy">
-    <meta name="twitter:description" content="Master Full Stack Web Development from scratch with Humanitarian Code Academy. Track your progress, complete quests, and build capstone projects.">
-    <meta name="twitter:image" content="https://humanitariancodeacademy.netlify.app/assets/images/hca-cover.png">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/landing-page-style.css">
 </head>
-    
+
 <body>
 
-    <!-- SCREEN 1: LOADER -->
-    <div id="loaderScreen" class="fullscreen-layer">
-        <div class="loader-logo">
-            <img src="assets/images/hca-load-icon.png" alt="HCA" class="loader-logo-img"
-                onerror="this.style.display='none'; this.parentElement.querySelector('.loader-fallback').style.display='flex';">
-            <div class="loader-fallback"><i class="fa-solid fa-graduation-cap"></i></div>
+  <!-- FULLSCREEN MOBILE MENU -->
+  <div class="mobile-nav-overlay" id="mobile-nav">
+    <div class="mobile-nav-header">
+      <div class="nav-brand">
+        <div class="logo-badge"></div>
+        <span>Humanitarian Code Academy</span>
+      </div>
+      <button class="mobile-menu-close" onclick="closeMobileMenu()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="mobile-nav-body">
+      <a href="#about" onclick="closeMobileMenu()">About HCA</a>
+      <a href="#humanitarian" onclick="closeMobileMenu()">Humanitarian Focus</a>
+      <a href="#features" onclick="closeMobileMenu()">LMS Features</a>
+      <a href="#why-choose" onclick="closeMobileMenu()">Why Choose Us</a>
+      <a href="#outcomes" onclick="closeMobileMenu()">Outcomes</a>
+      <a href="#roadmap" onclick="closeMobileMenu()">Course Roadmap</a>
+      <a href="#faqs" onclick="closeMobileMenu()">FAQs</a>
+      <a href="hcalms.html" class="btn btn-primary-lms" style="width: 100%; margin-top: 1rem;"
+        onclick="closeMobileMenu()">
+        <i class="fa-solid fa-laptop-code"></i> Launch LMS Portal
+      </a>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="logo-badge"><img src="assets/images/hca-badge-logo.png"></div>
+      <span>Humanitarian Code Academy</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#humanitarian">Impact</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#why-choose">Why HCA</a></li>
+      <li><a href="#roadmap">Curriculum</a></li>
+      <li><a href="#faqs">FAQs</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="theme-toggle-btn" onclick="toggleTheme()">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+        <span id="theme-text">Dark</span>
+      </button>
+
+      <a href="hcalms.html" class="btn-nav-lms">
+        <i class="fa-solid fa-right-to-bracket"></i> Launch LMS
+      </a>
+
+      <button class="hamburger-btn" onclick="openMobileMenu()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 1. HERO SECTION -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-badge-pill">
+        <i class="fa-solid fa-heart-pulse"></i> Code With Purpose · 100% Free Open Platform
+      </div>
+
+      <h1 class="hero-title">
+        Master Full Stack Engineering <br>To Build <span>Humanitarian Solutions</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A structured, 4-semester software development pathway integrated with an intuitive Learning Management System
+        (LMS) to track your daily code quests, portfolio proof-of-work, and real-world social impact.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="hcalms.html" class="btn btn-primary-lms">
+          <i class="fa-solid fa-rocket"></i> Access Free LMS Portal
+        </a>
+        <a href="#roadmap" class="btn btn-secondary">
+          <i class="fa-solid fa-map-location-dot"></i> Explore 4-Semester Roadmap
+        </a>
+      </div>
+
+      <div class="hero-stats-strip">
+        <div class="stat-item">
+          <h4>48 Weeks</h4>
+          <p>Structured Roadmap</p>
         </div>
-        <div class="loader-bar">
-            <div class="loader-bar-fill" id="loaderFill"></div>
+        <div class="stat-item">
+          <h4>8 Apps</h4>
+          <p>Portfolio Ready</p>
         </div>
-        <p class="loader-text">Loading your journey...</p>
-    </div>
-
-    <!-- SCREEN 2: PRESENTER -->
-    <div id="presenterScreen" class="fullscreen-layer" style="display:none;">
-        <p class="presents-line">Humanitarian Code Academy Presents</p>
-        <h1 class="presents-course">Full Stack Web Development</h1>
-        <p class="presents-tag">Code with Purpose</p>
-        <button id="enterBtn" class="btn btn-primary presents-btn">Enter Academy <i
-                class="fa-solid fa-arrow-right"></i></button>
-    </div>
-
-    <!-- MAIN APP -->
-    <div class="app" id="appRoot" style="display:none;">
-
-        <aside class="sidebar" id="sidebar">
-            <div class="logo-row">
-                <img src="assets/images/hca-badge-logo.png" alt="HCA Logo" class="logo-placeholder"
-                    onerror="this.style.display='flex'; this.innerHTML='<i class=\'fa-solid fa-graduation-cap\'></i>';">
-                <div class="brand-text">
-                    <div class="brand-name">Humanitarian</div>
-                    <div class="brand-sub">Code Academy</div>
-                </div>
-            </div>
-
-            <nav class="nav-links">
-                <button class="nav-link active" data-tab="dashboard"><span class="nav-icon"><i
-                            class="fa-solid fa-house"></i></span><span class="nav-label">Dashboard</span></button>
-                <button class="nav-link" data-tab="semester"><span class="nav-icon"><i
-                            class="fa-solid fa-route"></i></span><span class="nav-label">Semester</span></button>
-                <button class="nav-link" data-tab="weekly"><span class="nav-icon"><i
-                            class="fa-solid fa-list-check"></i></span><span class="nav-label">Weekly
-                        Todo</span></button>
-                <button class="nav-link" data-tab="gradebook"><span class="nav-icon"><i
-                            class="fa-solid fa-chart-simple"></i></span><span class="nav-label">Grade
-                        Book</span></button>
-                <button class="nav-link" data-tab="profile"><span class="nav-icon"><i
-                            class="fa-solid fa-user"></i></span><span class="nav-label">Profile</span></button>
-            </nav>
-
-            <div class="theme-toggle-row">
-                <span class="nav-label"><i class="fa-solid fa-moon"></i></span>
-                <label class="switch">
-                    <input type="checkbox" id="themeSwitch">
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </aside>
-
-        <main>
-
-            <!-- DASHBOARD -->
-            <section id="dashboard" class="tab-content active">
-                <div class="page-header">
-                    <h1>Welcome back<span id="dashName"></span> <i class="fa-solid fa-hand-sparkles"></i></h1>
-                    <p>Your path from Frontend Beginner to Full Stack Developer.</p>
-                </div>
-                <div class="sem-grid" id="semGrid"></div>
-            </section>
-
-            <!-- SEMESTER -->
-            <section id="semester" class="tab-content">
-                <div class="page-header">
-                    <h1>Semester Path</h1>
-                    <p>Track your journey week by week.</p>
-                </div>
-                <div class="sem-select-row" id="semChips"></div>
-
-                <div class="top-progress-wrap">
-                    <h3 id="semTitle">Semester 1</h3>
-                    <div class="top-progress-track" id="topProgressTrack">
-                        <div class="top-progress-fill" id="topProgressFill"></div>
-                    </div>
-                </div>
-
-                <div class="path-wrap" id="pathWrap">
-                    <div class="path-line"></div>
-                </div>
-            </section>
-
-            <!-- WEEKLY TODO -->
-            <section id="weekly" class="tab-content">
-                <div class="page-header">
-                    <h1>Weekly Quests</h1>
-                    <p id="weeklySub">Everything you need to know, do, and track this week.</p>
-                </div>
-
-                <div class="week-summary-bar">
-                    <div>
-                        <strong id="weeklyWeekLabel">Week 1</strong>
-                        <div class="muted-sm" id="weeklyProgressLabel">0 / 0 completed</div>
-                    </div>
-                    <div class="week-summary-right">
-                        <div class="deadline-chip" id="weeklyDeadlineChip"><i class="fa-regular fa-clock"></i> --</div>
-                        <div class="progress-track" style="width:180px;">
-                            <div class="progress-fill" id="weeklyProgressFill"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tabs-inline" id="weeklyTabs">
-                    <button class="tab-btn active" data-wtab="overview"><i class="fa-solid fa-book-open"></i>
-                        Overview</button>
-                    <button class="tab-btn" data-wtab="tasks"><i class="fa-solid fa-square-check"></i> Mark as
-                        Done</button>
-                    <button class="tab-btn" data-wtab="notebook"><i class="fa-solid fa-note-sticky"></i> My
-                        Notebook</button>
-                    <button class="tab-btn" data-wtab="schedule"><i class="fa-solid fa-calendar-day"></i> Suggested
-                        Schedule</button>
-                </div>
-
-                <div id="wtab-overview" class="wtab-content active"></div>
-
-                <div id="wtab-tasks" class="wtab-content">
-                    <div class="task-list" id="taskList"></div>
-                </div>
-
-                <div id="wtab-notebook" class="wtab-content">
-                    <div class="notebook-wrap">
-                        <div class="notebook-add">
-                            <input type="text" id="notebookInput"
-                                placeholder="Add your own task or note for this week...">
-                            <input type="date" id="notebookDate">
-                            <button class="btn btn-primary" id="notebookAddBtn"><i
-                                    class="fa-solid fa-plus"></i></button>
-                        </div>
-                        <div id="notebookList" class="notebook-list"></div>
-                    </div>
-                </div>
-
-                <div id="wtab-schedule" class="wtab-content">
-                    <p class="muted-sm" style="margin-bottom:18px;">A suggested daily rhythm — adjust to your own life.
-                        Roughly 4-5 focused hours/day, 5-6 days/week.</p>
-                    <div class="schedule-list" id="scheduleList"></div>
-                </div>
-
-                <div class="weekly-path-wrap">
-                    <h3 style="font-size:15px;margin-bottom:4px;">This Semester's Path</h3>
-                    <p class="muted-sm" style="margin-bottom:6px;">Click any unlocked week to jump to it</p>
-                    <div class="weekly-path-scroll" id="weeklyPathScroll"></div>
-                </div>
-            </section>
-
-            <!-- GRADEBOOK -->
-            <section id="gradebook" class="tab-content">
-                <div class="page-header">
-                    <h1>Grade Book</h1>
-                    <p>All graded work, weighted as percentage of your total course.</p>
-                </div>
-
-                <div class="tabs-inline">
-                    <button class="tab-btn active" id="gbTabGrades">My Grades</button>
-                    <button class="tab-btn" id="gbTabScheme">Grading Scheme</button>
-                </div>
-
-                <div id="gbGrades">
-                    <div class="course-total-card">
-                        <div>
-                            <div class="muted-sm">TOTAL COURSE PROGRESS</div>
-                            <div class="course-total-pct" id="courseTotalPct">0%</div>
-                        </div>
-                        <div class="progress-track" style="flex:1;margin-left:24px;">
-                            <div class="progress-fill" id="courseTotalFill"></div>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Semester</th>
-                                <th>Item</th>
-                                <th>Type</th>
-                                <th>Status</th>
-                                <th>% of Semester</th>
-                                <th>% of Course</th>
-                            </tr>
-                        </thead>
-                        <tbody id="gradeRows"></tbody>
-                    </table>
-                </div>
-
-                <div id="gbScheme" style="display:none;">
-                    <table style="margin-bottom:24px;">
-                        <thead>
-                            <tr>
-                                <th>Component</th>
-                                <th>Weight (per semester)</th>
-                                <th>Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Study Concept Checks</td>
-                                <td>15%</td>
-                                <td>Marking a week's core study concept as covered</td>
-                            </tr>
-                            <tr>
-                                <td>Quizzes</td>
-                                <td>10%</td>
-                                <td>4 per semester — small coding problems</td>
-                            </tr>
-                            <tr>
-                                <td>Assignments</td>
-                                <td>15%</td>
-                                <td>4 per semester — labs, OSS contributions, builds</td>
-                            </tr>
-                            <tr>
-                                <td>Activity A</td>
-                                <td>10%</td>
-                                <td>4 per semester — internship/hackathon/OSS/volunteer</td>
-                            </tr>
-                            <tr>
-                                <td>Activity B</td>
-                                <td>10%</td>
-                                <td>4 per semester — blog/YouTube/freelance profile</td>
-                            </tr>
-                            <tr>
-                                <td>Midterm (2 projects)</td>
-                                <td>20%</td>
-                                <td>10% each — skill-test portfolio builds</td>
-                            </tr>
-                            <tr>
-                                <td>Final Project (4 phases)</td>
-                                <td>20%</td>
-                                <td>5% each phase — capstone-worthy build</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p class="muted-sm" style="margin-bottom:14px;">Each semester = 16.67% of the full course. All 6
-                        semesters sum to 100%.</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Grade</th>
-                                <th>Range</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>A</td>
-                                <td>90–100%</td>
-                                <td>Pass</td>
-                            </tr>
-                            <tr>
-                                <td>B</td>
-                                <td>75–89%</td>
-                                <td>Pass</td>
-                            </tr>
-                            <tr>
-                                <td>C</td>
-                                <td>60–74%</td>
-                                <td>Pass</td>
-                            </tr>
-                            <tr>
-                                <td>D</td>
-                                <td>50–59%</td>
-                                <td>Conditional Pass</td>
-                            </tr>
-                            <tr>
-                                <td>F</td>
-                                <td>Below 50%</td>
-                                <td>Fail — semester repeat required</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- PROFILE -->
-            <section id="profile" class="tab-content">
-                <div class="page-header">
-                    <h1>Profile</h1>
-                    <p>Manage your identity, badges and preferences.</p>
-                </div>
-
-                <div class="settings-grid">
-                    <div class="settings-card">
-                        <h3><i class="fa-solid fa-id-badge"></i> Profile</h3>
-                        <input type="text" id="profileNameInput" placeholder="Your full name">
-                        <button class="btn btn-primary" id="saveProfileBtn">Save Name</button>
-                    </div>
-
-                    <div class="settings-card">
-                        <h3><i class="fa-solid fa-award"></i> Badges Earned</h3>
-                        <div class="badge-grid" id="badgeGrid">
-                            <p class="muted-sm">Complete a semester to earn your first badge.</p>
-                        </div>
-                    </div>
-
-                    <div class="settings-card">
-                        <h3><i class="fa-solid fa-share-nodes"></i> Share Your Progress</h3>
-                        <p class="muted-sm" style="margin-bottom:14px;">Generate an image of your current progress to
-                            share.</p>
-                        <div class="btn-row">
-                            <button class="btn btn-outline" id="shareImgBtn"><i class="fa-solid fa-download"></i>
-                                Download Progress Card</button>
-                            <button class="btn btn-outline" id="shareLinkedInBtn"><i class="fa-brands fa-linkedin"></i>
-                                Share on LinkedIn</button>
-                        </div>
-                    </div>
-
-                    <div class="settings-card">
-                        <h3><i class="fa-solid fa-triangle-exclamation"></i> Danger Zone</h3>
-                        <p class="muted-sm" style="margin-bottom:14px;">This will erase all progress permanently.</p>
-                        <button class="btn btn-danger" id="resetBtn">Reset All Progress</button>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-    </div>
-
-    <canvas id="shareCanvas" width="1000" height="600" style="display:none;"></canvas>
-
-    <!-- CONGRATS MODAL -->
-    <div id="congratsModal" class="modal-overlay">
-        <div class="modal-card">
-            <div class="modal-icon"><i class="fa-solid fa-trophy"></i></div>
-            <h2 id="congratsTitle">Congratulations!</h2>
-            <p id="congratsSub">You completed this week's quest.</p>
-            <div id="congratsTags" class="stack-tags"></div>
-            <div class="btn-row modal-btn-row">
-                <button class="btn btn-outline" id="congratsDownloadBtn"><i class="fa-solid fa-download"></i> Download
-                    Card</button>
-                <button class="btn btn-primary" id="congratsLinkedInBtn"><i class="fa-brands fa-linkedin"></i> Share on
-                    LinkedIn</button>
-            </div>
-            <button class="modal-close" id="congratsCloseBtn">Continue <i class="fa-solid fa-arrow-right"></i></button>
+        <div class="stat-item">
+          <h4>100% Free</h4>
+          <p>Zero Hidden Fees</p>
         </div>
+        <div class="stat-item">
+          <h4>LMS Tracked</h4>
+          <p>Quest Gamification</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. TRANSPARENCY FIRST SECTION (SPLIT INTO CARDS) -->
+  <div class="section-wrapper-alt1" id="about">
+    <section class="section">
+      <div class="section-header">
+        <span class="section-tag">Transparency First</span>
+        <h2 class="section-title">Built Different from Day One</h2>
+        <p class="section-subtitle">We believe in clarity, open access, and realistic expectations before you write a
+          single line of code.</p>
+      </div>
+
+      <div class="card-grid-2x2">
+        <div class="icon-card">
+          <div class="card-icon-box"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <h3>100% Free & Open Platform</h3>
+          <p>HCA is completely free. We do not charge tuition, ask for credit card details, or lock core content behind
+            paywalls. Tech education should be accessible to everyone.</p>
+        </div>
+
+        <div class="icon-card">
+          <div class="card-icon-box"><i class="fa-solid fa-building-columns"></i></div>
+          <h3>Unaccredited by Design</h3>
+          <p>HCA is an independent self-learning framework and LMS, <strong>not an accredited university or government
+              institute</strong>. We grant zero formal college degrees—we build real software engineering skills.</p>
+        </div>
+
+        <div class="icon-card">
+          <div class="card-icon-box"><i class="fa-solid fa-sliders"></i></div>
+          <h3>LMS-Guided Accountability</h3>
+          <p>Instead of passive video watching, our custom LMS provides structured weekly quest checklists,
+            accountability account-books, and milestone badges to keep you consistent.</p>
+        </div>
+
+        <div class="icon-card">
+          <div class="card-icon-box"><i class="fa-solid fa-code-commit"></i></div>
+          <h3>Proof-of-Work Verification</h3>
+          <p>Employers care about code, not certificates. HCA requires public GitHub commits, live Vercel/Render
+            deployments, and bi-weekly devlog videos for every project.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 3. HUMANITARIAN CODE FOCUS -->
+  <div class="section-wrapper-alt2" id="humanitarian">
+    <section class="section">
+      <div class="humanitarian-banner">
+        <div class="humanitarian-content">
+          <div
+            style="color: var(--gold); font-weight:800; text-transform:uppercase; font-size:0.85rem; margin-bottom:0.5rem;">
+            <i class="fa-solid fa-earth-americas"></i> Code with Purpose
+          </div>
+          <h2>Humanitarian & Social Impact Engineering</h2>
+          <p>At HCA, programming isn't just about commercial web applications. Every major project assignment is
+            tailored around solving real-world crisis, NGO, or community challenges.</p>
+
+          <div class="pill-list">
+            <span class="pill-item"><i class="fa-solid fa-check"></i> Disaster Relief Tracker Briefs</span>
+            <span class="pill-item"><i class="fa-solid fa-check"></i> Aid Distribution Dashboards</span>
+            <span class="pill-item"><i class="fa-solid fa-check"></i> Accessibility (WCAG 2.1) Audits</span>
+            <span class="pill-item"><i class="fa-solid fa-check"></i> Low-Bandwidth Web Optimization</span>
+          </div>
+        </div>
+
+        <div
+          style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.15); padding: 2rem; border-radius: 20px;">
+          <h4 style="font-size: 1.2rem; color: var(--gold); margin-bottom: 0.8rem;"><i
+              class="fa-solid fa-quote-left"></i> Why Humanitarian Focus?</h4>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.6;">
+            Building for low-resource environments, offline-first networks, and accessible interfaces makes you a vastly
+            superior developer. You learn performance, empathy, and security engineering at the highest standard.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 4. 10 LMS FEATURES SHOWCASE -->
+  <div class="section-wrapper-alt3" id="features">
+    <section class="section">
+      <div class="section-header">
+        <span class="section-tag">Powerful Ecosystem</span>
+        <h2 class="section-title">10 Platform Features for Serious Learning</h2>
+        <p class="section-subtitle">Our LMS and platform tools are built specifically to keep self-directed coders
+          organized, motivated, and accountable.</p>
+      </div>
+
+      <div class="grid-features-10">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 01</div>
+              <i class="fa-solid fa-gauge-high" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Interactive LMS Dashboard</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Real-time overview of active semester
+              progress, completed coding quests, and upcoming deadlines.</p>
+          </div>
+          <div class="mock-ui-box">
+            <strong>Current Progress: Sem 1 - W06</strong>
+            <div class="mock-progress-bar">
+              <div class="mock-progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 02</div>
+              <i class="fa-solid fa-circle-half-stroke" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Dark & Light Theme Engine</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Toggle between custom dark/light color
+              schemes engineered to reduce strain during late-night coding sessions.</p>
+          </div>
+          <div class="mock-ui-box" style="display:flex; justify-content:space-between; align-items:center;">
+            <span>Theme Preference</span>
+            <span
+              style="background:var(--plum); color:#fff; padding:0.2rem 0.5rem; border-radius:6px; font-size:0.75rem;">Active</span>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 03</div>
+              <i class="fa-solid fa-book-bookmark" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Accountability Account Book</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Track daily study hours spent, devlog
+              publication streaks, and personal milestone commits.</p>
+          </div>
+          <div class="mock-ui-box">
+            <i class="fa-solid fa-fire" style="color:var(--gold);"></i> 14-Day Devlog Streak Active
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 04</div>
+              <i class="fa-solid fa-mobile-screen-button" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Mobile-First Responsive LMS</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Review documentation, track tasks, and
+              check quest requirements from any phone or mobile browser seamlessly.</p>
+          </div>
+          <div class="mock-ui-box">
+            <i class="fa-solid fa-check-circle" style="color:var(--gold);"></i> Fluid Grid Layout Verified
+          </div>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 05</div>
+              <i class="fa-solid fa-medal" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Gamified Quest Badges</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Unlock milestone titles and digital
+              badges upon passing capstone code gates in each semester.</p>
+          </div>
+          <div class="mock-ui-box" style="display:flex; gap:0.5rem;">
+            <span style="background:var(--surface2); padding:0.2rem 0.6rem; border-radius:6px;"><i
+                class="fa-solid fa-shield-cat" style="color:var(--gold);"></i> Git Master</span>
+            <span style="background:var(--surface2); padding:0.2rem 0.6rem; border-radius:6px;"><i
+                class="fa-solid fa-code" style="color:var(--plum);"></i> React Dev</span>
+          </div>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 06</div>
+              <i class="fa-solid fa-clipboard-list" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Weekly Quest Checklists</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Granular step-by-step tasks broken
+              down week-by-week to prevent cognitive overload.</p>
+          </div>
+          <div class="mock-ui-box">
+            <input type="checkbox" checked disabled> CSS Grid Areas Completed
+          </div>
+        </div>
+
+        <!-- Feature 7 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 07</div>
+              <i class="fa-solid fa-hands-holding-circle" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Humanitarian Project Briefs</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Real-world project specifications
+              designed around non-profit and humanitarian challenge parameters.</p>
+          </div>
+          <div class="mock-ui-box">
+            <i class="fa-solid fa-file-pdf"></i> Brief: Refugee Aid Locator App
+          </div>
+        </div>
+
+        <!-- Feature 8 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 08</div>
+              <i class="fa-solid fa-code-compare" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Git & Portfolio Verification</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Direct integration checklist for
+              GitHub commits and live project hosting links (Vercel/Render).</p>
+          </div>
+          <div class="mock-ui-box">
+            <i class="fa-brands fa-github"></i> Repository Commit Verified
+          </div>
+        </div>
+
+        <!-- Feature 9 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 09</div>
+              <i class="fa-solid fa-video" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Bi-Weekly Devlog Logging</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Build communication and technical
+              explanation skills by embedding short video demos of your apps.</p>
+          </div>
+          <div class="mock-ui-box">
+            <i class="fa-solid fa-play-circle" style="color:var(--plum);"></i> Devlog #4 Recorded
+          </div>
+        </div>
+
+        <!-- Feature 10 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-top">
+              <div class="feature-num">Feature 10</div>
+              <i class="fa-solid fa-people-group" style="color:var(--plum); font-size:1.2rem;"></i>
+            </div>
+            <h3>Community Peer Hubs</h3>
+            <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.4rem;">Collaborate with fellow humanitarian
+              coders, request code reviews, and build group capstones.</p>
+          </div>
+          <div class="mock-ui-box">
+            <i class="fa-brands fa-discord" style="color:#5865F2;"></i> 1,200+ Active Cohort Builders
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 5. WHY CHOOSE HCA -->
+  <div class="section-wrapper-alt1" id="why-choose">
+    <section class="section">
+      <div class="section-header">
+        <span class="section-tag">Value Proposition</span>
+        <h2 class="section-title">Why Developers Choose HCA</h2>
+        <p class="section-subtitle">Bootcamps charge $15,000+. HCA delivers high-rigor engineering pathways with
+          complete independence.</p>
+      </div>
+
+      <div class="why-cards-grid">
+        <div class="why-card">
+          <div class="why-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Zero Paywalls</h3>
+          <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.5rem;">Every semester, template, LMS feature,
+            and project brief is free forever without sneaky subscription traps.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon"><i class="fa-solid fa-cubes"></i></div>
+          <h3>Production Stack</h3>
+          <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.5rem;">Learn industry-standard technologies:
+            React, TypeScript, Node.js, Express, PostgreSQL, MongoDB, Next.js, and Git.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon"><i class="fa-solid fa-heart-circle-check"></i></div>
+          <h3>Empathetic Coding</h3>
+          <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.5rem;">Gain real-world experience in
+            accessibility (WCAG), performance optimization, and humanitarian UI patterns.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon"><i class="fa-solid fa-brain"></i></div>
+          <h3>Self-Paced Structure</h3>
+          <p style="font-size:0.9rem; color:var(--ink-dim); margin-top:0.5rem;">Follow a clear 48-week timeline or
+            accelerate at your own speed using our LMS quest tracking system.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 6. LEARNING OUTCOMES -->
+  <div class="section-wrapper-alt2" id="outcomes">
+    <section class="section">
+      <div class="section-header">
+        <span class="section-tag">Proven Skill Set</span>
+        <h2 class="section-title">Graduate Learning Outcomes</h2>
+        <p class="section-subtitle">What you will be capable of building after completing all four semesters.</p>
+      </div>
+
+      <div class="outcomes-grid">
+        <div class="outcome-card">
+          <span class="outcome-badge">Full Stack</span>
+          <i class="fa-solid fa-layer-group" style="font-size:2rem; color:var(--plum); margin-bottom:1rem;"></i>
+          <h3>MERN + TypeScript Apps</h3>
+          <p style="color:var(--ink-dim); font-size:0.92rem; margin-top:0.5rem;">Architect type-safe, full-stack
+            applications with React frontend, Express/Node API, and MongoDB/SQL databases.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span class="outcome-badge">Security</span>
+          <i class="fa-solid fa-lock" style="font-size:2rem; color:var(--plum); margin-bottom:1rem;"></i>
+          <h3>OWASP & Auth Standards</h3>
+          <p style="color:var(--ink-dim); font-size:0.92rem; margin-top:0.5rem;">Implement secure JWT user
+            authentication, password hashing, CORS protection, rate limiting, and input sanitization.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span class="outcome-badge">UX / A11y</span>
+          <i class="fa-solid fa-universal-access" style="font-size:2rem; color:var(--plum); margin-bottom:1rem;"></i>
+          <h3>Accessible UI Engineering</h3>
+          <p style="color:var(--ink-dim); font-size:0.92rem; margin-top:0.5rem;">Pass WCAG 2.1 accessibility audits,
+            build keyboard-navigable components, and translate Figma designs accurately.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span class="outcome-badge">DevOps</span>
+          <i class="fa-solid fa-cloud-arrow-up" style="font-size:2rem; color:var(--plum); margin-bottom:1rem;"></i>
+          <h3>CI/CD & Cloud Launch</h3>
+          <p style="color:var(--ink-dim); font-size:0.92rem; margin-top:0.5rem;">Set up GitHub Actions automation,
+            configure environment variables safely, and deploy production apps to Vercel and Render.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 7. HCA DEEP DIVE ROADMAP (SEMESTERS NOT WEEKS) -->
+  <div class="section-wrapper-alt3" id="roadmap">
+    <section class="section">
+      <div class="section-header">
+        <span class="section-tag">Comprehensive Curriculum</span>
+        <h2 class="section-title">HCA 4-Semester Deep Dive Roadmap</h2>
+        <p class="section-subtitle">Click a semester below to explore what you will learn, why it matters, how we teach
+          it, and key advice before starting.</p>
+      </div>
+
+      <div class="semester-tabs-container">
+        <button class="sem-tab-btn active" onclick="switchSemester(1)">Semester 1: Frontend Architecture</button>
+        <button class="sem-tab-btn" onclick="switchSemester(2)">Semester 2: React Web Apps</button>
+        <button class="sem-tab-btn" onclick="switchSemester(3)">Semester 3: Backend Systems</button>
+        <button class="sem-tab-btn" onclick="switchSemester(4)">Semester 4: Full Stack & Capstone</button>
+      </div>
+
+      <div id="semester-display-area">
+        <!-- Injected dynamically by JavaScript -->
+      </div>
+    </section>
+  </div>
+
+  <!-- 8. FAQS SECTION -->
+  <div class="section-wrapper-alt1" id="faqs">
+    <section class="section">
+      <div class="section-header">
+        <span class="section-tag">Got Doubts?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Real answers to real queries about HCA, accreditation, LMS access, and time
+          commitments.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Is Humanitarian Code Academy completely free or is there a catch?
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            It is 100% free with zero hidden fees, subscriptions, or paywalls. HCA was built as an open humanitarian
+            initiative to empower self-taught developers worldwide.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Will I receive an accredited degree or university certificate?
+            <div class="faq-icon"><i class="fa-solid fa-chevron-down"></i></div>
+          </div>
+          <div class="faq-answer">
+            No. HCA is an independent self-learning framework and tracking platform—<strong>not an accredited academic
+              institution</strong>. We do not issue recognized college degrees. Instead, you graduate with 8
+            production-grade applications on GitHub to prove your technical abilities to hiring managers.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How does the LMS work if there are no live teachers?
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            The LMS acts as your digital flight simulator. It guides you week-by-week through quest checklists, curated
+            documentation, project briefs, and accountability logs. You submit live links to verify your completion.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How are humanitarian projects integrated into the coding tasks?
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Instead of standard placeholder projects like "Todo App", HCA briefs challenge you to build tools like a
+            Disaster Relief Request Portal, Refugee Supply Inventory Tracker, or Accessibility Audit Suite.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How much time do I need to commit every week?
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            We recommend setting aside 15 to 18 hours per week to complete reading materials, practice exercises, and
+            project submissions comfortably.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What if I take longer than 12 weeks to complete a semester?
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            The LMS is self-paced! While the curriculum is structured into 12-week semesters for optimal momentum, your
+            progress is saved locally and in your account book, letting you learn without fear of losing access.
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 9. PRE-FOOTER CTA BANNER -->
+  <div class="prefooter-cta-wrapper" id="lms-portal">
+    <div class="prefooter-banner">
+      <h2>Ready to Build Code That Matters?</h2>
+      <p>Start your Full Stack Web Development journey today with our free LMS platform. Track quests, build real
+        humanitarian projects, and master modern web engineering.</p>
+
+      <div class="prefooter-ctas">
+        <a class="btn btn-gold" href="hcalms.html">
+          <i class="fa-solid fa-rocket"></i> Launch LMS Dashboard
+        </a>
+        <a href="#roadmap" class="btn btn-secondary"
+          style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color:#fff !important;">
+          <i class="fa-solid fa-book-open"></i> View Curriculum
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col" style="grid-column: span 2;">
+        <div class="nav-brand" style="margin-bottom: 1rem;">
+          <div class="logo-badge">HCA</div>
+          <span>Humanitarian Code Academy</span>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--ink-dim); max-width: 420px; line-height: 1.6;">
+          An open, unaccredited learning initiative empowering aspiring developers worldwide to build software that
+          creates real humanitarian impact.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#about">About HCA</a></li>
+          <li><a href="#humanitarian">Humanitarian Impact</a></li>
+          <li><a href="#features">LMS Features</a></li>
+          <li><a href="#roadmap">Full Roadmap</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal & Policy</h4>
+        <ul>
+          <li><a href="#" onclick="openModal('privacy')">Privacy Policy</a></li>
+          <li><a href="#" onclick="openModal('accessibility')">Accessibility Statement</a></li>
+          <li><a href="#" onclick="openModal('terms')">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Creator & Socials</h4>
+        <p style="font-size:0.85rem; color:var(--ink-dim);">Curated & Maintained by Qurat Ul Ain</p>
+        <div class="social-links">
+          <a href="https://github.com/ainycodes07" target="_blank" title="GitHub profile of ainycodes07"><i
+              class="fa-brands fa-github"></i></a>
+          <a href="https://x.com/ainycodes07" target="_blank" title="X (Twitter) profile of ainycodes07"><i
+              class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" title="Instagram of HCA"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <div class="footer-bottom">
+      &copy; 2026 Humanitarian Code Academy. Designed & Built with Purpose by <a href="https://github.com/ainycodes07"
+        target="_blank" style="font-weight: 700; color: var(--plum);">ainycodes07 (Qurat Ul Ain)</a>.
+    </div>
+  </footer>
+
+  <!-- MODAL DIALOG FOR POLICIES -->
+  <div class="modal-overlay" id="info-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="modal-title" class="brand-font" style="margin-bottom: 1rem; color: var(--plum);">Policy Statement</h3>
+      <div id="modal-body" style="font-size:0.95rem; color:var(--ink-dim); line-height:1.6;">
+        <!-- Dynamic Injection -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script src="js/landing-page-script.js">
+  </script>
 </body>
 
 </html>
