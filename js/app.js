@@ -27,8 +27,8 @@ const ROADMAP = [
         title: "Modern CSS Layouts, Flexbox & Grid (CS101 / CS103)",
         resource: "HTML and CSS (Duckett) & Refactoring UI",
         type: "lab",
-        what: "Flexbox container alignment, grid-template-areas, media queries, fluid units (rem, clamp), and layout refactoring.",
-        why: "Responsive layout systems ensure web platforms adapt seamlessly across desktop and mobile viewports.",
+        what: "Master flexible and two-dimensional CSS layouts using Flexbox and CSS Grid. You will implement responsive grid tracks, template areas, media query breakpoints, CSS variables for design tokens, dynamic spacing using viewport units and `clamp()`, and refactor legacy CSS into fluid layouts.",
+        why: "Responsive layout systems ensure web platforms adapt seamlessly across desktop, tablet, and mobile viewports.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Duckett CSS Ch. 10–15, Google Web.dev Responsive Guides.",
         how: "1. Recreate 3 responsive layouts (Header/Sidebar/Content, 3-Column Grid, Responsive Gallery).\n2. Audit viewports at 375px, 768px, and 1200px.\n3. Submit Lab 2 deliverable.",
@@ -39,7 +39,7 @@ const ROADMAP = [
         title: "JavaScript Syntax & Data Structures (CS102)",
         resource: "Eloquent JavaScript (Marijn Haverbeke)",
         type: "lab",
-        what: "Control flow, functions, scope, arrays, objects, ES6+ features (destructuring, spread operator, array methods).",
+        what: "Master foundational vanilla JavaScript syntax, data structures, and algorithmic logic. Study lexical scoping, closures, higher-order array methods (`map`, `filter`, `reduce`), object manipulation, destructuring, rest/spread operators, and error handling pattern implementation.",
         why: "Algorithmic thinking and data manipulation form the bedrock of interactive software applications.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Eloquent JavaScript Ch. 2–4 & JavaScript.info.",
@@ -51,7 +51,7 @@ const ROADMAP = [
         title: "DOM Manipulation & Event Handling (CS102 / CS106)",
         resource: "Eloquent JS & Don't Make Me Think",
         type: "lab",
-        what: "Selecting DOM nodes, event listeners, element creation, dynamic UI updates, and accessibility focus traps.",
+        what: "Master interacting with the Document Object Model (DOM) using native vanilla JavaScript. Implement dynamic element selection, event delegation, dynamic node creation/removal, reactive state rendering without external frameworks, dynamic modal management, and accessible keyboard focus traps.",
         why: "Enables interactive, user-driven applications without third-party framework overhead.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Eloquent JS Ch. 14–15, MDN DOM Manipulation Guides.",
@@ -63,7 +63,7 @@ const ROADMAP = [
         title: "Python Scripting & Term Project Kickoff (CS104 & OpenRelief)",
         resource: "Python Crash Course (Eric Matthes)",
         type: "term_kickoff",
-        what: "Python CLI scripting, file I/O, data extraction with requests/BeautifulSoup, and Term Project (OpenRelief Archivist) kickoff.",
+        what: "Master fundamental Python CLI scripting, local file I/O operations, structural data extraction using `requests` and `BeautifulSoup`, and officially kick off the OpenRelief Archivist Term Project by producing structural specifications and architecture plans.",
         why: "Combines data automation with client-side engineering to solve real-world data collection challenges.",
         when: "Term Project Kickoff + 12–15 lecture/reading hours.",
         where: "Python Crash Course Ch. 1–8 & Term Project Architecture Specs.",
@@ -71,8 +71,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s1_term_proj",
-            title: "Term Project: OpenRelief Archivist",
-            desc: "Accessible Offline Reader for Humanitarian Texts with local caching, instant client-side search, service worker PWA capabilities, and Python data scraping pipelines.",
+            title: "Term Project Brief: OpenRelief Archivist",
+            desc: "Full Project Brief: Build an Offline-First Humanitarian Text Reader and Python Scraper Pipeline. The client application must feature dynamic typography controls, local text indexing, instant client-side substring search, offline caching via Service Workers and LocalStorage, dynamic theme switching, and WCAG AA accessibility compliance. The backend component must include a Python script that parses raw unstructured humanitarian text files, strips non-essential metadata, and transforms the output into clean JSON data schemas.",
             pdfBrief: "../assets/project-briefs/sem1_term_project.pdf"
           }
         ]
@@ -82,7 +82,7 @@ const ROADMAP = [
         title: "Animation, GSAP & Shell Scripting (CS103 / CS105)",
         resource: "Refactoring UI & Linux Command Line",
         type: "lab",
-        what: "GSAP micro-interactions, CSS keyframes, terminal commands, shell scripts, and Linux directory navigation.",
+        what: "Master interactive micro-interactions and terminal workflow automation. You will use GSAP (GreenSock Animation Platform) and CSS keyframe animations for UI transitions alongside Linux terminal navigation, shell file manipulation, process execution, and Bash automation scripts.",
         why: "Combines polished UI visual polish with system-level command-line productivity.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "GSAP Documentation, The Linux Command Line Ch. 1–10.",
@@ -94,7 +94,7 @@ const ROADMAP = [
         title: "Midterm Review & Code Quality Audit",
         resource: "SonarQube / Code Review Rules",
         type: "midterm_sprint",
-        what: "Synthesize HTML5, CSS Grid/Flexbox, DOM JS, and Python metrics scripting for the Midterm Practical Exam.",
+        what: "Conduct a comprehensive code review and automated quality audit synthesizing semantic HTML5 markup, responsive CSS Grid/Flexbox layouts, vanilla JS DOM manipulations, and Python CLI metrics scripts to prepare the Host Pulse system for midterm submission.",
         why: "Validates foundational technical mastery through rigorous automated code audits and defense video walkthroughs.",
         when: "Dedicated Midterm Build Sprint.",
         where: "Course Specs & Midterm Brief.",
@@ -106,7 +106,7 @@ const ROADMAP = [
         title: "Midterm Exam: Host Pulse CLI System Dashboard",
         resource: "Midterm Exam Deliverable",
         type: "midterm",
-        what: "Deliver Host Pulse: A Python CLI script (monitor.py) gathering host metrics into JSON + a zero-framework WCAG AA compliant browser dashboard.",
+        what: "Deliver Host Pulse: A Python CLI monitoring script (`monitor.py`) gathering host metrics into JSON + a zero-framework WCAG AA compliant browser dashboard.",
         why: "Proves mastery of system metric collection and clean, accessible DOM rendering.",
         when: "Submission Deadline: Sunday 11:59 PM.",
         where: "GitHub Repository + DEFENSE.md.",
@@ -114,8 +114,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s1_midterm",
-            title: "Midterm Practical Exam: Host Pulse Dashboard",
-            desc: "A Python CLI script collecting host system metrics (CPU, RAM, Disk) into JSON, rendered by a responsive, accessible vanilla JS dashboard.",
+            title: "Midterm Exam Brief: Host Pulse CLI System Dashboard",
+            desc: "Full Project Brief: Develop Host Pulse, a system diagnostics platform consisting of two main parts: 1) A standalone Python script `monitor.py` that queries system statistics (CPU load, memory allocation, disk usage, and uptime) and exports structured JSON data. 2) A zero-framework web dashboard (HTML5, CSS Flexbox/Grid, vanilla JS) that ingests the metrics JSON file and renders dynamic metric cards, usage progress bars, status indicators, and alerts. Deliverables must pass SonarQube quality audits with zero bugs.",
             pdfBrief: "../assets/project-briefs/sem1_midterm.pdf"
           }
         ],
@@ -126,7 +126,7 @@ const ROADMAP = [
         title: "OpenRelief Sprint 1: Reading Container (Term Project)",
         resource: "OpenRelief Archivist Spec",
         type: "sprint",
-        what: "Responsive HTML5/CSS reading container featuring fluid CSS custom properties for dynamic text scaling.",
+        what: "Construct the core OpenRelief web reader layout shell using fluid typography tokens, CSS custom properties, responsive line lengths (50–75 characters per line), dynamic scale controls, and accessible semantic container elements.",
         why: "Establishes readable, accessible typography and structure for offline reader applications.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "OpenRelief Archivist Repository.",
@@ -138,7 +138,7 @@ const ROADMAP = [
         title: "OpenRelief Sprint 2: Annotation Engine (Term Project)",
         resource: "Eloquent JS (DOM & Storage)",
         type: "sprint",
-        what: "Vanilla JavaScript text annotation, highlight selection, and bookmark persistence engine backed by localStorage.",
+        what: "Engineer a client-side text annotation, highlighting, and bookmarking engine using native DOM Range APIs and `window.getSelection()`. Persist user selection coordinates, highlight text content, and note entries locally via dynamic `localStorage` serialization.",
         why: "Enables interactive user state retention without requiring external databases.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "OpenRelief Archivist Repository.",
@@ -150,7 +150,7 @@ const ROADMAP = [
         title: "OpenRelief Sprint 3: Client Search Engine (Term Project)",
         resource: "Eloquent JS (Arrays & Strings)",
         type: "sprint",
-        what: "Instant client-side search engine filtering JSON text archives dynamically with highlight matching.",
+        what: "Build an instant, zero-dependency client-side text search engine in vanilla JS. Implement substring matching algorithms, string sanitization, dynamic query highlighting, and real-time result aggregation against locally loaded document JSON collections.",
         why: "Delivers rapid text retrieval capabilities locally in zero-latency offline environments.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "OpenRelief Archivist Repository.",
@@ -162,7 +162,7 @@ const ROADMAP = [
         title: "OpenRelief Sprint 4: Service Worker PWA (Term Project)",
         resource: "MDN PWA & Service Worker Guides",
         type: "sprint",
-        what: "Service Worker setup, web application manifest, and cache storage management transforming the app into an offline PWA.",
+        what: "Implement Service Worker scripts, Cache API management policies, asset pre-caching routines, dynamic fetch interception, and a Web Application Manifest (`manifest.json`) to convert OpenRelief Archivist into an offline Progressive Web Application (PWA).",
         why: "Ensures mission-critical text archives remain fully accessible in low or zero connectivity environments.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "OpenRelief Archivist Repository.",
@@ -174,7 +174,7 @@ const ROADMAP = [
         title: "OpenRelief Sprint 5: Accessibility Suite (Term Project)",
         resource: "W3C WCAG 2.1 Guidelines",
         type: "sprint",
-        what: "Dyslexia-friendly font toggles, high-contrast themes, keyboard focus traps, and screen-reader ARIA attributes.",
+        what: "Implement accessibility controls including OpenDyslexic font toggles, high-contrast and dark theme stylesheets, full keyboard tab-navigation flows, ARIA landmark attributes, dynamic focus indicators, and screen-reader status live regions.",
         why: "Guarantees universal access for diverse users and assistive technologies.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "OpenRelief Archivist Repository.",
@@ -186,7 +186,7 @@ const ROADMAP = [
         title: "OpenRelief Sprint 6: Python Data Scraper (Term Project)",
         resource: "Python Crash Course (BeautifulSoup/Pandas)",
         type: "sprint",
-        what: "Python CLI scraper and parser script that ingests raw plain text, cleans formatting, and generates ready-to-render JSON data files.",
+        what: "Develop a automated Python data collection scraper (`scraper.py`) using `requests` and `BeautifulSoup`. Ingest plain text and raw HTML sources, sanitize HTML entities, extract document headers, and format content into indexed JSON schema files for consumption by the reader UI.",
         why: "Automates content pipeline pipelines for offline application consumption.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "OpenRelief Archivist Repository.",
@@ -198,7 +198,7 @@ const ROADMAP = [
         title: "Final Review & SonarQube Code Audit",
         resource: "SonarQube & Lighthouse Audits",
         type: "final_sprint",
-        what: "Final code polish, SonarQube zero-bug compliance verification, 100/100 Lighthouse audits, and academic defense preparation.",
+        what: "Execute automated code audits across the OpenRelief Archivist project using SonarQube and Google Lighthouse. Resolve all code smells, security vulnerabilities, layout shifts, performance bottlenecks, and accessibility flaws to reach 100/100 Lighthouse scores.",
         why: "Verifies production quality standards before final academic release.",
         when: "Final Project Polish & Video Recording.",
         where: "OpenRelief Archivist Repository & EcoHarvest Final Exam Prep.",
@@ -218,8 +218,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s1_final",
-            title: "Final Practical Exam: EcoHarvest Platform & Pipeline",
-            desc: "A production-deployed multi-page web portal (HTML5/CSS Grid/GSAP) integrated with a Python automated food distribution data scraper.",
+            title: "Final Exam Brief: EcoHarvest Non-Profit Platform & Scraper Pipeline",
+            desc: "Full Project Brief: Deliver a production-grade multi-page portal for EcoHarvest, an agricultural supply platform. Requirements: 1) Responsive HTML5 semantic templates, dynamic CSS Grid layouts, custom design tokens, and GSAP micro-interactions. 2) An automated Python scraper pipeline that gathers produce distribution metrics into clean JSON. 3) Full integration with OpenRelief Archivist as an offline PWA module. Must achieve 100/100 scores in Lighthouse performance, accessibility, best practices, and SEO.",
             pdfBrief: "../assets/project-briefs/sem1_final.pdf"
           }
         ],
@@ -240,7 +240,7 @@ const ROADMAP = [
         title: "React Core: Components & Props (CS201)",
         resource: "Learning React (Banks & Porcello)",
         type: "lab",
-        what: "React fundamentals, JSX syntax, functional components, props passing, prop destructuring, component trees, and Vite build tools.",
+        what: "Study single-page application concepts with React 18+ and Vite. Build functional UI components, pass down immutable props, structure component hierarchies, implement JSX template syntax, and manage modern client-side build tooling.",
         why: "Component-driven architecture enables modular, maintainable full-stack UI development.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Learning React Ch. 1–5, react.dev.",
@@ -252,7 +252,7 @@ const ROADMAP = [
         title: "Tailwind CSS & Design Systems (CS202 / CS206)",
         resource: "Tailwind CSS Official Docs & Refactoring UI",
         type: "lab",
-        what: "Utility-first CSS, custom design tokens, theme configurations, arbitrary values, responsive variants, and dark mode setup.",
+        what: "Master utility-first CSS styling using Tailwind CSS within React projects. Configure custom theme extensions in `tailwind.config.js`, design atomic tokens (color scales, typography, spacing primitives), implement responsive utility variants, and configure CSS dark mode states.",
         why: "Accelerates visual development while maintaining strict, scalable design system design tokens.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Tailwind CSS Documentation & Storybook.",
@@ -264,7 +264,7 @@ const ROADMAP = [
         title: "Advanced Python, Dataclasses & Async (CS203)",
         resource: "Fluent Python (Luciano Ramalho)",
         type: "lab",
-        what: "Python data models, dataclasses, generator functions, context managers, async/await, and type hinting.",
+        what: "Master object-oriented Python concepts, dynamic data modeling, dataclasses, generator functions, context managers using `with` blocks, type hinting, and asynchronous programming with Python's native `asyncio` framework.",
         why: "Provides deep Python mastery required for high-performance backend systems and asynchronous AI orchestration.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Fluent Python Ch. 1–5, Python Morsels.",
@@ -276,7 +276,7 @@ const ROADMAP = [
         title: "Relational Databases, SQL & Normalization (CS204)",
         resource: "Learning SQL (Alan Beaulieu)",
         type: "lab",
-        what: "Database schemas, primary/foreign keys, 1NF/2NF/3NF normalization, SQL queries (SELECT, JOIN, GROUP BY), and PostgreSQL setup.",
+        what: "Master relational database architecture and PostgreSQL administration. Design database schemas, enforce primary/foreign key constraints, normalize relational schemas (1NF, 2NF, 3NF), and execute complex SQL queries (`SELECT`, `JOIN`, `GROUP BY`, aggregation, subqueries).",
         why: "Relational data integrity is essential for scalable, enterprise-grade application backends.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Learning SQL Ch. 1–8, SQLZoo / LeetCode SQL.",
@@ -288,7 +288,7 @@ const ROADMAP = [
         title: "Django Architecture & Term Project Kickoff (CS205 & GeoStory)",
         resource: "Django for Beginners (William Vincent)",
         type: "term_kickoff",
-        what: "Django ORM models, migrations, views, templates, session authentication, custom user models, and GeoStory Term Project kickoff.",
+        what: "Master the Django framework architecture (MTV pattern, ORM, migrations, views, forms, authentication, dynamic administration dashboard) and kick off the GeoStory Term Project by drafting technical specifications.",
         why: "Monolithic full-stack frameworks provide robust built-in security, administrative tools, and rapid backend capabilities.",
         when: "Term Project Kickoff + 12–15 lecture/reading hours.",
         where: "Django for Beginners Ch. 1–8 & GeoStory Architecture Specs.",
@@ -296,8 +296,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s2_term_proj",
-            title: "Term Project: GeoStory Platform",
-            desc: "Community Cultural Mapping & Audio Archive Platform utilizing PostGIS spatial databases, Django REST APIs, Mapbox GL React canvas, and Zustand global state.",
+            title: "Term Project Brief: GeoStory Mapping & Audio Archive Platform",
+            desc: "Full Project Brief: Develop GeoStory, an interactive spatial mapping and audio archive platform. The project requires a PostgreSQL/PostGIS spatial database, Django REST Framework endpoints serving spatial GeoJSON features, a React client frontend integrated with Mapbox GL, Zustand global state management, interactive story submission drawers, and persistent audio narrative players.",
             pdfBrief: "../assets/project-briefs/sem2_term_project.pdf"
           }
         ]
@@ -307,7 +307,7 @@ const ROADMAP = [
         title: "Component Systems & Storybook (CS206)",
         resource: "React Design Patterns & Storybook Docs",
         type: "lab",
-        what: "Compound components, custom hooks, Zustand state management, and component isolation testing in Storybook.",
+        what: "Study scalable frontend component patterns in React. Implement compound components, custom hooks, global state stores using Zustand, and isolate component development and visual testing workflows using Storybook.",
         why: "Separates UI component design from application logic for modular testing and reuse.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Storybook Official Docs & Component Party.",
@@ -319,7 +319,7 @@ const ROADMAP = [
         title: "Midterm Build Sprint & AtlasUI Integration",
         resource: "Midterm Exam Specs",
         type: "midterm_sprint",
-        what: "Integrate Storybook component library with Django relational backend for AtlasUI Midterm Practical Exam.",
+        what: "Integrate isolated Tailwind-styled React components from Storybook into a Django monolithic server environment to complete the AtlasUI system build for the midterm practical exam.",
         why: "Validates seamless component-driven frontend integration with relational backend systems.",
         when: "Dedicated Midterm Build Sprint.",
         where: "AtlasUI Repository & Django Portal.",
@@ -339,8 +339,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s2_midterm",
-            title: "Midterm Practical Exam: AtlasUI System",
-            desc: "A published Storybook React UI component library styled with Tailwind CSS, integrated with a Django monolithic web portal backed by PostgreSQL.",
+            title: "Midterm Exam Brief: AtlasUI Component Suite & Django Monolith",
+            desc: "Full Project Brief: Deliver AtlasUI, an enterprise dashboard application consisting of: 1) A Storybook-tested React component library configured with Tailwind CSS design tokens. 2) A Django backend connected to PostgreSQL, utilizing custom user models, relational ORM schemas, server-side template rendering, session-based authentication, and automated form validation.",
             pdfBrief: "../assets/project-briefs/sem2_midterm.pdf"
           }
         ],
@@ -351,7 +351,7 @@ const ROADMAP = [
         title: "GeoStory Sprint 1: PostGIS & Django REST (Term Project)",
         resource: "PostGIS Docs & GeoDjango Guides",
         type: "sprint",
-        what: "PostgreSQL/PostGIS spatial database setup and Django REST endpoints serving GeoJSON feature collections.",
+        what: "Configure PostgreSQL with the PostGIS spatial database extension. Implement GeoDjango models storing point and polygon geometries, and construct Django REST Framework endpoints outputting GeoJSON FeatureCollections.",
         why: "Enables geographic data querying and spatial feature indexing on the backend.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "GeoStory Repository.",
@@ -363,7 +363,7 @@ const ROADMAP = [
         title: "GeoStory Sprint 2: Mapbox GL React Integration (Term Project)",
         resource: "Mapbox GL JS & React Mapbox Docs",
         type: "sprint",
-        what: "Mapbox GL React canvas integration rendering dynamic spatial markers and custom cluster layers.",
+        what: "Embed an interactive Mapbox GL map canvas within a React viewport. Render spatial data points, custom cluster layers, and dynamic popups fetched asynchronously from the Django GeoJSON REST API.",
         why: "Provides interactive, performant spatial visualization on the client side.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "GeoStory Repository.",
@@ -375,7 +375,7 @@ const ROADMAP = [
         title: "GeoStory Sprint 3: Multi-Step Story Form (Term Project)",
         resource: "React Hook Form / Zustand Docs",
         type: "sprint",
-        what: "Story submission drawer featuring multi-step React forms, spatial point picker, and media uploads.",
+        what: "Build a multi-step story submission form drawer using React Hook Form and Zustand. Allow users to select spatial coordinates via map clicks, enter text narratives, and attach dynamic audio/image media uploads.",
         why: "Streamlines complex user content creation workflows with validated state management.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "GeoStory Repository.",
@@ -387,7 +387,7 @@ const ROADMAP = [
         title: "GeoStory Sprint 4: Geolocation & Spatial Filters (Term Project)",
         resource: "Browser Geolocation API & PostGIS Distance",
         type: "sprint",
-        what: "Custom React geolocation tracking hooks and radius-based PostGIS spatial filtering.",
+        what: "Develop custom React hooks wrapping the Browser Geolocation API. Send user location coordinates to PostGIS spatial query endpoints to execute proximity calculations (`ST_DWithin`) and dynamic distance filtering.",
         why: "Delivered personalized, location-aware content based on user proximity.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "GeoStory Repository.",
@@ -399,7 +399,7 @@ const ROADMAP = [
         title: "GeoStory Sprint 5: Persistent Audio Player (Term Project)",
         resource: "React Context / Zustand Audio State",
         type: "sprint",
-        what: "Persistent audio narrative player component supporting uninterrupted playback across map navigation.",
+        what: "Build a global, persistent audio player component using Zustand and HTML5 Audio APIs, ensuring uninterrupted audio narrative playback while users navigate across map locations.",
         why: "Guarantees seamless media consumption while exploring spatial canvas interfaces.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "GeoStory Repository.",
@@ -411,7 +411,7 @@ const ROADMAP = [
         title: "GeoStory Sprint 6: Cypress E2E Testing Suite (Term Project)",
         resource: "Cypress Testing Documentation",
         type: "sprint",
-        what: "End-to-end test suite execution using Cypress, verifying key user submission and playback flows.",
+        what: "Write end-to-end integration test suites using Cypress. Automate user journeys including map navigation, spatial query filtering, multi-step story submissions, and audio playback control.",
         why: "Automated end-to-end tests prevent regressions and guarantee system reliability.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "GeoStory Repository.",
@@ -423,7 +423,7 @@ const ROADMAP = [
         title: "Production Deployment & Defense Prep",
         resource: "Vercel / Render / Cloud Deployment",
         type: "final_sprint",
-        what: "Deploy React frontend to Vercel and Django/PostgreSQL backend to Render. SonarQube code audit and final defense prep.",
+        what: "Prepare full-stack applications for production cloud environments. Deploy React SPA frontend builds to Vercel and Django REST/PostgreSQL backends to Render, configure CORS settings, manage secrets via environment variables, and run SonarQube quality audits.",
         why: "Ensures production cloud readiness and verified codebase quality.",
         when: "Final Production Sprint.",
         where: "Live Deployment Hosts.",
@@ -443,8 +443,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s2_final",
-            title: "Final Practical Exam: PulseBoard SaaS Platform",
-            desc: "A production-deployed enterprise React SPA using Zustand and Tailwind CSS, backed by a fully integrated Django REST service connected to PostgreSQL.",
+            title: "Final Exam Brief: PulseBoard SaaS Platform & GeoStory Suite",
+            desc: "Full Project Brief: Deploy PulseBoard, an enterprise multi-tenant analytics SaaS application. System Requirements: 1) A React SPA with Zustand state management, Tailwind CSS styling, and client-side routing. 2) A Django REST backend with PostgreSQL, user JWT authentication, role-based access control, and query optimization. 3) Full live deployment on Vercel and Render, accompanied by the final GeoStory release passing all Cypress E2E tests.",
             pdfBrief: "../assets/project-briefs/sem2_final.pdf"
           }
         ],
@@ -465,7 +465,7 @@ const ROADMAP = [
         title: "Asynchronous Python & FastAPI Core",
         resource: "FastAPI Official Docs & Asyncio Guides",
         type: "lab",
-        what: "Asynchronous Python (async/await), FastAPI routing, Pydantic data validation schemas, Dependency Injection, and OpenAPI documentation.",
+        what: "Study high-performance asynchronous microservice architectures using FastAPI. Implement async route handlers, Pydantic data validation schemas, automated dependency injection, auto-generated OpenAPI (Swagger) specifications, and async HTTP clients using `httpx`.",
         why: "High-throughput asynchronous APIs are essential for handling non-blocking AI model requests and streaming responses.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "FastAPI Documentation & Real Python.",
@@ -477,7 +477,7 @@ const ROADMAP = [
         title: "Server-Driven UI: HTMX & Alpine.js",
         resource: "HTMX Documentation & Alpine.js Guides",
         type: "lab",
-        what: "Server-driven HTML swaps, hx-get/hx-post triggers, dynamic partial DOM updates, dynamic reactive UI state with Alpine.js.",
+        what: "Study hypermedia-driven architecture using HTMX and Alpine.js. Implement dynamic HTML fragment swapping (`hx-get`, `hx-post`), active search inputs, dynamic form validation, inline table edits, and client-side UI states without React build complexity.",
         why: "Eliminates heavy frontend build tools while preserving fast, dynamic single-page user experiences.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "HTMX Docs & Hypermedia Systems Book.",
@@ -489,7 +489,7 @@ const ROADMAP = [
         title: "LLM Integration & Prompt Engineering",
         resource: "OpenAI / Anthropic API Official Docs",
         type: "lab",
-        what: "Prompt design patterns, systemic instructions, function calling, structured JSON output generation, and token usage optimization.",
+        what: "Integrate LLMs via standard provider APIs (OpenAI / Anthropic). Implement systemic prompt engineering patterns, few-shot contextual examples, JSON output modes, function calling schemas, dynamic token tracking, and exponential backoff retry handling.",
         why: "Transforms foundational language models into reliable, structured backend software components.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "OpenAI Cookbook & Anthropic API Documentation.",
@@ -501,7 +501,7 @@ const ROADMAP = [
         title: "Vector Embeddings & Vector DBs",
         resource: "ChromaDB / Pinecone Documentation",
         type: "lab",
-        what: "Vector embedding models, distance metrics (cosine similarity, Euclidean), ChromaDB / Pinecone setup, document indexing, and similarity search.",
+        what: "Master vector space representations and similarity metrics (Cosine, Euclidean distance, Dot Product). Configure ChromaDB / Pinecone vector stores, embed text documents using OpenAI/HuggingFace embedding models, run similarity queries, and manage metadata filters.",
         why: "Vector databases power semantic retrieval and unstructured knowledge matching for enterprise AI applications.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "ChromaDB Documentation & Pinecone Guides.",
@@ -513,7 +513,7 @@ const ROADMAP = [
         title: "RAG Systems & Term Project Kickoff (NeuralDoc)",
         resource: "LangChain Docs & RAG Architecture Guides",
         type: "term_kickoff",
-        what: "Retrieval-Augmented Generation (RAG) architecture, document chunking strategies, vector context injection, and NeuralDoc Term Project kickoff.",
+        what: "Master Retrieval-Augmented Generation (RAG) system design. Implement text chunking strategies, vector context retrieval pipelines, prompt augmentation loops, and kick off the NeuralDoc Term Project by drafting detailed system architectures.",
         why: "RAG grounds AI model outputs in factual custom knowledge bases, eliminating model hallucinations.",
         when: "Term Project Kickoff + 12–15 lecture/reading hours.",
         where: "LangChain Documentation & NeuralDoc Architecture Specs.",
@@ -521,8 +521,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s3_term_proj",
-            title: "Term Project: NeuralDoc Engine",
-            desc: "Enterprise Knowledge Base RAG Engine featuring asynchronous document chunking, hybrid vector search (BM25 + dense vectors), HTMX chat interface, and citation generation.",
+            title: "Term Project Brief: NeuralDoc RAG Engine & Knowledge Base",
+            desc: "Full Project Brief: Develop NeuralDoc, an enterprise document intelligence and dynamic RAG search engine. Core Requirements: 1) Asynchronous document ingestion and recursive text chunking pipeline. 2) Hybrid search combining sparse BM25 index matching with dense vector similarity (ChromaDB). 3) Server-driven UI using HTMX and Alpine.js for streaming conversational AI responses. 4) Source citation generation and Ragas evaluation benchmarking.",
             pdfBrief: "../assets/project-briefs/sem3_term_project.pdf"
           }
         ]
@@ -532,7 +532,7 @@ const ROADMAP = [
         title: "Event-Driven Automation & Celery Queues",
         resource: "Celery & Redis Official Documentation",
         type: "lab",
-        what: "Asynchronous task workers with Celery, Redis message broker, background job processing, status polling, and failure retry handlers.",
+        what: "Design asynchronous task queue architectures using Celery and Redis message brokers. Offload long-running operations (document text extraction, bulk vector embedding, model fine-tuning jobs) from primary HTTP request-response cycles.",
         why: "Offloads long-running AI generation and document parsing tasks from the primary HTTP request pipeline.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Celery Documentation & Redis Guides.",
@@ -544,7 +544,7 @@ const ROADMAP = [
         title: "Midterm Build Sprint & NeuralDoc Integration",
         resource: "Midterm Exam Specs",
         type: "midterm_sprint",
-        what: "Integrate FastAPI backend, HTMX interface, ChromaDB vector store, and OpenAI function calling for the Midterm Practical Exam.",
+        what: "Integrate asynchronous FastAPI endpoints, HTMX response streams, ChromaDB vector retrieval, and Celery background parsing workers to prepare NeuralDoc for midterm submission.",
         why: "Validates practical RAG architecture and server-driven AI application integration.",
         when: "Dedicated Midterm Build Sprint.",
         where: "NeuralDoc Midterm Repository.",
@@ -564,8 +564,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s3_midterm",
-            title: "Midterm Practical Exam: NeuralDoc RAG System",
-            desc: "An enterprise RAG search portal using FastAPI, HTMX, ChromaDB vector indexing, and structured OpenAI responses.",
+            title: "Midterm Exam Brief: NeuralDoc RAG Search Engine",
+            desc: "Full Project Brief: Deliver NeuralDoc, an enterprise document query platform. System Requirements: 1) FastAPI backend providing async API handlers and Pydantic schemas. 2) ChromaDB vector store indexing uploaded PDF documentation. 3) HTMX/Alpine.js interface serving zero-latency streaming responses with source document context injection. 4) Comprehensive error handling for API rate limits and model timeout conditions.",
             pdfBrief: "../assets/project-briefs/sem3_midterm.pdf"
           }
         ],
@@ -576,7 +576,7 @@ const ROADMAP = [
         title: "NeuralDoc Sprint 1: Vector Pipeline (Term Project)",
         resource: "NeuralDoc Architecture Specs",
         type: "sprint",
-        what: "Vector ingestion pipeline setup with configurable document chunking (recursive character splitter) and metadata tagging.",
+        what: "Construct the NeuralDoc document ingestion pipeline using Python document loaders (`PyPDF2`, `pdfplumber`) and recursive character text splitters. Implement configurable chunk size (500 tokens), overlap parameters (50 tokens), and metadata tagging.",
         why: "Ensures optimal text chunk boundaries for high-precision semantic retrieval.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "NeuralDoc Repository.",
@@ -588,7 +588,7 @@ const ROADMAP = [
         title: "NeuralDoc Sprint 2: HTMX Interactive Chat (Term Project)",
         resource: "HTMX Dynamic Swap Guides",
         type: "sprint",
-        what: "HTMX interactive chat interface supporting real-time server-driven response swaps and loading indicators.",
+        what: "Construct an interactive chat UI shell using HTMX partial swaps and Alpine.js client state. Stream server-sent chunks or handle asynchronous polling updates to display live LLM generated responses without full page reloads.",
         why: "Delivers smooth conversational UI interactions without React client complexity.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "NeuralDoc Repository.",
@@ -600,7 +600,7 @@ const ROADMAP = [
         title: "NeuralDoc Sprint 3: Hybrid Search Engine (Term Project)",
         resource: "BM25 & Vector Hybrid Retrieval Papers",
         type: "sprint",
-        what: "Hybrid search engine combining sparse keyword matching (BM25) with dense vector similarity.",
+        what: "Implement a hybrid search retrieval engine combining sparse BM25 keyword search with dense ChromaDB vector similarity scores. Implement Reciprocal Rank Fusion (RRF) algorithms to merge and re-rank document chunk context.",
         why: "Improves context retrieval accuracy across exact terms and conceptual semantic queries.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "NeuralDoc Repository.",
@@ -612,7 +612,7 @@ const ROADMAP = [
         title: "NeuralDoc Sprint 4: Async Worker Queues (Term Project)",
         resource: "Celery Task Queue Setup",
         type: "sprint",
-        what: "Celery and Redis background worker pipeline for processing large PDF text uploads asynchronously.",
+        what: "Connect Celery task workers and a Redis broker to process multi-page document PDF uploads asynchronously, updating ingestion task progress in real time via HTMX status indicators.",
         why: "Prevents HTTP request timeouts during heavy document processing operations.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "NeuralDoc Repository.",
@@ -624,7 +624,7 @@ const ROADMAP = [
         title: "NeuralDoc Sprint 5: Citation & Fact-Checking (Term Project)",
         resource: "RAG Evaluation & Citation Matching",
         type: "sprint",
-        what: "Automated source citation generator mapping generated answer sentences directly back to source document chunks.",
+        what: "Develop an automated source citation extraction engine that maps each sentence in the generated LLM response back to its origin document chunk ID, page number, and source file name with interactive UI highlight triggers.",
         why: "Guarantees answer auditability and verifiable source attribution in enterprise settings.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "NeuralDoc Repository.",
@@ -636,7 +636,7 @@ const ROADMAP = [
         title: "NeuralDoc Sprint 6: RAG Evaluation Suite (Term Project)",
         resource: "Ragas Framework / TruLens Docs",
         type: "sprint",
-        what: "RAG evaluation suite scoring faithfulness, answer relevance, and context precision.",
+        what: "Implement an automated RAG evaluation pipeline using the Ragas framework. Measure faithfulness, answer relevance, context recall, and context precision against benchmark question-answer evaluation datasets.",
         why: "Quantifies AI pipeline accuracy using objective benchmark metrics.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "NeuralDoc Repository.",
@@ -648,7 +648,7 @@ const ROADMAP = [
         title: "Security Hardening & Prompt Injection Defense",
         resource: "OWASP Top 10 for Large Language Model Applications",
         type: "final_sprint",
-        what: "Hardening AI backends against prompt injection attacks, enforcing API rate limits, input sanitization, and cloud deployment setup.",
+        what: "Harden AI system APIs against OWASP Top 10 LLM vulnerabilities. Implement input sanitization, indirect prompt injection guards, system message isolation, dynamic rate limiting, and secure cloud API keys management.",
         why: "Protects production AI applications from malicious prompt manipulation and API resource abuse.",
         when: "Final Security Sprint.",
         where: "Live Staging Environment.",
@@ -668,8 +668,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s3_final",
-            title: "Final Practical Exam: OmniSearch AI Suite",
-            desc: "A production-ready AI automation suite built with FastAPI, HTMX, Celery, Redis, and hybrid vector retrieval, hardened against prompt injection.",
+            title: "Final Exam Brief: OmniSearch Knowledge Automation Platform",
+            desc: "Full Project Brief: Deploy OmniSearch, an enterprise knowledge automation platform. System Requirements: 1) Asynchronous FastAPI service integrated with ChromaDB and Redis/Celery background workers. 2) Hybrid vector/keyword retrieval pipeline passing security audits against prompt injection attacks. 3) Full NeuralDoc system release accompanied by a Ragas evaluation report confirming >85% faithfulness and answer relevance scores.",
             pdfBrief: "../assets/project-briefs/sem3_final.pdf"
           }
         ],
@@ -690,7 +690,7 @@ const ROADMAP = [
         title: "Multi-Agent Architecture Principles",
         resource: "LangGraph Docs & Multi-Agent Systems Research",
         type: "lab",
-        what: "Multi-agent interaction patterns, role delegation, agent communication protocols, tool definitions, and task execution loops.",
+        what: "Study multi-agent interaction topologies (hierarchical, swarm, sequential, supervisor-guided). Implement specialized agent roles with isolated system instructions, custom dynamic tools, structured Pydantic input schemas, and inter-agent message passing.",
         why: "Solves complex multi-step problems by decomposing them into specialized, autonomous agent roles.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "LangGraph Documentation & CrewAI Guides.",
@@ -702,7 +702,7 @@ const ROADMAP = [
         title: "State Graph Orchestration with LangGraph",
         resource: "LangGraph Official Documentation",
         type: "lab",
-        what: "StateGraph architecture, nodes, conditional edges, state persistence, cycle management, and error recovery in graph networks.",
+        what: "Master stateful, cyclic multi-agent orchestration using LangGraph `StateGraph`. Implement graph nodes representing agent decisions or tool executions, conditional routing edges, central state schema reducers, graph cycle limiters, and dynamic error recovery.",
         why: "Provides deterministic state control and branching execution flows over autonomous agent loops.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "LangGraph Conceptual Guides & Tutorials.",
@@ -714,7 +714,7 @@ const ROADMAP = [
         title: "Autonomous Planning & Long-Term Memory",
         resource: "Autonomous AI Agent Memory Papers",
         type: "lab",
-        what: "ReAct reasoning loops, hierarchical planning, short-term vs long-term memory systems, vector memory stores, and reflection cycles.",
+        what: "Implement autonomous agent planning and memory systems. Construct ReAct (Reasoning + Acting) thought loops, hierarchical task decomposition, short-term scratchpad memory, long-term vector memory indexing, and self-reflection evaluation cycles.",
         why: "Equips autonomous agents with self-correction capabilities and historical context retention.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "LangGraph Memory & Reflection Documentation.",
@@ -726,7 +726,7 @@ const ROADMAP = [
         title: "Human-in-the-Loop AI & Safety Controls",
         resource: "LangGraph Breakpoints & Human Intercept Guides",
         type: "lab",
-        what: "Human-in-the-loop (HITL) interrupt patterns, state review breakpoints, tool execution approval gates, and safety sandboxing.",
+        what: "Engineer Human-in-the-Loop (HITL) safety controls into agent graphs. Implement execution breakpoints prior to executing high-risk tools (database updates, external API calls, code execution), build human review/override APIs, and construct tool approval gates.",
         why: "Guarantees human oversight and authorization before AI agents execute high-risk real-world actions.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "LangGraph Human-in-the-Loop Documentation.",
@@ -738,7 +738,7 @@ const ROADMAP = [
         title: "Production LLMOps, Tracing & Monitoring",
         resource: "LangSmith / Phoenix Documentation",
         type: "lab",
-        what: "Agent tracing with LangSmith / Phoenix, latency monitoring, token cost tracking, prompt evaluation, and trajectory debugging.",
+        what: "Implement production observability and tracing for agent execution graphs using LangSmith / Arize Phoenix. Instrument graph nodes to log trajectory execution steps, latency bottlenecks, token consumption costs, tool execution outputs, and failure points.",
         why: "Provides full observability into complex multi-agent execution graphs and LLM API expenditures.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "LangSmith Docs & Arize Phoenix Guides.",
@@ -750,7 +750,7 @@ const ROADMAP = [
         title: "Scalable Infrastructure & Microservices",
         resource: "Docker & Kubernetes Official Guides",
         type: "lab",
-        what: "Containerizing AI agent systems with Docker, multi-container orchestration, environment isolation, sandboxed code execution, and cloud deployment.",
+        what: "Containerize multi-agent systems using Docker and Docker-Compose. Build isolated container sandboxes for executing agent-generated code safely, configure environment variable isolation, and implement multi-container network topologies.",
         why: "Ensures secure, isolated environment execution for code-generating autonomous agents.",
         when: "12–15 lecture/reading hours + 4–6 lab hours.",
         where: "Docker Documentation & Docker-Compose Guides.",
@@ -762,7 +762,7 @@ const ROADMAP = [
         title: "Midterm Build Sprint & DevAgent System",
         resource: "Midterm Exam Specs",
         type: "midterm_sprint",
-        what: "Build and test DevAgent: Multi-Agent Autonomous Software Engineer for the Midterm Practical Exam.",
+        what: "Integrate LangGraph state graph orchestration, Docker execution sandboxing, and self-reflection loops to build the DevAgent system for midterm submission.",
         why: "Synthesizes multi-agent orchestration, state graphs, and container sandboxing into a working software development tool.",
         when: "Dedicated Midterm Build Sprint.",
         where: "DevAgent Repository.",
@@ -782,8 +782,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s4_midterm",
-            title: "Midterm Practical Exam: DevAgent System",
-            desc: "An autonomous multi-agent software engineering system built with LangGraph, Docker container sandboxing, and self-correcting unit test loops.",
+            title: "Midterm Exam Brief: DevAgent Autonomous Software System",
+            desc: "Full Project Brief: Deliver DevAgent, an autonomous software development multi-agent team. System Requirements: 1) LangGraph StateGraph orchestrating specialized Architect, Developer, and Tester agent nodes. 2) Docker container sandboxing to safely execute and unit-test agent-generated code. 3) Automatic self-correction loops that route test failure stack traces back to Developer nodes for fix iterations.",
             pdfBrief: "../assets/project-briefs/sem4_midterm.pdf"
           }
         ],
@@ -794,7 +794,7 @@ const ROADMAP = [
         title: "Flagship Capstone Sprint 1: Architecture & Topology",
         resource: "Capstone Architecture Blueprint",
         type: "sprint",
-        what: "Flagship Capstone Kickoff: Draft ARCHITECTURE.md detailing system topology, state graph nodes, tool schemas, and multi-agent roles.",
+        what: "Kick off the Flagship Autonomous AI Capstone Project by drafting `ARCHITECTURE.md`. Define system topology, StateGraph schemas, agent team roles, dynamic tool signatures, database persistence layers, and human approval intercept points.",
         why: "Establishes production-grade system specification before building enterprise multi-agent platforms.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "Capstone Repository.",
@@ -802,14 +802,14 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s4_capstone_a",
-            title: "Capstone Option A: AutoMatrix Enterprise Agent Platform",
-            desc: "Enterprise Multi-Agent System for Autonomous Cloud Infrastructure Orchestration, featuring LangGraph state graphs, Docker sandboxing, human approval gates, and LangSmith tracing.",
+            title: "Capstone Option A Brief: AutoMatrix Enterprise Infrastructure System",
+            desc: "Full Project Brief: Build AutoMatrix, an enterprise multi-agent orchestration platform for autonomous cloud infrastructure management. System Requirements: 1) LangGraph StateGraph coordinating Infrastructure Architect, Security Auditor, and DevOps Executor agents. 2) Dockerized tool execution sandboxes. 3) Human-in-the-loop approval gates before executing terraform or cloud deployment scripts. 4) PostgreSQL checkpointers for persistent state.",
             pdfBrief: "../assets/project-briefs/sem4_capstone_a.pdf"
           },
           {
             id: "s4_capstone_b",
-            title: "Capstone Option B: NeuralResearch Multi-Agent System",
-            desc: "Autonomous Academic Research & Synthesis Engine using specialized researcher, analyst, and writer agents with real-time web search tools and citation verification.",
+            title: "Capstone Option B Brief: NeuralResearch Academic Synthesis Engine",
+            desc: "Full Project Brief: Build NeuralResearch, an autonomous multi-agent academic research engine. System Requirements: 1) Orchestration graph linking Literature Searcher, Data Analyst, Critical Reviewer, and Academic Writer agents. 2) Integration with arXiv and Web Search APIs. 3) Dynamic citation validation and automated paper synthesis outputting structured Markdown reports.",
             pdfBrief: "../assets/project-briefs/sem4_capstone_b.pdf"
           }
         ]
@@ -819,7 +819,7 @@ const ROADMAP = [
         title: "Flagship Capstone Sprint 2: Tool Execution Sandbox",
         resource: "LangGraph Tool Node Specs",
         type: "sprint",
-        what: "Custom tool node integrations and Docker sandboxing for secure code execution and external API calls.",
+        what: "Engineer custom tool nodes backed by Pydantic argument schemas and isolated Docker container drivers. Enable agents to execute code scripts, query databases, and call third-party APIs within restricted sandboxes.",
         why: "Protects production host systems while allowing agents to execute arbitrary scripts safely.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "Capstone Repository.",
@@ -831,7 +831,7 @@ const ROADMAP = [
         title: "Flagship Capstone Sprint 3: State Graph & Memory",
         resource: "LangGraph State & Checkpointer Docs",
         type: "sprint",
-        what: "LangGraph StateGraph implementation with persistent checkpointers (PostgreSQL) for cross-session agent state.",
+        what: "Construct the primary multi-agent state graph using LangGraph. Connect custom PostgreSQL persistent checkpointers (`PostgresSaver`) to save cross-session execution states, allowing workflows to pause and resume seamlessly across system restarts.",
         why: "Enables long-running multi-agent workflows to pause, resume, and retain context indefinitely.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "Capstone Repository.",
@@ -843,7 +843,7 @@ const ROADMAP = [
         title: "Flagship Capstone Sprint 4: Agent Streaming UI",
         resource: "Next.js / React Server Sent Events (SSE)",
         type: "sprint",
-        what: "Real-time user interface streaming agent reasoning steps, state graph transitions, and tool outputs to the client.",
+        what: "Build a real-time monitoring web UI using Next.js / React and Server-Sent Events (SSE). Stream live agent thought trajectories, node transition states, execution logs, and output artifacts to the web client.",
         why: "Delivers full transparency into agent thinking trajectories and current execution status.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "Capstone Repository.",
@@ -855,7 +855,7 @@ const ROADMAP = [
         title: "Flagship Capstone Sprint 5: Human Intercept Layer",
         resource: "LangGraph Interrupt & Approval API",
         type: "sprint",
-        what: "Human-in-the-loop review interface allowing human operators to inspect, edit, or reject pending agent tool calls.",
+        what: "Construct a Human-in-the-Loop review drawer in the web interface. Implement LangGraph conditional interrupt nodes that pause execution prior to critical tool invocations, allowing human operators to approve, edit, or reject proposed agent actions.",
         why: "Ensures enterprise safety standards for mission-critical operations.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "Capstone Repository.",
@@ -867,7 +867,7 @@ const ROADMAP = [
         title: "Flagship Capstone Sprint 6: Observability Suite",
         resource: "LangSmith / Phoenix Benchmarks",
         type: "sprint",
-        what: "Full observability suite setup using LangSmith / Phoenix with benchmark test suites evaluating agent success rates.",
+        what: "Integrate full system observability and tracing via LangSmith or Arize Phoenix. Run benchmark evaluation suites across 50+ complex multi-step scenario tests to measure agent task success rates, cost per run, and execution latency.",
         why: "Provides empirical validation of agent accuracy, reliability, and cost-efficiency.",
         when: "Friday Deep Work + Weekend Sprint.",
         where: "Capstone Repository.",
@@ -879,7 +879,7 @@ const ROADMAP = [
         title: "Cloud Release & Open-Source Maintainer Defense",
         resource: "Production Cloud Hosting & Open Source Docs",
         type: "final_sprint",
-        what: "Production cloud deployment (AWS/GCP/Kubernetes), open-source repository documentation setup, zero-bug code audit, and defense prep.",
+        what: "Deploy the flagship multi-agent platform to production cloud infrastructure (AWS/GCP/Kubernetes). Prepare open-source project documentation, complete SonarQube code clearance, and prepare final academic defense materials.",
         why: "Prepares the candidate to operate as an industry-ready Autonomous AI Systems Engineer and Open-Source Maintainer.",
         when: "Final Production Launch.",
         where: "Cloud Infrastructure.",
@@ -899,8 +899,8 @@ const ROADMAP = [
         projectOptions: [
           {
             id: "s4_final",
-            title: "Final Practical Capstone: AutoMatrix Platform",
-            desc: "A production-deployed enterprise multi-agent system with LangGraph orchestration, Docker execution sandboxing, human approval gates, and complete LangSmith observability.",
+            title: "Final Capstone Defense Brief: AutoMatrix Autonomous Platform",
+            desc: "Full Project Brief: Deliver the final cloud-deployed release of the AutoMatrix Enterprise Platform. Mandatory Deliverables: 1) Production cloud deployment on AWS/Kubernetes. 2) Complete LangGraph multi-agent orchestration graph with Docker sandboxing and Postgres checkpointers. 3) Real-time web UI streaming agent execution graph trajectories via SSE. 4) Benchmark telemetry report and formal academic defense video presentation.",
             pdfBrief: "../assets/project-briefs/sem4_final.pdf"
           }
         ],
@@ -991,9 +991,6 @@ function getWeekData(weekNum) {
 /* ==========================================================================
    2. APPLICATION STATE ENGINE
    ========================================================================== */
-/* ==========================================================================
-   2. APPLICATION STATE ENGINE
-   ========================================================================== */
 const DEFAULT_STATE = {
   user: {
     name: "AI Engineer Candidate",
@@ -1008,7 +1005,7 @@ const DEFAULT_STATE = {
   questStates: {},
   scheduleSubTab: "daily", // 'daily' | 'weekly' | 'semester'
   scheduleViewDate: new Date().toISOString(),
-  attendance: {} // Added: Holds attendance data
+  attendance: {} // Holds attendance data
 };
 
 let state = JSON.parse(localStorage.getItem("AI_ENG_PROGRAM_STATE_V1")) || DEFAULT_STATE;
@@ -1018,7 +1015,7 @@ if (!state.user.shown100Popups) state.user.shown100Popups = [];
 if (!state.user.name) state.user.name = "AI Engineer Candidate";
 if (!state.scheduleSubTab) state.scheduleSubTab = "daily";
 if (!state.scheduleViewDate) state.scheduleViewDate = new Date().toISOString();
-if (!state.attendance) state.attendance = {}; // Added: Ensures attendance exists for old users
+if (!state.attendance) state.attendance = {};
 
 // Automatically marks past days as absent if no check-in exists
 function autoMarkMissedDays() {
@@ -1043,6 +1040,7 @@ function saveState() {
   localStorage.setItem("AI_ENG_PROGRAM_STATE_V1", JSON.stringify(state));
   renderApp();
 }
+
 /* ==========================================================================
    3. TIMESTAMPS & DEADLINES GENERATOR
    ========================================================================== */
@@ -1265,7 +1263,7 @@ function switchTab(tabId) {
     schedule: ["University Schedule", "Interactive daily, weekly, and semester course schedules"],
     mycourse: ["Syllabus & Titles", "Full course syllabus, degree specialization titles, and certifications"],
     profile: ["Engineer Profile", "Manage your titles, candidate name, and export achievement cards"],
-     calendar: ["Calendar & Attendance", "Track your daily study check-ins and weekly attendance matrix"], // 1. ADDED TO TITLE MAP
+    calendar: ["Calendar & Attendance", "Track your daily study check-ins and weekly attendance matrix"],
   };
 
   if (titleMap[tabId]) {
@@ -1273,12 +1271,10 @@ function switchTab(tabId) {
     document.getElementById("page-subheading").innerText = titleMap[tabId][1];
   }
    
-if (tabId === "calendar") {
+  if (tabId === "calendar") {
     renderCalendar();
   }
-
 }
-
 
 document.querySelectorAll(".nav-item button").forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -1286,7 +1282,6 @@ document.querySelectorAll(".nav-item button").forEach((btn) => {
     switchTab(tab);
   });
 });
-
 
 /* DASHBOARD */
 function recordDailyAttendance(status) {
@@ -1462,6 +1457,18 @@ function openWeekDrawer(weekNum) {
       </div>
     </div>
 
+    ${wObj.projectOptions && wObj.projectOptions.length > 0 ? `
+      <div class="drawer-section" style="border-left: 4px solid var(--gold); background: var(--surface2); padding: 1rem; border-radius: 8px;">
+        <div class="drawer-section-title" style="color: var(--gold);"><i class="fa-solid fa-file-lines"></i> PROJECT SPECIFICATION BRIEF</div>
+        ${wObj.projectOptions.map(p => `
+          <div style="margin-top:0.5rem;">
+            <h4 style="margin:0 0 0.3rem 0; font-size:1rem; color:var(--ink);">${p.title}</h4>
+            <p style="font-size:0.85rem; line-height:1.5; color:var(--ink-dim);">${p.desc}</p>
+          </div>
+        `).join('')}
+      </div>
+    ` : ''}
+
     <div class="drawer-section">
       <div class="drawer-section-title"><i class="fa-solid fa-bullseye"></i> EXPECTED OUTCOMES</div>
       <p style="line-height:1.6; font-size:0.9rem;">${wObj.why}</p>
@@ -1488,6 +1495,19 @@ function openWeekDrawer(weekNum) {
         `).join('')}
       </div>
     </div>
+
+    ${wObj.aiPrompt ? `
+      <div class="drawer-section" style="background: var(--surface2); padding: 0.85rem; border-radius: 8px;">
+        <div class="drawer-section-title"><i class="fa-solid fa-robot"></i> AI CODE AUDITOR PROMPT</div>
+        <p style="font-size:0.82rem; color:var(--ink-dim); margin-bottom:0.5rem;">Copy and paste this prompt into your AI model to audit your submission:</p>
+        <div style="font-family:monospace; font-size:0.78rem; background:var(--surface); padding:0.6rem; border-radius:6px; border:1px solid var(--line); margin-bottom:0.5rem;">
+          ${wObj.aiPrompt}
+        </div>
+        <button onclick="copyPromptToClipboard('${wObj.aiPrompt.replace(/'/g, "\\'")}', this)" class="btn-secondary" style="font-size:0.75rem; padding:0.3rem 0.6rem;">
+          <i class="fa-regular fa-copy"></i> Copy Prompt
+        </button>
+      </div>
+    ` : ''}
 
     <div class="drawer-section" style="border-left: 4px solid var(--rust);">
       <div class="drawer-section-title"><i class="fa-solid fa-clock"></i> SUBMISSION DEADLINE</div>
@@ -2103,6 +2123,7 @@ function resetAllProgress() {
       questStates: {},
       scheduleSubTab: "daily",
       scheduleViewDate: new Date().toISOString(),
+      attendance: {},
     };
     saveState();
   }
