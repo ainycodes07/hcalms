@@ -64,10 +64,9 @@
             <button title="Quests"><i class="fa-solid fa-list-check nav-icon"></i><span
                 class="nav-label">Quests</span></button>
           </li>
-          <li class="nav-item" data-tab="accountbook">
-            <button title="Account Book"><i class="fa-solid fa-wallet nav-icon"></i><span class="nav-label">Account
-                Book</span></button>
-          </li>
+          <li class="nav-item" data-tab="calendar">
+  <button title="Calendar & Attendance"><i class="fa-solid fa-calendar-days nav-icon"></i><span class="nav-label">Calendar</span></button>
+</li>
           <li class="nav-item" data-tab="schedule">
             <button title="Schedule"><i class="fa-solid fa-calendar-days nav-icon"></i><span
                 class="nav-label">Schedule</span></button>
@@ -75,6 +74,11 @@
           <li class="nav-item" data-tab="mycourse">
             <button title="My Course"><i class="fa-solid fa-book-bookmark nav-icon"></i><span class="nav-label">My
                 Course</span></button>
+          </li>
+          
+          <li class="nav-item" data-tab="accountbook">
+            <button title="Account Book"><i class="fa-solid fa-wallet nav-icon"></i><span class="nav-label">Account
+                Book</span></button>
           </li>
           <li class="nav-item" data-tab="profile">
             <button title="Profile"><i class="fa-solid fa-user nav-icon"></i><span
@@ -153,7 +157,9 @@
             </div>
           </div>
         </div>
-
+<!-- DAILY STUDY CHECK-IN PROMPT CONTAINER -->
+<div id="dash-study-checkin"></div>
+        
         <div class="card current-quest-box">
           <div
             style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
@@ -225,45 +231,12 @@
           </div>
         </div>
       </section>
-
-      <!-- TAB 4: ACCOUNT BOOK -->
-      <section id="tab-accountbook" class="tab-pane">
-        <div class="card balance-card">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--gold); text-transform:uppercase;">Accountability,
-            Not A Bill</span>
-          <h2 class="brand-font">Account Book</h2>
-          <p style="font-size:0.85rem; color:var(--ink-dim); max-width:500px; margin:0.5rem auto;">
-            HCA is free. This tracks what you expected to earn against what you logged to maintain learning focus.
-          </p>
-          <div class="balance-amount negative" id="account-running-balance">-$0</div>
-          <div style="font-size:0.85rem; color:var(--ink-dim);">Monthly earning goal: $400 / month</div>
-        </div>
-
-        <div class="card">
-          <h4>Log earnings (add current or past months anytime)</h4>
-          <form class="earning-log-form" id="log-earning-form" onsubmit="handleLogEarning(event)"
-            style="margin-top:1rem;">
-            <select id="log-month-select" required></select>
-            <input type="number" id="log-amount-input" placeholder="Amount earned ($)" min="0" step="10" required>
-            <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> Save</button>
-          </form>
-
-          <div class="log-table-container">
-            <table class="log-table">
-              <thead>
-                <tr>
-                  <th>Month</th>
-                  <th>Target</th>
-                  <th>Logged Earned</th>
-                  <th>Net Balance</th>
-                </tr>
-              </thead>
-              <tbody id="account-log-tbody"></tbody>
-            </table>
-          </div>
-        </div>
+<!-- TAB 4: CALENDAR & ATTENDANCE -->
+      <section id="tab-calendar" class="tab-pane">
+        <div id="calendar-summary-cards" class="dash-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;"></div>
+        <div id="calendar-container"></div>
       </section>
-
+      
       <!-- TAB 5: SCHEDULE -->
       <section id="tab-schedule" class="tab-pane">
         <div class="schedule-tabs">
@@ -402,7 +375,46 @@
         <div class="grid-2" id="semester-cards-container"></div>
       </section>
 
-      <!-- TAB 7: PROFILE -->
+      
+      <!-- TAB 7: ACCOUNT BOOK -->
+      <section id="tab-accountbook" class="tab-pane">
+        <div class="card balance-card">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--gold); text-transform:uppercase;">Accountability,
+            Not A Bill</span>
+          <h2 class="brand-font">Account Book</h2>
+          <p style="font-size:0.85rem; color:var(--ink-dim); max-width:500px; margin:0.5rem auto;">
+            HCA is free. This tracks what you expected to earn against what you logged to maintain learning focus.
+          </p>
+          <div class="balance-amount negative" id="account-running-balance">-$0</div>
+          <div style="font-size:0.85rem; color:var(--ink-dim);">Monthly earning goal: $400 / month</div>
+        </div>
+
+        <div class="card">
+          <h4>Log earnings (add current or past months anytime)</h4>
+          <form class="earning-log-form" id="log-earning-form" onsubmit="handleLogEarning(event)"
+            style="margin-top:1rem;">
+            <select id="log-month-select" required></select>
+            <input type="number" id="log-amount-input" placeholder="Amount earned ($)" min="0" step="10" required>
+            <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> Save</button>
+          </form>
+
+          <div class="log-table-container">
+            <table class="log-table">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Target</th>
+                  <th>Logged Earned</th>
+                  <th>Net Balance</th>
+                </tr>
+              </thead>
+              <tbody id="account-log-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 8: PROFILE -->
       <section id="tab-profile" class="tab-pane">
         <!-- DYNAMIC ENCOURAGEMENT BADGE BANNER -->
         <div class="badge-encouragement-card">
