@@ -849,70 +849,284 @@
         text-align: left;
     }
 
-    /* ==========================================================================
-       SCHEDULE TAB
-       ========================================================================== */
-    .schedule-tabs {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid var(--line);
-    }
+/* ==========================================================================
+   SCHEDULE TAB — TIMETABLE & COLOR CODING STYLES
+   ========================================================================== */
 
-    .schedule-tab-btn {
-        padding: 0.75rem 1.25rem;
-        border: none;
-        background: transparent;
-        font-weight: 700;
-        color: var(--ink-dim);
-        cursor: pointer;
-        border-bottom: 3px solid transparent;
-    }
+/* Sub-Tab Navigation Header */
+.schedule-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  background: var(--surface);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
 
-    .schedule-tab-btn.active {
-        color: var(--plum);
-        border-bottom-color: var(--plum);
-    }
+.schedule-subtabs {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--surface2);
+  padding: 0.3rem;
+  border-radius: 8px;
+}
 
-    .timeline {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-    }
+.schedule-subtab-btn {
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-dim);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
-    .timeline-item {
-        display: flex;
-        gap: 1.5rem;
-        padding-bottom: 1.25rem;
-        border-bottom: 1px dashed var(--line);
-    }
+.schedule-subtab-btn.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 
-    .timeline-time {
-        width: 130px;
-        font-weight: 800;
-        color: var(--gold);
-        font-size: 0.88rem;
-        flex-shrink: 0;
-    }
+/* Day Selector & Controls */
+.schedule-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
 
-    .timeline-body h4 {
-        font-size: 1.05rem;
-        margin-bottom: 0.3rem;
-        color: var(--ink);
-    }
+.schedule-date-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
 
-    .timeline-body p {
-        font-size: 0.88rem;
-        color: var(--ink-dim);
-        line-height: 1.5;
-    }
+/* Course Color Tokens & Badges */
+.course-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
 
-    .timeline-body ul {
-        margin-top: 0.4rem;
-        padding-left: 1.2rem;
-        font-size: 0.85rem;
-        color: var(--ink-dim);
-    }
+/* Course Specific Color Schemes */
+.tag-cs101, .tag-cs201, .tag-cs301, .tag-cs401 {
+  background: rgba(217, 119, 6, 0.15);
+  color: #b45309;
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+.tag-cs102, .tag-cs202, .tag-cs302, .tag-cs402 {
+  background: rgba(37, 99, 235, 0.15);
+  color: #1d4ed8;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+}
+.tag-cs103, .tag-cs203, .tag-cs303, .tag-cs403 {
+  background: rgba(124, 58, 237, 0.15);
+  color: #6d28d9;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+}
+.tag-cs104, .tag-cs204, .tag-cs304, .tag-cs404 {
+  background: rgba(5, 150, 105, 0.15);
+  color: #047857;
+  border: 1px solid rgba(5, 150, 105, 0.3);
+}
+.tag-cs105, .tag-cs205, .tag-cs305, .tag-cs405 {
+  background: rgba(8, 145, 178, 0.15);
+  color: #0e7490;
+  border: 1px solid rgba(8, 145, 178, 0.3);
+}
+.tag-cs106, .tag-cs206, .tag-cs306, .tag-cs406 {
+  background: rgba(225, 29, 72, 0.15);
+  color: #be123c;
+  border: 1px solid rgba(225, 29, 72, 0.3);
+}
+.tag-project, .tag-lab {
+  background: rgba(79, 70, 229, 0.15);
+  color: #4338ca;
+  border: 1px solid rgba(79, 70, 229, 0.3);
+}
+.tag-exam, .tag-deadline {
+  background: rgba(220, 38, 38, 0.15);
+  color: #b91c1c;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+[data-theme="dark"] .tag-cs101, [data-theme="dark"] .tag-cs201, [data-theme="dark"] .tag-cs301, [data-theme="dark"] .tag-cs401 { color: #f59e0b; }
+[data-theme="dark"] .tag-cs102, [data-theme="dark"] .tag-cs202, [data-theme="dark"] .tag-cs302, [data-theme="dark"] .tag-cs402 { color: #60a5fa; }
+[data-theme="dark"] .tag-cs103, [data-theme="dark"] .tag-cs203, [data-theme="dark"] .tag-cs303, [data-theme="dark"] .tag-cs403 { color: #a78bfa; }
+[data-theme="dark"] .tag-cs104, [data-theme="dark"] .tag-cs204, [data-theme="dark"] .tag-cs304, [data-theme="dark"] .tag-cs404 { color: #34d399; }
+[data-theme="dark"] .tag-cs105, [data-theme="dark"] .tag-cs205, [data-theme="dark"] .tag-cs305, [data-theme="dark"] .tag-cs405 { color: #22d3ee; }
+[data-theme="dark"] .tag-cs106, [data-theme="dark"] .tag-cs206, [data-theme="dark"] .tag-cs306, [data-theme="dark"] .tag-cs406 { color: #fb7185; }
+[data-theme="dark"] .tag-project, [data-theme="dark"] .tag-lab { color: #818cf8; }
+[data-theme="dark"] .tag-exam, [data-theme="dark"] .tag-deadline { color: #f87171; }
+
+/* 1. DAY VIEW — HOURLY TIMELINE */
+.daily-timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+}
+
+.timeline-hour-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.timeline-hour-row:last-child {
+  border-bottom: none;
+}
+
+.timeline-time-slot {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink-dim);
+  font-family: monospace;
+}
+
+.timeline-event-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: var(--surface2);
+  border-left: 4px solid var(--ink-dim);
+}
+
+.timeline-event-card.event-cs101, .timeline-event-card.event-cs201, .timeline-event-card.event-cs301, .timeline-event-card.event-cs401 { border-left-color: #d97706; }
+.timeline-event-card.event-cs102, .timeline-event-card.event-cs202, .timeline-event-card.event-cs302, .timeline-event-card.event-cs402 { border-left-color: #2563eb; }
+.timeline-event-card.event-cs103, .timeline-event-card.event-cs203, .timeline-event-card.event-cs303, .timeline-event-card.event-cs403 { border-left-color: #7c3aed; }
+.timeline-event-card.event-cs104, .timeline-event-card.event-cs204, .timeline-event-card.event-cs304, .timeline-event-card.event-cs404 { border-left-color: #059669; }
+.timeline-event-card.event-cs105, .timeline-event-card.event-cs205, .timeline-event-card.event-cs305, .timeline-event-card.event-cs405 { border-left-color: #0891b2; }
+.timeline-event-card.event-cs106, .timeline-event-card.event-cs206, .timeline-event-card.event-cs306, .timeline-event-card.event-cs406 { border-left-color: #e11d48; }
+.timeline-event-card.event-project, .timeline-event-card.event-lab { border-left-color: #4f46e5; }
+.timeline-event-card.event-exam, .timeline-event-card.event-deadline { border-left-color: #dc2626; }
+
+.timeline-event-info h5 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.timeline-event-info p {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+}
+
+/* 2. WEEK VIEW — COURSES IN ROWS, DAYS IN COLUMNS MATRIX */
+.timetable-grid-wrapper {
+  overflow-x: auto;
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.timetable-grid-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 850px;
+  text-align: left;
+}
+
+.timetable-grid-table th, 
+.timetable-grid-table td {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  vertical-align: top;
+  font-size: 0.83rem;
+}
+
+.timetable-grid-table th {
+  background: var(--surface2);
+  color: var(--ink);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+
+.timetable-grid-table .course-code-cell {
+  background: var(--surface2);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.timetable-cell-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.timetable-cell-content .time-label {
+  font-size: 0.72rem;
+  color: var(--ink-dim);
+  font-family: monospace;
+}
+
+/* 3. SEMESTER VIEW — WEEKS IN ROWS, COURSES IN COLUMNS TIMELINE */
+.semester-table-wrapper {
+  overflow-x: auto;
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.semester-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 950px;
+  text-align: left;
+}
+
+.semester-matrix-table th, 
+.semester-matrix-table td {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--line);
+  vertical-align: middle;
+  font-size: 0.82rem;
+}
+
+.semester-matrix-table th {
+  background: var(--surface2);
+  color: var(--ink);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.semester-matrix-table .week-num-cell {
+  background: var(--surface2);
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.semester-matrix-table tr.active-week-row {
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.semester-matrix-table tr.active-week-row .week-num-cell {
+  color: #2563eb;
+  border-left: 4px solid #2563eb;
+}
 
     /* ==========================================================================
        MY COURSE & PROFILE
