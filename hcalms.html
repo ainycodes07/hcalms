@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
@@ -59,19 +60,13 @@
             <button title="Learn"><i class="fa-solid fa-graduation-cap nav-icon"></i><span
                 class="nav-label">Learn</span></button>
           </li>
-          
           <li class="nav-item" data-tab="quests">
             <button title="Quests"><i class="fa-solid fa-list-check nav-icon"></i><span
-                class="nav-label">Todo</span></button>
+                class="nav-label">Quests</span></button>
           </li>
-          
-          <li class="nav-item" data-tab="calendar">
-            <button title="Calendar"><i class="fa-solid fa-calendar-days nav-icon"></i><span
-                class="nav-label">Calendar</span></button>
-          </li>
-          <li class="nav-item" data-tab="schedule">
-            <button title="Schedule"><i class="fa-solid fa-clock nav-icon"></i><span
-                class="nav-label">Timetable</span></button>
+          <li class="nav-item" data-tab="accountbook">
+            <button title="Account Book"><i class="fa-solid fa-wallet nav-icon"></i><span class="nav-label">Account
+                Book</span></button>
           </li>
           <li class="nav-item" data-tab="schedule">
             <button title="Schedule"><i class="fa-solid fa-calendar-days nav-icon"></i><span
@@ -80,11 +75,6 @@
           <li class="nav-item" data-tab="mycourse">
             <button title="My Course"><i class="fa-solid fa-book-bookmark nav-icon"></i><span class="nav-label">My
                 Course</span></button>
-          </li>
-          
-          <li class="nav-item" data-tab="accountbook">
-            <button title="Account Book"><i class="fa-solid fa-wallet nav-icon"></i><span class="nav-label">Account
-                Book</span></button>
           </li>
           <li class="nav-item" data-tab="profile">
             <button title="Profile"><i class="fa-solid fa-user nav-icon"></i><span
@@ -138,18 +128,6 @@
           <p style="font-size:0.95rem; opacity:0.9;">Rank: <strong id="dash-user-title"
               style="color:var(--gold);">Aspiring Developer</strong></p>
         </div>
-
-        <div id="tab-dashboard" class="tab-pane active">
-  <!-- Daily Study Check Widget -->
-  <div class="card study-check-card" id="daily-study-check-widget">
-    <!-- Rendered via app.js -->
-  </div>
-
-  <!-- Existing Dashboard Progress Cards -->
-  <div class="dash-grid">
-    <!-- ... Rest of dashboard content ... -->
-  </div>
-</div>
 
         <div class="grid-2">
           <div class="card">
@@ -248,50 +226,44 @@
         </div>
       </section>
 
-      <!-- TAB 4: CALENDAR & ATTENDANCE (New) -->
-<div id="tab-calendar" class="tab-pane">
-  <div class="calendar-summary-bar">
-    <div class="stat-box">
-      <span class="stat-label">Total Presents</span>
-      <span class="stat-value text-success" id="cal-total-presents">0</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-label">Total Absents</span>
-      <span class="stat-value text-danger" id="cal-total-absents">0</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-label">Attendance Rate</span>
-      <span class="stat-value" id="cal-attendance-rate">0%</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-label">Active Semester</span>
-      <span class="stat-value" id="cal-active-sem">Semester 1</span>
-    </div>
-  </div>
+      <!-- TAB 4: ACCOUNT BOOK -->
+      <section id="tab-accountbook" class="tab-pane">
+        <div class="card balance-card">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--gold); text-transform:uppercase;">Accountability,
+            Not A Bill</span>
+          <h2 class="brand-font">Account Book</h2>
+          <p style="font-size:0.85rem; color:var(--ink-dim); max-width:500px; margin:0.5rem auto;">
+            HCA is free. This tracks what you expected to earn against what you logged to maintain learning focus.
+          </p>
+          <div class="balance-amount negative" id="account-running-balance">-$0</div>
+          <div style="font-size:0.85rem; color:var(--ink-dim);">Monthly earning goal: $400 / month</div>
+        </div>
 
-  <div class="card" style="margin-top: 1.5rem;">
-    <h3><i class="fa-solid fa-table"></i> Weekly Attendance & Quest Progress Matrix</h3>
-    <p class="subtext">Self-paced tracking: Missed days mark absence automatically but do not lock remaining weeks.</p>
-    <div class="table-responsive">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Semester</th>
-            <th>Week</th>
-            <th>Week Title</th>
-            <th>Quests Completed / Total</th>
-            <th>Weekly Status</th>
-            <th>Semester Status</th>
-          </tr>
-        </thead>
-        <tbody id="calendar-matrix-tbody">
-          <!-- Dynamically populated -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-      
+        <div class="card">
+          <h4>Log earnings (add current or past months anytime)</h4>
+          <form class="earning-log-form" id="log-earning-form" onsubmit="handleLogEarning(event)"
+            style="margin-top:1rem;">
+            <select id="log-month-select" required></select>
+            <input type="number" id="log-amount-input" placeholder="Amount earned ($)" min="0" step="10" required>
+            <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> Save</button>
+          </form>
+
+          <div class="log-table-container">
+            <table class="log-table">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Target</th>
+                  <th>Logged Earned</th>
+                  <th>Net Balance</th>
+                </tr>
+              </thead>
+              <tbody id="account-log-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <!-- TAB 5: SCHEDULE -->
       <section id="tab-schedule" class="tab-pane">
         <div class="schedule-tabs">
@@ -430,46 +402,7 @@
         <div class="grid-2" id="semester-cards-container"></div>
       </section>
 
-      
-      <!-- TAB 7: ACCOUNT BOOK -->
-      <section id="tab-accountbook" class="tab-pane">
-        <div class="card balance-card">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--gold); text-transform:uppercase;">Accountability,
-            Not A Bill</span>
-          <h2 class="brand-font">Account Book</h2>
-          <p style="font-size:0.85rem; color:var(--ink-dim); max-width:500px; margin:0.5rem auto;">
-            HCA is free. This tracks what you expected to earn against what you logged to maintain learning focus.
-          </p>
-          <div class="balance-amount negative" id="account-running-balance">-$0</div>
-          <div style="font-size:0.85rem; color:var(--ink-dim);">Monthly earning goal: $400 / month</div>
-        </div>
-
-        <div class="card">
-          <h4>Log earnings (add current or past months anytime)</h4>
-          <form class="earning-log-form" id="log-earning-form" onsubmit="handleLogEarning(event)"
-            style="margin-top:1rem;">
-            <select id="log-month-select" required></select>
-            <input type="number" id="log-amount-input" placeholder="Amount earned ($)" min="0" step="10" required>
-            <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> Save</button>
-          </form>
-
-          <div class="log-table-container">
-            <table class="log-table">
-              <thead>
-                <tr>
-                  <th>Month</th>
-                  <th>Target</th>
-                  <th>Logged Earned</th>
-                  <th>Net Balance</th>
-                </tr>
-              </thead>
-              <tbody id="account-log-tbody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 8: PROFILE -->
+      <!-- TAB 7: PROFILE -->
       <section id="tab-profile" class="tab-pane">
         <!-- DYNAMIC ENCOURAGEMENT BADGE BANNER -->
         <div class="badge-encouragement-card">
