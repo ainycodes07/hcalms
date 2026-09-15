@@ -1272,11 +1272,12 @@ function switchTab(tabId) {
     document.getElementById("page-heading").innerText = titleMap[tabId][0];
     document.getElementById("page-subheading").innerText = titleMap[tabId][1];
   }
-}
-
+   
 if (tabId === "calendar") {
     renderCalendar();
   }
+
+}
 
 
 document.querySelectorAll(".nav-item button").forEach((btn) => {
