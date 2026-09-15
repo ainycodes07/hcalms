@@ -991,6 +991,9 @@ function getWeekData(weekNum) {
 /* ==========================================================================
    2. APPLICATION STATE ENGINE
    ========================================================================== */
+/* ==========================================================================
+   2. APPLICATION STATE ENGINE
+   ========================================================================== */
 const DEFAULT_STATE = {
   user: {
     name: "AI Engineer Candidate",
@@ -1005,6 +1008,7 @@ const DEFAULT_STATE = {
   questStates: {},
   scheduleSubTab: "daily", // 'daily' | 'weekly' | 'semester'
   scheduleViewDate: new Date().toISOString(),
+  attendance: {} // Added: Holds attendance data
 };
 
 let state = JSON.parse(localStorage.getItem("AI_ENG_PROGRAM_STATE_V1")) || DEFAULT_STATE;
@@ -1014,12 +1018,31 @@ if (!state.user.shown100Popups) state.user.shown100Popups = [];
 if (!state.user.name) state.user.name = "AI Engineer Candidate";
 if (!state.scheduleSubTab) state.scheduleSubTab = "daily";
 if (!state.scheduleViewDate) state.scheduleViewDate = new Date().toISOString();
+if (!state.attendance) state.attendance = {}; // Added: Ensures attendance exists for old users
+
+// Automatically marks past days as absent if no check-in exists
+function autoMarkMissedDays() {
+  const start = new Date(state.startDate);
+  const today = new Date();
+  start.setHours(0,0,0,0);
+  today.setHours(0,0,0,0);
+
+  let curr = new Date(start);
+  while (curr <= today) {
+    const dateStr = curr.toISOString().split('T')[0];
+    if (!state.attendance[dateStr]) {
+      state.attendance[dateStr] = "absent";
+    }
+    curr.setDate(curr.getDate() + 1);
+  }
+}
+
+autoMarkMissedDays(); // Run auto-check on initialization
 
 function saveState() {
   localStorage.setItem("AI_ENG_PROGRAM_STATE_V1", JSON.stringify(state));
   renderApp();
 }
-
 /* ==========================================================================
    3. TIMESTAMPS & DEADLINES GENERATOR
    ========================================================================== */
@@ -1242,11 +1265,17 @@ function switchTab(tabId) {
     schedule: ["University Schedule", "Interactive daily, weekly, and semester course schedules"],
     mycourse: ["Syllabus & Titles", "Full course syllabus, degree specialization titles, and certifications"],
     profile: ["Engineer Profile", "Manage your titles, candidate name, and export achievement cards"],
+     calendar: ["Calendar & Attendance", "Track your daily study check-ins and weekly attendance matrix"], // 1. ADDED TO TITLE MAP
   };
 
   if (titleMap[tabId]) {
     document.getElementById("page-heading").innerText = titleMap[tabId][0];
     document.getElementById("page-subheading").innerText = titleMap[tabId][1];
+  }
+}
+
+if (tabId === "calendar") {
+    renderCalendar();
   }
 }
 
@@ -1257,8 +1286,43 @@ document.querySelectorAll(".nav-item button").forEach((btn) => {
   });
 });
 
+
 /* DASHBOARD */
+function recordDailyAttendance(status) {
+  const todayStr = new Date().toISOString().split('T')[0];
+  state.attendance[todayStr] = status;
+  saveState();
+  renderDashboard();
+}
+
+function renderDashboardStudyCheckin() {
+  const todayStr = new Date().toISOString().split('T')[0];
+  const todayStatus = state.attendance[todayStr];
+  const checkinContainer = document.getElementById("dash-study-checkin");
+  if (!checkinContainer) return;
+
+  checkinContainer.innerHTML = `
+    <div style="background: var(--surface); border: 1px solid var(--line); padding: 1.25rem; border-radius: 12px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+      <div>
+        <h4 style="margin: 0; font-size: 1.05rem;">Have you studied today? (${todayStr})</h4>
+        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: var(--ink-dim);">
+          Missed days record as absent, but never block your program progress.
+        </p>
+      </div>
+      <div style="display: flex; gap: 0.75rem;">
+        <button onclick="recordDailyAttendance('present')" class="btn-primary" style="${todayStatus === 'present' ? 'background: var(--sage);' : ''}">
+          Yes (Present)
+        </button>
+        <button onclick="recordDailyAttendance('absent')" class="btn-secondary" style="${todayStatus === 'absent' ? 'background: var(--rust); color: #fff;' : ''}">
+          No (Absent)
+        </button>
+      </div>
+    </div>
+  `;
+}
+
 function renderDashboard() {
+  renderDashboardStudyCheckin();
   const overall = calculateOverallProgress();
   document.getElementById("full-course-progress-bar").style.width = `${overall.pct}%`;
   document.getElementById("full-course-progress-text").innerText = `${overall.pct}%`;
@@ -1379,138 +1443,57 @@ function renderLearnPathway() {
 function openWeekDrawer(weekNum) {
   const wObj = getWeekData(weekNum);
   const semNum = Math.ceil(weekNum / 16);
+  const quests = getQuestItemsForWeek(wObj);
+  const qStates = state.questStates[wObj.w] || quests.map(() => 0);
+  const completedCount = qStates.filter(s => s === 1).length;
 
   document.getElementById("drawer-week-tag").innerText = `SEMESTER ${semNum} · WEEK ${wObj.w}`;
   document.getElementById("drawer-week-title").innerText = wObj.title;
 
   const body = document.getElementById("drawer-body-content");
-  body.innerHTML = "";
+  body.innerHTML = `
+    <div class="drawer-section">
+      <div class="drawer-section-title"><i class="fa-solid fa-list-check"></i> EXACT WEEKLY ACTION PLAN</div>
+      <p style="line-height:1.6; font-size:0.9rem;">${wObj.what}</p>
+      <div style="background:var(--surface2); padding:0.85rem; border-radius:8px; margin-top:0.5rem; font-size:0.85rem;">
+        <strong>Execution Path:</strong>
+        <p style="white-space: pre-line; margin-top:0.3rem;">${wObj.how}</p>
+      </div>
+    </div>
 
-  // WHAT Section
-  const whatSec = document.createElement("div");
-  whatSec.className = "drawer-section";
-  whatSec.innerHTML = `
-    <div class="drawer-section-title"><i class="fa-solid fa-circle-info"></i> WHAT (Topics & Curriculum Coverage)</div>
-    <h3>${wObj.title}</h3>
-    <p style="margin-top:0.4rem; line-height:1.6;">${wObj.what}</p>
-  `;
-  body.appendChild(whatSec);
+    <div class="drawer-section">
+      <div class="drawer-section-title"><i class="fa-solid fa-bullseye"></i> EXPECTED OUTCOMES</div>
+      <p style="line-height:1.6; font-size:0.9rem;">${wObj.why}</p>
+    </div>
 
-  // WHY Section
-  const whySec = document.createElement("div");
-  whySec.className = "drawer-section";
-  whySec.innerHTML = `
-    <div class="drawer-section-title"><i class="fa-solid fa-lightbulb"></i> WHY (Engineering Relevance & Competency)</div>
-    <p style="line-height:1.6;">${wObj.why}</p>
-  `;
-  body.appendChild(whySec);
+    <div class="drawer-section">
+      <div class="drawer-section-title"><i class="fa-solid fa-box-archive"></i> DELIVERABLES & MUST-KNOW CONCEPTS</div>
+      <ul style="margin:0.4rem 0; padding-left:1.2rem; font-size:0.88rem; line-height:1.6;">
+        <li><strong>Required Knowledge:</strong> Complete concepts from <em>${wObj.resource}</em></li>
+        <li><strong>Core Deliverable:</strong> Submit code repository / lab exercises matching weekly specification.</li>
+        <li><strong>Quest Completion:</strong> ${completedCount} / ${quests.length} Quests Completed for this week.</li>
+      </ul>
+    </div>
 
-  // WHEN Section
-  const whenSec = document.createElement("div");
-  whenSec.className = "drawer-section";
-  whenSec.innerHTML = `
-    <div class="drawer-section-title"><i class="fa-solid fa-clock"></i> WHEN (Weekly Commitment & Submission Deadline)</div>
-    <p style="line-height:1.6;">${wObj.when}</p>
-    <div style="margin-top:0.5rem;">Deadline status: ${getWeekDeadlineText(wObj.w)}</div>
-  `;
-  body.appendChild(whenSec);
-
-  // WHERE Section
-  const whereSec = document.createElement("div");
-  whereSec.className = "drawer-section";
-  whereSec.innerHTML = `
-    <div class="drawer-section-title"><i class="fa-solid fa-location-dot"></i> WHERE (Primary Textbooks & Learning Platforms)</div>
-    <p>Primary Textbooks: <strong>${wObj.resource}</strong></p>
-    <p style="margin-top:0.3rem;">Resources & Sandbox Platforms: ${wObj.where}</p>
-  `;
-  body.appendChild(whereSec);
-
-  // HOW Section
-  const howSec = document.createElement("div");
-  howSec.className = "drawer-section";
-  howSec.innerHTML = `
-    <div class="drawer-section-title"><i class="fa-solid fa-list-check"></i> HOW (Execution & Lab Submission Method)</div>
-    <p style="white-space: pre-line; line-height:1.6;">${wObj.how}</p>
-  `;
-  body.appendChild(howSec);
-
-  // PROJECT BRIEFS & AI PROMPT (For Midterm, Final & Term Projects)
-  if (wObj.projectOptions && wObj.projectOptions.length > 0) {
-    const projSec = document.createElement("div");
-    projSec.className = "drawer-section";
-    projSec.style.borderColor = "var(--gold)";
-
-    let optionsHTML = `
-      <div class="drawer-section-title"><i class="fa-solid fa-diagram-project"></i> PRACTICAL EXAM & PROJECT BRIEFS</div>
-      <p style="font-size:0.85rem; color:var(--ink-dim); margin-bottom:1rem;">
-        Review project specifications and download detailed PDF briefs below:
-      </p>
-      <div style="display:flex; flex-direction:column; gap:0.75rem;">
-    `;
-
-    wObj.projectOptions.forEach((opt) => {
-      optionsHTML += `
-        <div style="background:var(--surface); border:1px solid var(--line); padding:1rem; border-radius:10px;">
-          <h4 style="color:var(--plum); font-size:0.95rem;">${opt.title}</h4>
-          <p style="font-size:0.82rem; color:var(--ink-dim); margin:0.3rem 0 0.6rem 0;">${opt.desc}</p>
-          <a href="${opt.pdfBrief}" download target="_blank" class="btn-secondary" style="font-size:0.8rem; padding:0.4rem 0.8rem;">
-            <i class="fa-solid fa-file-pdf" style="color:var(--rust);"></i> Download PDF Specification Brief
-          </a>
-        </div>
-      `;
-    });
-
-    optionsHTML += `</div>`;
-
-    if (wObj.aiPrompt) {
-      optionsHTML += `
-        <div style="margin-top:1.25rem; padding-top:1rem; border-top:1px dashed var(--line);">
-          <div style="font-size:0.8rem; font-weight:800; color:var(--gold); margin-bottom:0.4rem;">
-            <i class="fa-solid fa-robot"></i> ACADEMIC DEFENSE & CODE AUDIT PROMPT
+    <div class="drawer-section">
+      <div class="drawer-section-title"><i class="fa-solid fa-code"></i> CODE LABS & HANDS-ON INSTRUCTIONS</div>
+      <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.5rem;">
+        ${quests.map((q, i) => `
+          <div style="background:var(--surface); border:1px solid var(--line); padding:0.85rem; border-radius:8px;">
+            <div style="font-size:0.72rem; font-weight:800; color:var(--gold); text-transform:uppercase;">LAB STEP ${i + 1}: ${q.tag}</div>
+            <div style="font-size:0.9rem; font-weight:700; color:var(--ink); margin:0.2rem 0;">${q.title}</div>
+            <div style="font-size:0.82rem; color:var(--ink-dim);">${q.desc}</div>
           </div>
-          <p style="font-size:0.8rem; color:var(--ink-dim); margin-bottom:0.5rem;">
-            Copy this prompt into your AI model (ChatGPT/Claude/Gemini) to execute an automated academic code audit and defense review:
-          </p>
-          <div style="position:relative; background:var(--surface2); padding:0.85rem; border-radius:8px; border:1px solid var(--line); font-size:0.8rem; color:var(--ink); font-family:monospace; line-height:1.4; word-break:break-word;">
-            ${wObj.aiPrompt}
-            <button class="btn-primary" onclick="copyPromptToClipboard('${wObj.aiPrompt.replace(/'/g, "\\'")}', this)" style="margin-top:0.75rem; font-size:0.75rem; padding:0.35rem 0.75rem; width:100%;">
-              <i class="fa-solid fa-copy"></i> Copy Prompt to Clipboard
-            </button>
-          </div>
-        </div>
-      `;
-    }
+        `).join('')}
+      </div>
+    </div>
 
-    projSec.innerHTML = optionsHTML;
-    body.appendChild(projSec);
-  }
-
-  // DETAILED LAB BREAKDOWN
-  const questBreakdown = document.createElement("div");
-  questBreakdown.className = "drawer-section";
-  questBreakdown.innerHTML = `
-    <div class="drawer-section-title"><i class="fa-solid fa-tasks"></i> WEEKLY LAB DELIVERABLES CHECKLIST</div>
-    <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.5rem;">
-      ${getQuestItemsForWeek(wObj)
-        .map(
-          (q, i) => `
-        <div style="background:var(--surface); border:1px solid var(--line); padding:0.75rem; border-radius:8px;">
-          <span style="font-size:0.7rem; font-weight:800; color:var(--gold); text-transform:uppercase">${i + 1}. ${q.tag}</span>
-          <div style="font-size:0.88rem; font-weight:700; color:var(--ink);">${q.title}</div>
-          <div style="font-size:0.8rem; color:var(--ink-dim); margin-top:0.2rem;">${q.desc}</div>
-        </div>
-      `,
-        )
-        .join("")}
+    <div class="drawer-section" style="border-left: 4px solid var(--rust);">
+      <div class="drawer-section-title"><i class="fa-solid fa-clock"></i> SUBMISSION DEADLINE</div>
+      <p style="font-size:0.9rem; font-weight:700; margin:0.2rem 0;">Target Deadline: Sunday 11:59 PM (Local Time)</p>
+      <div style="margin-top:0.4rem;">${getWeekDeadlineText(wObj.w)}</div>
     </div>
   `;
-  body.appendChild(questBreakdown);
-
-  // CTA Button
-  const ctaDiv = document.createElement("div");
-  ctaDiv.style.marginTop = "0.5rem";
-  ctaDiv.innerHTML = `<button class="btn-primary" style="width:100%;" onclick="jumpToQuestsFromDrawer(${wObj.w})">Open Lab Checklist for Week ${wObj.w} &rsaquo;</button>`;
-  body.appendChild(ctaDiv);
 
   document.getElementById("week-drawer-overlay").classList.add("open");
 }
@@ -2122,6 +2105,69 @@ function resetAllProgress() {
     };
     saveState();
   }
+}
+
+function renderCalendar() {
+  const container = document.getElementById("tab-calendar");
+  if (!container) return;
+
+  const attendanceEntries = Object.entries(state.attendance);
+  const presentsCount = attendanceEntries.filter(([_, status]) => status === "present").length;
+  const absentsCount = attendanceEntries.filter(([_, status]) => status === "absent").length;
+  const currentSemNum = Math.ceil(state.activeWeekSelected / 16);
+
+  document.getElementById("calendar-summary-cards").innerHTML = `
+    <div class="dash-stat-card" style="border-top: 4px solid var(--sage);">
+      <div class="stat-label">TOTAL PRESENTS</div>
+      <div class="stat-value" style="color: var(--sage);">${presentsCount} Days</div>
+    </div>
+    <div class="dash-stat-card" style="border-top: 4px solid var(--rust);">
+      <div class="stat-label">TOTAL ABSENTS</div>
+      <div class="stat-value" style="color: var(--rust);">${absentsCount} Days</div>
+    </div>
+    <div class="dash-stat-card" style="border-top: 4px solid var(--plum);">
+      <div class="stat-label">CURRENT SEMESTER</div>
+      <div class="stat-value">Semester ${currentSemNum}</div>
+    </div>
+  `;
+
+  let tableHTML = `
+    <div class="timetable-grid-wrapper">
+      <table class="timetable-grid-table">
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Semester</th>
+            <th>Quest Progress</th>
+            <th>Attendance Status</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  for (let w = 1; w <= 64; w++) {
+    const sem = Math.ceil(w / 16);
+    const wObj = getWeekData(w);
+    const quests = getQuestItemsForWeek(wObj);
+    const qStates = state.questStates[w] || [];
+    const completedQuests = qStates.filter(s => s === 1).length;
+
+    tableHTML += `
+      <tr>
+        <td><strong>Week ${w}</strong></td>
+        <td>Semester ${sem}</td>
+        <td>${completedQuests} / ${quests.length} Quests</td>
+        <td>
+          <span class="course-tag ${completedQuests > 0 ? 'tag-cs101' : 'tag-exam'}">
+            ${completedQuests > 0 ? 'Active / Present' : 'Absent / Pending'}
+          </span>
+        </td>
+      </tr>
+    `;
+  }
+
+  tableHTML += `</tbody></table></div>`;
+  document.getElementById("calendar-container").innerHTML = tableHTML;
 }
 
 /* ==========================================================================
