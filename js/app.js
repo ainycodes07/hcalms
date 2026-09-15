@@ -1653,280 +1653,253 @@ function handleLogEarning(e) {
 }
 
 /* ==========================================================================
-   5B. SCHEDULE TAB IMPLEMENTATION (DAILY, WEEKLY, SEMESTER)
+   SCHEDULE ENGINE — DAILY, WEEKLY & SEMESTER STUDENT TIMETABLES
    ========================================================================== */
-function setScheduleSubTab(tab) {
-  state.scheduleSubTab = tab;
+
+function getCourseColorClass(courseCode) {
+  if (!courseCode) return "tag-project";
+  const code = courseCode.toUpperCase().trim();
+  if (code.includes("101") || code.includes("201") || code.includes("301") || code.includes("401")) return "tag-cs101";
+  if (code.includes("102") || code.includes("202") || code.includes("302") || code.includes("402")) return "tag-cs102";
+  if (code.includes("103") || code.includes("203") || code.includes("303") || code.includes("403")) return "tag-cs103";
+  if (code.includes("104") || code.includes("204") || code.includes("304") || code.includes("404")) return "tag-cs104";
+  if (code.includes("105") || code.includes("205") || code.includes("305") || code.includes("405")) return "tag-cs105";
+  if (code.includes("106") || code.includes("206") || code.includes("306") || code.includes("406")) return "tag-cs106";
+  if (code.includes("MIDTERM") || code.includes("FINAL") || code.includes("EXAM")) return "tag-exam";
+  if (code.includes("TERM") || code.includes("PROJECT") || code.includes("SPRINT")) return "tag-project";
+  return "tag-lab";
+}
+
+function setScheduleSubTab(subTabKey) {
+  state.scheduleSubTab = subTabKey;
   saveState();
-}
-
-function navigateSchedule(direction) {
-  const current = new Date(state.scheduleViewDate || new Date());
-  const activeTab = state.scheduleSubTab || "daily";
-
-  if (activeTab === "daily") {
-    current.setDate(current.getDate() + direction);
-  } else if (activeTab === "weekly") {
-    current.setDate(current.getDate() + direction * 7);
-  } else if (activeTab === "semester") {
-    // Jump by 16 weeks (112 days) to next or previous semester
-    current.setDate(current.getDate() + direction * 112);
-  }
-
-  state.scheduleViewDate = current.toISOString();
-  saveState();
-}
-
-function jumpScheduleToPresent() {
-  state.scheduleViewDate = new Date().toISOString();
-  saveState();
-}
-
-function getScheduleTemplateForSem(semNum, weekObj) {
-  return {
-    mon: [
-      { time: "09:00 AM - 11:00 AM", course: `CS${semNum}01: Core Architecture`, topic: weekObj.title, room: "Lecture Hall A", type: "Lecture" },
-      { time: "11:30 AM - 01:30 PM", course: `CS${semNum}02: Practical Coding Lab`, topic: "Hands-on Syntax & Implementations", room: "AI Systems Lab 3", type: "Lab" }
-    ],
-    tue: [
-      { time: "10:00 AM - 12:00 PM", course: `CS${semNum}03: Textbook Seminar`, topic: `Textbook: ${weekObj.resource}`, room: "Seminar Room 102", type: "Discussion" },
-      { time: "02:00 PM - 04:30 PM", course: `CS${semNum}04: Guided System Build`, topic: "Live Pair Programming & Architecture", room: "Lab Studio 2", type: "Workshop" }
-    ],
-    wed: [
-      { time: "09:00 AM - 11:00 AM", course: `CS${semNum}01: Core Architecture`, topic: weekObj.title, room: "Lecture Hall A", type: "Lecture" },
-      { time: "11:30 AM - 01:30 PM", course: `CS${semNum}02: Practical Coding Lab`, topic: "Code Audit & Refactoring", room: "AI Systems Lab 3", type: "Lab" }
-    ],
-    thu: [
-      { time: "10:00 AM - 12:00 PM", course: `CS${semNum}05: Automated Quality Audit`, topic: "SonarQube & Unit Testing", room: "Online Sandbox", type: "Lab" },
-      { time: "02:00 PM - 04:30 PM", course: `CS${semNum}06: Sprint Planning`, topic: "Git Workflow & Issue Audits", room: "Lab Studio 2", type: "Workshop" }
-    ],
-    fri: [
-      { time: "09:00 AM - 05:00 PM", course: `CS${semNum}99: Mandatory Deep Work`, topic: `Sprint Milestone: ${weekObj.title}`, room: "Deep Work Studio / GitHub", type: "Sprint" }
-    ],
-    sat: [
-      { time: "10:00 AM - 02:00 PM", course: `CS${semNum}88: Self-Directed Project`, topic: "Independent Coding & Testing", room: "Remote / Home", type: "Study" }
-    ],
-    sun: [
-      { time: "02:00 PM - 11:59 PM", course: `CS${semNum}90: Weekly Deliverable Submission`, topic: "Code Commit & PR Submission", room: "GitHub Portal", type: "Deadline" }
-    ]
-  };
-}
-
-function renderDailyTable(semNum, weekObj, dayOfWeek) {
-  const template = getScheduleTemplateForSem(semNum, weekObj);
-  const dayKeys = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-  const daySchedule = template[dayKeys[dayOfWeek]] || [];
-
-  if (daySchedule.length === 0) {
-    return `<p style="color:var(--ink-dim); font-style:italic; padding:1rem; text-align:center;">No classes or labs scheduled for this day.</p>`;
-  }
-
-  const rows = daySchedule.map(s => `
-    <tr>
-      <td><strong>${s.time}</strong></td>
-      <td><span style="font-weight:700; color:var(--plum);">${s.course}</span></td>
-      <td>${s.topic}</td>
-      <td><span style="font-size:0.8rem; background:var(--surface2); padding:0.2rem 0.5rem; border-radius:4px; border:1px solid var(--line);">${s.room}</span></td>
-      <td><span class="node-status-badge badge-active">${s.type}</span></td>
-    </tr>
-  `).join("");
-
-  return `
-    <table class="account-table" style="width:100%; border-collapse:collapse;">
-      <thead>
-        <tr>
-          <th>Time Slot</th>
-          <th>Course / Session</th>
-          <th>Focus Topic</th>
-          <th>Location</th>
-          <th>Session Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rows}
-      </tbody>
-    </table>
-  `;
-}
-
-function renderWeeklyTable(semNum, weekObj) {
-  const template = getScheduleTemplateForSem(semNum, weekObj);
-  const days = [
-    { name: "Monday", slots: template.mon },
-    { name: "Tuesday", slots: template.tue },
-    { name: "Wednesday", slots: template.wed },
-    { name: "Thursday", slots: template.thu },
-    { name: "Friday", slots: template.fri },
-    { name: "Saturday", slots: template.sat },
-    { name: "Sunday", slots: template.sun },
-  ];
-
-  let rows = "";
-  days.forEach(d => {
-    d.slots.forEach((s, idx) => {
-      rows += `
-        <tr>
-          ${idx === 0 ? `<td rowspan="${d.slots.length}" style="vertical-align:top; font-weight:800; background:var(--surface2);">${d.name}</td>` : ""}
-          <td><strong>${s.time}</strong></td>
-          <td><span style="font-weight:700; color:var(--plum);">${s.course}</span></td>
-          <td>${s.topic}</td>
-          <td>${s.room}</td>
-        </tr>
-      `;
-    });
-  });
-
-  return `
-    <table class="account-table" style="width:100%; border-collapse:collapse;">
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th>Time</th>
-          <th>Course Module</th>
-          <th>Weekly Focus Topic</th>
-          <th>Location / Platform</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rows}
-      </tbody>
-    </table>
-  `;
-}
-
-function renderSemesterTable(semData) {
-  const rows = semData.weeks.map(w => {
-    const isUnlocked = getWeekUnlockStatus(w.w);
-    const qStates = state.questStates[w.w] || [];
-    const isDone = qStates.length > 0 && qStates.every(st => st === 1);
-
-    return `
-      <tr>
-        <td><strong>Week ${w.w}</strong></td>
-        <td><span style="font-weight:700; color:var(--ink);">${w.title}</span></td>
-        <td style="font-size:0.82rem; color:var(--ink-dim);">${w.resource}</td>
-        <td>
-          <span class="node-status-badge ${w.type.includes('exam') || w.type === 'midterm' || w.type === 'final' ? 'badge-locked' : 'badge-active'}" style="${w.type.includes('exam') || w.type === 'midterm' || w.type === 'final' ? 'background:var(--rust); color:#fff;' : ''}">
-            ${w.type.toUpperCase().replace('_', ' ')}
-          </span>
-        </td>
-        <td>
-          ${isDone ? '<span style="color:var(--sage); font-weight:700;"><i class="fa-solid fa-check"></i> Completed</span>' : isUnlocked ? '<span style="color:var(--plum); font-weight:700;">In Progress</span>' : '<span style="color:var(--ink-dim);">Locked</span>'}
-        </td>
-      </tr>
-    `;
-  }).join("");
-
-  return `
-    <table class="account-table" style="width:100%; border-collapse:collapse;">
-      <thead>
-        <tr>
-          <th>Week #</th>
-          <th>Curriculum Module Title</th>
-          <th>Primary Resource / Textbook</th>
-          <th>Module Type</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rows}
-      </tbody>
-    </table>
-  `;
 }
 
 function renderSchedule() {
   const container = document.getElementById("tab-schedule");
   if (!container) return;
 
-  const viewDate = new Date(state.scheduleViewDate || new Date());
-  const startMs = new Date(state.startDate).getTime();
-  const currentMs = viewDate.getTime();
-  const diffDays = Math.floor((currentMs - startMs) / (1000 * 60 * 60 * 24));
-  
-  let calculatedWeek = Math.floor(diffDays / 7) + 1;
-  if (calculatedWeek < 1) calculatedWeek = 1;
-  if (calculatedWeek > 64) calculatedWeek = 64;
-  
-  const semNum = Math.min(4, Math.max(1, Math.ceil(calculatedWeek / 16)));
-  const semData = ROADMAP.find((s) => s.sem === semNum);
-  const weekObj = getWeekData(calculatedWeek);
-  const dayOfWeek = viewDate.getDay();
-  const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-  const activeSubTab = state.scheduleSubTab || "daily";
+  const currentSemNum = Math.ceil(state.activeWeekSelected / 16);
+  const semData = ROADMAP.find((s) => s.sem === currentSemNum);
+  const currentSubTab = state.scheduleSubTab || "daily";
 
   let html = `
-    <div style="background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:1.25rem; margin-bottom:1.5rem;">
-      <!-- Active Semester Banner -->
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; background:var(--surface2); padding:0.85rem 1.25rem; border-radius:10px; border:1px solid var(--line); margin-bottom:1.25rem;">
-        <div>
-          <span style="font-size:0.75rem; font-weight:800; color:var(--gold); text-transform:uppercase;">ACTIVE RUNNING SEMESTER</span>
-          <h3 class="brand-font" style="font-size:1.15rem; color:var(--ink); margin-top:0.15rem;">Semester ${semNum}: ${semData.title}</h3>
-        </div>
-        <div style="text-align:right;">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--plum);">Week ${calculatedWeek} of 64</span>
-          <div style="font-size:0.75rem; color:var(--ink-dim);">${semData.unlockTitle}</div>
-        </div>
+    <div class="schedule-toolbar">
+      <div>
+        <h3 style="margin:0; font-size:1.1rem; color:var(--ink);">Semester ${currentSemNum} Timetable</h3>
+        <p style="margin:0.2rem 0 0 0; font-size:0.82rem; color:var(--ink-dim);">
+          Online Self-Directed Study · Strict Academic Deadline Blocks
+        </p>
       </div>
-
-      <!-- Sub Tabs Header -->
-      <div style="display:flex; gap:0.5rem; border-bottom:2px solid var(--line); margin-bottom:1.25rem; overflow-x:auto;">
-        <button class="week-chip ${activeSubTab === 'daily' ? 'active' : ''}" onclick="setScheduleSubTab('daily')">
-          <i class="fa-solid fa-calendar-day"></i> Daily Schedule
+      <div class="schedule-subtabs">
+        <button class="schedule-subtab-btn ${currentSubTab === 'daily' ? 'active' : ''}" onclick="setScheduleSubTab('daily')">
+          <i class="fa-solid fa-clock"></i> Day Schedule
         </button>
-        <button class="week-chip ${activeSubTab === 'weekly' ? 'active' : ''}" onclick="setScheduleSubTab('weekly')">
-          <i class="fa-solid fa-calendar-week"></i> Weekly Schedule
+        <button class="schedule-subtab-btn ${currentSubTab === 'weekly' ? 'active' : ''}" onclick="setScheduleSubTab('weekly')">
+          <i class="fa-solid fa-calendar-week"></i> Week Schedule
         </button>
-        <button class="week-chip ${activeSubTab === 'semester' ? 'active' : ''}" onclick="setScheduleSubTab('semester')">
-          <i class="fa-solid fa-graduation-cap"></i> Semester Schedule
+        <button class="schedule-subtab-btn ${currentSubTab === 'semester' ? 'active' : ''}" onclick="setScheduleSubTab('semester')">
+          <i class="fa-solid fa-table-cells"></i> Semester Schedule
         </button>
-      </div>
-
-      <!-- Control Buttons (< > and Jump to Present) -->
-      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.25rem; background:var(--surface); padding:0.75rem 1rem; border-radius:8px; border:1px solid var(--line);">
-        <button class="btn-secondary" onclick="navigateSchedule(-1)" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
-          <i class="fa-solid fa-chevron-left"></i> ${activeSubTab === 'daily' ? 'Prev Day' : activeSubTab === 'weekly' ? 'Prev Week' : 'Prev Semester'}
-        </button>
-
-        <div style="text-align:center; font-weight:700; color:var(--ink); font-size:0.95rem;">
-          ${
-            activeSubTab === 'daily'
-              ? `${dayNames[dayOfWeek]}, ${viewDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
-              : activeSubTab === 'weekly'
-              ? `Week ${calculatedWeek} Overview (${semData.title})`
-              : `Semester ${semNum} Roadmap (${semData.weeks.length} Weeks)`
-          }
-        </div>
-
-        <div style="display:flex; gap:0.5rem; align-items:center;">
-          <button class="btn-primary" onclick="jumpScheduleToPresent()" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
-            <i class="fa-solid fa-rotate-left"></i> Jump to Present
-          </button>
-          <button class="btn-secondary" onclick="navigateSchedule(1)" style="font-size:0.85rem; padding:0.4rem 0.85rem;">
-            ${activeSubTab === 'daily' ? 'Next Day' : activeSubTab === 'weekly' ? 'Next Week' : 'Next Semester'} <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Schedule Table Output -->
-      <div style="overflow-x:auto;">
-  `;
-
-  if (activeSubTab === 'daily') {
-    html += renderDailyTable(semNum, weekObj, dayOfWeek);
-  } else if (activeSubTab === 'weekly') {
-    html += renderWeeklyTable(semNum, weekObj);
-  } else {
-    html += renderSemesterTable(semData);
-  }
-
-  html += `
       </div>
     </div>
   `;
 
+  if (currentSubTab === "daily") {
+    html += renderDailyHourlySchedule(semData);
+  } else if (currentSubTab === "weekly") {
+    html += renderWeeklyCourseMatrix(semData);
+  } else {
+    html += renderSemesterTimelineTable(semData);
+  }
+
   container.innerHTML = html;
+}
+
+/* 1. DAY SCHEDULE — Divided by Hours (09:00 AM - 06:45 PM) */
+function renderDailyHourlySchedule(semData) {
+  const weekObj = getWeekData(state.activeWeekSelected);
+  const courseCodes = semData.sem === 1 ? ["CS101", "CS102", "CS103", "CS104", "CS105", "CS106"]
+    : semData.sem === 2 ? ["CS201", "CS202", "CS203", "CS204", "CS205", "CS206"]
+    : semData.sem === 3 ? ["CS301", "CS302", "CS303", "CS304", "CS305", "CS306"]
+    : ["CS401", "CS402", "CS403", "CS404", "CS405", "CS406"];
+
+  const hourlyBlocks = [
+    { time: "09:00 AM - 10:15 AM", title: `Lecture Block 1 (${courseCodes[0]})`, desc: "75-Min Core Theory & Documentation Study", code: courseCodes[0] },
+    { time: "10:15 AM - 10:45 AM", title: "Academic Break", desc: "Code Digest & Rest", code: "BREAK" },
+    { time: "10:45 AM - 12:00 PM", title: `Lecture Block 2 (${courseCodes[1]})`, desc: "75-Min Applied Mechanics & Conceptual Deep Dive", code: courseCodes[1] },
+    { time: "12:00 PM - 12:30 PM", title: "Lunch Break", desc: "Midday Meal & Rest", code: "BREAK" },
+    { time: "12:30 PM - 01:45 PM", title: `Lecture Block 3 (${courseCodes[2]})`, desc: "75-Min Architecture & Scripting Session", code: courseCodes[2] },
+    { time: "01:45 PM - 02:15 PM", title: "Afternoon Refresh", desc: "Technical Synthesis Break", code: "BREAK" },
+    { time: "02:15 PM - 03:30 PM", title: "Self-Directed Reading & Notes", desc: "Textbook Exercises & MDN Documentation", code: "CS-READING" },
+    { time: "03:30 PM - 04:00 PM", title: "Coffee & Setup Break", desc: "Environment Configuration for Lab", code: "BREAK" },
+    { time: "04:00 PM - 06:00 PM", title: "Mandatory TA Coding Lab", desc: "120-Min Hands-On Implementation & Exercise Build", code: "LAB" },
+    { time: "06:00 PM - 06:45 PM", title: "Git Push & Code Quality Audit", desc: "SonarQube Inspection & Clean Commits", code: "AUDIT" }
+  ];
+
+  let dailyHTML = `
+    <div style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+      <h4 style="margin:0; color:var(--ink);">Student Daily Schedule — Week ${weekObj.w}</h4>
+      <span class="course-tag tag-lab"><i class="fa-solid fa-laptop-code"></i> Total: 6 hrs study / 2 hrs lab daily</span>
+    </div>
+    <div class="daily-timeline-container">
+  `;
+
+  hourlyBlocks.forEach((slot) => {
+    const isBreak = slot.code === "BREAK";
+    const tagClass = getCourseColorClass(slot.code);
+    const eventClass = slot.code.startsWith("CS") ? `event-${slot.code.toLowerCase()}` : "event-lab";
+
+    dailyHTML += `
+      <div class="timeline-hour-row">
+        <div class="timeline-time-slot">${slot.time}</div>
+        <div class="timeline-event-card ${isBreak ? '' : eventClass}" style="${isBreak ? 'background:transparent; border:1px dashed var(--line);' : ''}">
+          <div class="timeline-event-info">
+            <h5>${slot.title}</h5>
+            <p>${slot.desc}</p>
+          </div>
+          <div>
+            ${isBreak ? '<span style="font-size:0.75rem; color:var(--ink-dim); font-weight:600;">Break</span>' : `<span class="course-tag ${tagClass}">${slot.code}</span>`}
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  dailyHTML += `</div>`;
+  return dailyHTML;
+}
+
+/* 2. WEEK SCHEDULE — Rows: Course Codes | Columns: Days (Mon-Sun) */
+function renderWeeklyCourseMatrix(semData) {
+  const c = semData.sem === 1 ? ["CS101", "CS102", "CS103", "CS104", "CS105", "CS106"]
+    : semData.sem === 2 ? ["CS201", "CS202", "CS203", "CS204", "CS205", "CS206"]
+    : semData.sem === 3 ? ["CS301", "CS302", "CS303", "CS304", "CS305", "CS306"]
+    : ["CS401", "CS402", "CS403", "CS404", "CS405", "CS406"];
+
+  const matrixRows = [
+    { code: c[0], mon: "Lecture (09:00 AM)", tue: "—", wed: "Lecture (09:00 AM)", thu: "—", fri: "Textbook Reading", sat: "Lab Session", sun: "Code Review" },
+    { code: c[1], mon: "Lecture (10:45 AM)", tue: "—", wed: "Lecture (10:45 AM)", thu: "—", fri: "Textbook Reading", sat: "Lab Session", sun: "Code Review" },
+    { code: c[2], mon: "Lecture (12:30 PM)", tue: "—", wed: "Lecture (12:30 PM)", thu: "—", fri: "Textbook Reading", sat: "Lab Session", sun: "Code Review" },
+    { code: c[3], mon: "—", tue: "Lecture (09:00 AM)", wed: "—", thu: "Lecture (09:00 AM)", fri: "Textbook Reading", sat: "Lab Session", sun: "Code Review" },
+    { code: c[4], mon: "—", tue: "Lecture (10:45 AM)", wed: "—", thu: "Lecture (10:45 AM)", fri: "Textbook Reading", sat: "Lab Session", sun: "Code Review" },
+    { code: c[5], mon: "—", tue: "Lecture (12:30 PM)", wed: "—", thu: "Lecture (12:30 PM)", fri: "Textbook Reading", sat: "Lab Session", sun: "Code Review" },
+    { code: "Term Project", mon: "—", tue: "—", wed: "—", thu: "—", fri: "Deep Work Sprint (4 hrs)", sat: "Build & Integration", sun: "Sprint Review" },
+    { code: "Deliverable", mon: "—", tue: "—", wed: "—", thu: "—", fri: "—", sat: "Quality Audit", sun: "Submit 11:59 PM" }
+  ];
+
+  let weekHTML = `
+    <div style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+      <h4 style="margin:0; color:var(--ink);">Weekly Course Schedule Matrix</h4>
+      <span style="font-size:0.8rem; color:var(--ink-dim);">Courses in rows · Days in columns</span>
+    </div>
+    <div class="timetable-grid-wrapper">
+      <table class="timetable-grid-table">
+        <thead>
+          <tr>
+            <th>Course Code</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  matrixRows.forEach((row) => {
+    const tagClass = getCourseColorClass(row.code);
+    weekHTML += `
+      <tr>
+        <td class="course-code-cell">
+          <span class="course-tag ${tagClass}">${row.code}</span>
+        </td>
+        <td><div class="timetable-cell-content"><span>${row.mon}</span></div></td>
+        <td><div class="timetable-cell-content"><span>${row.tue}</span></div></td>
+        <td><div class="timetable-cell-content"><span>${row.wed}</span></div></td>
+        <td><div class="timetable-cell-content"><span>${row.thu}</span></div></td>
+        <td><div class="timetable-cell-content"><span>${row.fri}</span></div></td>
+        <td><div class="timetable-cell-content"><span>${row.sat}</span></div></td>
+        <td><div class="timetable-cell-content"><span>${row.sun}</span></div></td>
+      </tr>
+    `;
+  });
+
+  weekHTML += `
+        </tbody>
+      </table>
+    </div>
+  `;
+  return weekHTML;
+}
+
+/* 3. SEMESTER SCHEDULE — Rows: Week No. (W1-W16) | Columns: Courses/Tracks */
+function renderSemesterTimelineTable(semData) {
+  const c = semData.sem === 1 ? ["CS101", "CS102", "CS103", "CS104", "CS105", "CS106"]
+    : semData.sem === 2 ? ["CS201", "CS202", "CS203", "CS204", "CS205", "CS206"]
+    : semData.sem === 3 ? ["CS301", "CS302", "CS303", "CS304", "CS305", "CS306"]
+    : ["CS401", "CS402", "CS403", "CS404", "CS405", "CS406"];
+
+  let semHTML = `
+    <div style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+      <h4 style="margin:0; color:var(--ink);">Semester ${semData.sem} Master Timeline Table</h4>
+      <span style="font-size:0.8rem; color:var(--ink-dim);">Week numbers in rows · Courses in columns</span>
+    </div>
+    <div class="semester-table-wrapper">
+      <table class="semester-matrix-table">
+        <thead>
+          <tr>
+            <th>W#</th>
+            <th><span class="course-tag ${getCourseColorClass(c[0])}">${c[0]}</span></th>
+            <th><span class="course-tag ${getCourseColorClass(c[1])}">${c[1]}</span></th>
+            <th><span class="course-tag ${getCourseColorClass(c[2])}">${c[2]}</span></th>
+            <th><span class="course-tag ${getCourseColorClass(c[3])}">${c[3]}</span></th>
+            <th><span class="course-tag ${getCourseColorClass(c[4])}">${c[4]}</span></th>
+            <th><span class="course-tag ${getCourseColorClass(c[5])}">${c[5]}</span></th>
+            <th>Term Project / Exam</th>
+            <th>Sunday Deliverable</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  semData.weeks.forEach((w) => {
+    const isActive = w.w === state.activeWeekSelected;
+    const isExam = w.type === "midterm" || w.type === "final";
+    const deliverableTag = isExam ? "tag-exam" : w.type === "sprint" || w.type === "term_kickoff" ? "tag-project" : "tag-lab";
+
+    semHTML += `
+      <tr class="${isActive ? 'active-week-row' : ''}">
+        <td class="week-num-cell">W${w.w}</td>
+        <td>${isExam ? "EXAM PREP" : "Lecture & Lab"}</td>
+        <td>${isExam ? "EXAM PREP" : "Lecture & Lab"}</td>
+        <td>${isExam ? "EXAM PREP" : "Lecture & Lab"}</td>
+        <td>${isExam ? "EXAM PREP" : "Lecture & Lab"}</td>
+        <td>${isExam ? "EXAM PREP" : "Lecture & Lab"}</td>
+        <td>${isExam ? "EXAM PREP" : "Lecture & Lab"}</td>
+        <td>
+          <span class="course-tag ${isExam ? 'tag-exam' : 'tag-project'}">
+            ${w.type === 'term_kickoff' ? 'Kickoff' : w.type === 'sprint' ? 'Sprint Deliverable' : isExam ? 'PRACTICAL EXAM' : 'Project Build'}
+          </span>
+        </td>
+        <td>
+          <span class="course-tag ${deliverableTag}">
+            ${w.type === 'midterm' ? 'Submit Midterm' : w.type === 'final' ? 'Submit Final' : `Submit Lab ${w.w}`}
+          </span>
+        </td>
+      </tr>
+    `;
+  });
+
+  semHTML += `
+        </tbody>
+      </table>
+    </div>
+  `;
+  return semHTML;
 }
 
 /* MY COURSE TAB */
