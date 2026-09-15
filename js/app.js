@@ -1277,7 +1277,7 @@ function switchTab(tabId) {
 if (tabId === "calendar") {
     renderCalendar();
   }
-}
+
 
 document.querySelectorAll(".nav-item button").forEach((btn) => {
   btn.addEventListener("click", (e) => {
