@@ -4,713 +4,889 @@
 const ROADMAP = [
   {
     sem: 1,
-    title: "Computer Science & Python Foundations",
-    unlockTitle: "CS Foundations Specialist",
-    badgeIcon: "fa-terminal",
+    title: "Web & Automation Foundations",
+    unlockTitle: "Junior Frontend Developer & Scripting Specialist",
+    badgeIcon: "fa-code",
     badgeBg: "#2563EB",
-    resources: "Python Docs · CS50 · LeetCode Algorithms",
+    resources: "Duckett HTML/CSS · Eloquent JS · Refactoring UI · Python Crash Course · Linux Command Line · Don't Make Me Think",
     weeks: [
       {
         w: 1,
-        title: "Python Syntax, Variables & Control Flow",
-        resource: "Python Official Docs & CS50P",
+        title: "HTML5 & Semantic Web Architecture",
+        resource: "CS101: HTML & CSS (Jon Duckett) / freeCodeCamp",
         type: "odd",
-        challenge: "Python Basics Kata — Solve 5 introductory logic & conditional problems.",
-        video: 'Devlog #1 — "My journey into Computer Science & AI Engineering"',
-        what: "Master basic Python syntax, data types (integers, floats, strings, booleans), conditional branching (if/elif/else), and loop structures (for, while).",
-        why: "Python is the primary lingua franca for computer science, modern data pipelines, machine learning, and AI engineering.",
+        challenge: "Semantic Layout Puzzle — Build 3 accessible layouts using pure HTML5 semantic elements.",
+        video: 'Devlog #1 — "Structuring the Web with Semantic HTML5"',
+        what: "Master structural HTML5 semantic tags (<header>, <main>, <nav>, <article>, <section>, <footer>) and baseline CSS architecture.",
+        why: "Semantic markup is vital for Web Accessibility (WCAG 2.1), screen readers, and SEO.",
         when: "~15 hours total time commitment.",
-        where: "Python Docs & CS50's Introduction to Programming with Python.",
-        how: "1. Complete CS50P Problem Set 0 and 1.\n2. Write scripts handling conditional flow and loop iterations.\n3. Publish Devlog #1 detailing your development environment setup."
+        where: "Jon Duckett HTML & CSS Ch. 1–9 & MDN Web Docs.",
+        how: "1. Complete freeCodeCamp's 'Learn HTML by Building a Cat Photo App'.\n2. Recreate 3 semantic wireframes without framework styling.\n3. Record a 2-minute video demonstrating code structure."
       },
       {
         w: 2,
-        title: "Data Structures: Lists, Dictionaries & Sets",
-        resource: "Python Data Structures Guide",
+        title: "Responsive CSS Layouts: Flexbox & Grid",
+        resource: "CS101: HTML & CSS (Jon Duckett) / Web.dev",
         type: "even",
-        asn: "CLI Data Processor — Parse and Filter Structured Lists/Dicts",
-        blog: 'Blog Post #1 — "Choosing the Right Python Data Structure"',
-        what: "In-depth understanding of built-in data structures: Lists, Tuples, Dictionaries, and Sets. Memory layouts, mutation, and list comprehensions.",
-        why: "Selecting efficient data structures directly impacts algorithm execution efficiency and memory footprint.",
+        asn: "Mobile-First Responsive Layout — Pure CSS Grid/Flexbox",
+        blog: 'Blog Post #1 — "CSS Flexbox vs Grid: Modern Layout Strategies"',
+        what: "Implement mobile-first workflows, CSS Grid template areas, Flexbox alignment, and fluid layout units (rem, em, clamp()).",
+        why: "Over 60% of users access web platforms via mobile devices across target sectors.",
         when: "~15 hours total time commitment.",
-        where: "Python Standard Library Documentation & Real Python Guides.",
-        how: "1. Build a CLI data parser that aggregates and formats JSON data.\n2. Practice list comprehensions and dictionary mappings.\n3. Publish Blog Post #1 comparing computational complexity across data structures."
+        where: "Duckett HTML/CSS Ch. 10–15 & Google Web.dev Layout Guides.",
+        how: "1. Code a fully responsive, mobile-first static layout.\n2. Test across mobile (375px), tablet (768px), and desktop (1200px) viewports.\n3. Publish Blog Post #1."
       },
       {
         w: 3,
-        title: "Algorithmic Thinking & Big-O Complexity",
-        resource: "MIT 6.0001 / LeetCode",
+        title: "Modern JavaScript & DOM Manipulation",
+        resource: "CS102: Eloquent JavaScript (Marijn Haverbeke)",
         type: "odd",
-        challenge: "Complexity Analysis Katas — Benchmark time & space complexity of 5 functions.",
-        video: 'Devlog #2 — "Demystifying Big-O Time and Space Complexity"',
-        what: "Asymptotic analysis, Big-O notation (O(1), O(log n), O(n), O(n log n), O(n²)), time-space tradeoffs, and execution profiling.",
-        why: "Essential for designing scalable algorithms that perform well under high data throughput.",
+        challenge: "Vanilla JS Katas — 5 core DOM manipulation algorithms.",
+        video: 'Devlog #2 — "DOM Manipulation without Frameworks"',
+        what: "DOM selection methods, dynamic event listeners, element creation, and dynamic class mutation without external libraries.",
+        why: "Understanding raw DOM manipulation builds deep foundational execution insight before adopting modern JS frameworks.",
         when: "~16 hours total time commitment.",
-        where: "MIT OpenCourseWare 6.0001 & Big-O Cheat Sheet.",
-        how: "1. Profile execution speed of linear vs binary search scripts.\n2. Calculate space complexity for iterative vs recursive functions.\n3. Record Devlog #2 explaining Big-O notation."
+        where: "Eloquent JavaScript Ch. 1–5 & JavaScript.info.",
+        how: "1. Solve end-of-chapter algorithmic exercises on the Eloquent JS sandbox.\n2. Code dynamic list filtering scripts locally.\n3. Record Devlog #2."
       },
       {
         w: 4,
-        title: "Functional Programming & Recursion",
-        resource: "Real Python Functional",
+        title: "UI Micro-interactions & GSAP Animations",
+        resource: "CS103: Refactoring UI & GSAP Official Docs",
         type: "even",
-        asn: "Recursive File System Analyzer Brief",
-        blog: 'Guidebook Chapter #1 — "Recursion and Call Stack Mechanics"',
-        what: "First-class functions, pure functions, lambda expressions, map/filter/reduce, call stack dynamics, base cases, and recursion trees.",
-        why: "Recursion and functional paradigms provide clean models for parsing tree structures and recursive algorithms.",
-        when: "~16 hours total time commitment.",
-        where: "Python Functional Programming Modules.",
-        how: "1. Build a recursive directory traveler parsing nested directories.\n2. Refactor procedural loops using map() and filter().\n3. Publish Guidebook Chapter #1 on stack frame recursion."
+        asn: "Interactive Micro-UI — Replicate Figma Design Specs",
+        blog: 'Guidebook #1 — "Crafting High-Performance Web Animations"',
+        what: "GSAP timeline animations, scroll-triggered micro-interactions, CSS custom properties, and Refactoring UI visual hierarchy principles.",
+        why: "Engaging, accessible micro-interactions raise user conversion and visual quality.",
+        when: "~15 hours total time commitment.",
+        where: "Refactoring UI & GSAP Interactive CodePens.",
+        how: "1. Replicate micro-interactions from Figma specs using local VS Code and GSAP.\n2. Ensure 60fps performance on layout shifts.\n3. Publish Guidebook Chapter #1."
       },
       {
         w: 5,
-        title: "Object-Oriented Programming (OOP) Principles",
-        resource: "OOP in Python Guide",
+        title: "Term Project Kickoff: OpenRelief Archivist",
+        resource: "Term Project Milestone 1",
         type: "odd",
-        challenge: "OOP Design Challenge — Implement Encapsulation, Inheritance & Polymorphism.",
-        video: 'Devlog #3 — "Designing Clean Class Architectures in Python"',
-        what: "Object-oriented design: Classes, objects, instantiation, encapsulation (`__init__`), inheritance, method overriding, and magic methods (`__str__`, `__repr__`).",
-        why: "OOP provides modular encapsulation essential for engineering large enterprise applications and AI frameworks.",
+        challenge: "Architecture Specification — Submit ARCHITECTURE.md & wireframes.",
+        video: 'Devlog #3 — "Scoping OpenRelief Archivist Architecture"',
+        what: "Scope and document data schema, offline caching strategy, and wireframes for the OpenRelief Archivist offline reader project.",
+        why: "System design docs prevent technical scope creep during multi-week build cycles.",
         when: "~16 hours total time commitment.",
-        where: "Real Python OOP Guides & GeeksforGeeks Python OOP.",
-        how: "1. Design an object-oriented class hierarchy for a simulated entity pipeline.\n2. Override Python magic methods for clean string representation.\n3. Record Devlog #3 walking through OOP principles."
+        where: "OpenRelief Archivist Project Brief.",
+        how: "1. Write detailed schema and PWA caching strategy docs.\n2. Commit ARCHITECTURE.md to GitHub repository."
       },
       {
         w: 6,
-        title: "Midterm Project — Code Labs",
-        resource: "Midterm Project Brief",
-        type: "midterm",
-        video: "Midterm Project Showcase & Code Walkthrough",
-        what: "Synthesize Python fundamentals, data structures, Big-O efficiency, and OOP design to build a standalone CLI application.",
-        why: "Validates core software foundations and readiness for complex data systems.",
-        when: "~20 hours dedicated project sprint.",
-        where: "GitHub Repository & Python Package CLI.",
-        how: "1. Select one of the project options and implement the architecture.\n2. Profile execution speed and ensure zero runtime errors.\n3. Record a video walkthrough demonstrating your CLI tool.",
-        projectOptions: [
-          {
-            id: "s1_m_opt1",
-            title: "Option A: Autonomous Task Scheduler & Queue Profiler",
-            desc: "Build a priority task queue engine using custom data structures, measuring time complexity across sorting algorithms.",
-            pdfBrief: "../assets/project-briefs/cs_sem1_midterm_option_a.pdf"
-          },
-          {
-            id: "s1_m_opt2",
-            title: "Option B: Object-Oriented Simulation Engine",
-            desc: "Create an interactive CLI simulation modeling agent behavior and environment interactions using OOP design patterns.",
-            pdfBrief: "../assets/project-briefs/cs_sem1_midterm_option_b.pdf"
-          },
-          {
-            id: "s1_m_opt3",
-            title: "Option C: Log File Parser & Analytics CLI",
-            desc: "Develop a recursive file processor that ingests server log files and computes real-time performance metrics.",
-            pdfBrief: "../assets/project-briefs/cs_sem1_midterm_option_c.pdf"
-          }
-        ],
-        aiPrompt: "Act as a Computer Science Professor. Generate 3 original algorithmic project ideas matching Python OOP, Data Structures, and Big-O complexity."
+        title: "Python Automation & Web Scraping",
+        resource: "CS104: Python Crash Course (Eric Matthes)",
+        type: "even",
+        asn: "Data Scraper Tool — Extracts Public Data to JSON/CSV",
+        blog: 'Guidebook #2 — "Automating Data Ingestion with Python"',
+        what: "Python data structures, HTTP requests handling, BeautifulSoup HTML parsing, and pandas data cleaning pipelines.",
+        why: "Data automation feeds production systems with structured datasets extracted from unstructured sources.",
+        when: "~16 hours total time commitment.",
+        where: "Python Crash Course Ch. 1–9 & Real Python.",
+        how: "1. Build a CLI data scraper using requests, BeautifulSoup, and pandas.\n2. Export sanitized data to CSV and JSON formats.\n3. Publish Guidebook Chapter #2."
       },
       {
         w: 7,
-        title: "Linear Data Structures: Stacks, Queues & Linked Lists",
-        resource: "Problem Solving with Algorithms & Data Structures",
+        title: "Shell Scripting & Terminal Systems",
+        resource: "CS105: The Linux Command Line (William Shotts)",
         type: "odd",
-        challenge: "Custom Linked List Challenge — Implement Singly & Doubly Linked Lists.",
-        video: 'Devlog #4 — "Building Stacks and Queues from Scratch"',
-        what: "Implementing Stacks (LIFO), Queues (FIFO), Deques, Singly Linked Lists, and Doubly Linked Lists without external libraries.",
-        why: "Understanding low-level memory allocation and pointer references builds strong computer science foundations.",
+        challenge: "Bash Automation Katas — Write system monitor Bash scripts.",
+        video: 'Devlog #4 — "Mastering the Linux Terminal Workflow"',
+        what: "Linux CLI navigation, file permissions, pipe stdout/stdin streams, environment variables, and automated Bash scripts.",
+        why: "Terminal mastery is essential for managing cloud infrastructure, deployment pipelines, and server execution environments.",
         when: "~15 hours total time commitment.",
-        where: "Runestone Academy Algorithms & Python Standard Library `collections.deque`.",
-        how: "1. Implement custom Node and LinkedList classes with insert, delete, and search methods.\n2. Implement a stack-based undo/redo buffer.\n3. Record Devlog #4 demonstrating custom memory node linking."
+        where: "The Linux Command Line & Linux Journey.",
+        how: "1. Practice CLI commands on Linux Journey.\n2. Write and execute production Bash scripts locally inside WSL/Linux terminal."
       },
       {
         w: 8,
-        title: "Non-Linear Structures: Trees & Hash Tables",
-        resource: "Algorithms by Robert Sedgewick",
-        type: "even",
-        asn: "Binary Search Tree (BST) & Hash Map Engine",
-        blog: 'Guidebook Chapter #2 — "Trees, Hash Collisions & Indexing"',
-        what: "Binary Trees, Binary Search Trees (BST), Tree Traversals (In-order, Pre-order, Post-order), Hash Tables, Collision Resolution (Chaining vs Open Addressing).",
-        why: "Hash tables and trees underpin modern databases, search engines, and index structures.",
-        when: "~16 hours total time commitment.",
-        where: "Introduction to Algorithms (CLRS) & GeeksforGeeks Trees.",
-        how: "1. Build a Binary Search Tree with lookup, insertion, and deletion logic.\n2. Implement a simple Hash Map handling key collisions.\n3. Publish Guidebook Chapter #2 on search tree dynamics."
+        title: "Midterm Practical Exam — Host Pulse Dashboard",
+        resource: "Midterm Exam Brief",
+        type: "midterm",
+        video: "Midterm Defense & Walkthrough Video",
+        what: "Deliver Host Pulse: A Python system monitoring script (`monitor.py`) generating metric JSON feeds paired with a zero-framework WCAG AA compliant browser UI dashboard.",
+        why: "Validates system scripting, file I/O operations, DOM rendering, and web accessibility skills under exam conditions.",
+        when: "~20 hours dedicated exam sprint.",
+        where: "GitHub Repository Submission.",
+        how: "1. Build monitor.py to log CPU, RAM, and disk metrics.\n2. Build index.html/app.js/style.css dashboard displaying metric updates.\n3. Submit repo with DEFENSE.md and 5-minute video walkthrough."
       },
       {
         w: 9,
-        title: "Sorting & Searching Algorithms",
-        resource: "LeetCode / HackerRank",
+        title: "Term Project Sprint 1: Responsive Reading Container",
+        resource: "CS101-CS106 / OpenRelief Archivist",
         type: "odd",
-        challenge: "Sorting Benchmark — Implement & compare MergeSort, QuickSort, and BubbleSort.",
-        video: 'Devlog #5 — "MergeSort vs QuickSort Execution Benchmarks"',
-        what: "Divide-and-conquer strategy, MergeSort, QuickSort, HeapSort, Binary Search, and benchmark comparisons across varying data distributions.",
-        why: "Sorting algorithms are fundamental primitives in algorithmic engineering and data processing.",
-        when: "~16 hours total time commitment.",
-        where: "Visualgo Algorithm Visualizations & LeetCode.",
-        how: "1. Implement MergeSort and QuickSort recursively.\n2. Benchmark execution times against Python's native Timsort on arrays up to 100k items.\n3. Record Devlog #5 explaining pivot selection."
+        challenge: "Sprint 1 Deliverable — Responsive HTML5 text container with CSS variables.",
+        video: 'Devlog #5 — "Building Fluid Text Containers for Longform Reading"',
+        what: "Responsive reading layouts featuring CSS variables for fluid typography scaling and theme customization.",
+        why: "High-readability layouts reduce eye strain during extended document evaluation.",
+        when: "~15 hours total time commitment.",
+        where: "OpenRelief Archivist Sprint 1 Brief.",
+        how: "1. Build responsive text reader shell.\n2. Implement smooth contrast themes using CSS custom properties."
       },
       {
         w: 10,
-        title: "File I/O, Serialization & Exception Management",
-        resource: "Python Docs File I/O",
+        title: "Term Project Sprint 2: Text Annotation & Bookmark Engine",
+        resource: "CS102 / OpenRelief Archivist",
         type: "even",
-        asn: "Robust Data Serialization Pipeline (JSON / CSV / Pickle)",
-        blog: 'Guidebook Chapter #3 — "Error Handling & Data Persistence Patterns"',
-        what: "Context managers (`with` statements), exception hierarchy, custom error handling, file streams, JSON, CSV, and binary serialization (`pickle`).",
-        why: "Reliable applications must handle unexpected input failures and persist data cleanly.",
-        when: "~15 hours total time commitment.",
-        where: "Python Context Managers Documentation.",
-        how: "1. Build a resilient file ingestion system with custom try/except error classes.\n2. Validate and serialize raw datasets into clean JSON format.\n3. Publish Guidebook Chapter #3 on exception management patterns."
+        asn: "Sprint 2 Deliverable — Client-Side Bookmark & Text Highlighting System",
+        blog: 'Guidebook #3 — "Persisting App State with Browser Storage"',
+        what: "JavaScript text selection APIs, range selection handling, and persistent local data storage using Window.localStorage.",
+        why: "Enables offline user data retention without requiring client server round-trips.",
+        when: "~16 hours total time commitment.",
+        where: "MDN Selection API & Web Storage Docs.",
+        how: "1. Implement highlight selection persistence with localStorage.\n2. Publish Guidebook Chapter #3."
       },
       {
         w: 11,
-        title: "Memory Management & Python Internals",
-        resource: "CPython Internals Book",
+        title: "Term Project Sprint 3: Instant Search Engine",
+        resource: "CS102 / OpenRelief Archivist",
         type: "odd",
-        challenge: "Memory Profiling Challenge — Profile memory allocation & garbage collection.",
-        video: 'Devlog #6 — "How Python Manages Memory Under the Hood"',
-        what: "CPython execution engine, Bytecode compilation, Reference Counting, Garbage Collection, GIL (Global Interpreter Lock), and memory profiling (`sys.getsizeof`, `tracemalloc`).",
-        why: "Understanding runtime memory mechanisms allows optimization for high-concurrency AI workloads.",
-        when: "~15 hours total time commitment.",
-        where: "Real Python CPython Guides & Python `tracemalloc` docs.",
-        how: "1. Profile memory allocation of large data structures using `tracemalloc`.\n2. Inspect bytecode using Python's `dis` module.\n3. Record Devlog #6 detailing reference counting."
+        challenge: "Sprint 3 Deliverable — Dynamic client-side JSON text search filter.",
+        video: 'Devlog #6 — "Building In-Memory Search Indexing in JS"',
+        what: "Client-side search algorithms, string tokenization, debouncing input listeners, and fast DOM filtering.",
+        why: "Instant client-side search provides rapid information discovery across offline text caches.",
+        when: "~16 hours total time commitment.",
+        where: "OpenRelief Archivist Sprint 3 Brief.",
+        how: "1. Write dynamic search indexing logic over ingested JSON text archives.\n2. Record Devlog #6 demonstrating search performance."
       },
       {
         w: 12,
-        title: "Final Project & Special Quest",
-        resource: "Capstone Week",
+        title: "Term Project Sprint 4: Offline-First Progressive Web App",
+        resource: "CS101 / Service Worker APIs",
+        type: "even",
+        asn: "Sprint 4 Deliverable — Service Worker & Web App Manifest Setup",
+        blog: 'Guidebook #4 — "Building Offline-First PWAs"',
+        what: "Service Worker registration, cache strategy implementation (Cache-First/Network-First), and Web App Manifest configuration.",
+        why: "Offline-first PWAs guarantee functionality in zero-connectivity field conditions.",
+        when: "~16 hours total time commitment.",
+        where: "Google Web.dev PWA Guides.",
+        how: "1. Register Service Worker to cache static assets and text data.\n2. Publish Guidebook Chapter #4 on PWA architecture."
+      },
+      {
+        w: 13,
+        title: "Term Project Sprint 5: Accessibility Suite & Focus Traps",
+        resource: "CS106: Don't Make Me Think & WCAG 2.1",
+        type: "odd",
+        challenge: "Sprint 5 Deliverable — Dyslexia font toggle, contrast engine & ARIA focus traps.",
+        video: 'Devlog #7 — "Designing for Inclusive Accessibility (WCAG 2.1 AA)"',
+        what: "Implement Dyslexia-friendly font settings, high-contrast themes, ARIA attributes (`aria-expanded`, `aria-live`), and keyboard focus management.",
+        why: "Ensures complete operational usability for individuals with visual or cognitive impairments.",
+        when: "~15 hours total time commitment.",
+        where: "W3C WCAG 2.1 Guidelines & AXE DevTools.",
+        how: "1. Audit reader UI with AXE DevTools and resolve keyboard navigation focus traps.\n2. Add custom accessibility controls."
+      },
+      {
+        w: 14,
+        title: "Term Project Sprint 6: Python Text Parser & Ingestion CLI",
+        resource: "CS104 / Python Automation",
+        type: "even",
+        asn: "Sprint 6 Deliverable — Python CLI Script Parsing Raw Text to JSON",
+        blog: 'Guidebook #5 — "Automated Data Ingestion Pipelines"',
+        what: "Build a Python CLI scraper/parser script that ingests raw plain text documents, cleans formatting, and generates ready-to-render JSON data files.",
+        why: "Automates content delivery pipeline connecting raw texts to client-side reader applications.",
+        when: "~16 hours total time commitment.",
+        where: "OpenRelief Archivist Sprint 6 Brief.",
+        how: "1. Write Python script to format raw text files into structured JSON.\n2. Publish Guidebook Chapter #5."
+      },
+      {
+        w: 15,
+        title: "Web Standards & Quality Audit",
+        resource: "CS106 / Lighthouse Audit",
+        type: "odd",
+        challenge: "Lighthouse Audit — Achieve 100/100 across Performance and Accessibility.",
+        video: 'Devlog #8 — "Passing Automated Code & Quality Audits"',
+        what: "Execute comprehensive accessibility, performance, and structural code quality audits using Lighthouse, AXE DevTools, and SonarQube rules.",
+        why: "Ensures code maintainability and production deployment readiness.",
+        when: "~15 hours total time commitment.",
+        where: "Google Lighthouse Documentation.",
+        how: "1. Audit full web application and fix all remaining warnings.\n2. Generate SonarQube zero-bug compliance report."
+      },
+      {
+        w: 16,
+        title: "Final Practical Exam — EcoHarvest Platform & OpenRelief Release",
+        resource: "Final Capstone Week",
         type: "final",
-        blog: 'Guidebook Chapter #4 — "Computer Science Fundamentals in Practice"',
-        specialQuest: "Special Quest Gate: Submit 1 Open-Source PR or Algorithmic Benchmark to unlock your CS Foundations Specialist Certificate.",
+        blog: 'Guidebook #6 — "Reflecting on Web Architecture & Python Foundations"',
+        specialQuest: "Special Quest Gate: Complete OpenRelief Archivist final submission and deploy EcoHarvest platform live to Vercel/Netlify.",
         specialQuestLinks: [
-          { name: "LeetCode 75 Study Plan", url: "https://leetcode.com/studyplan/leetcode-75/" },
-          { name: "Python Open Source Repositories", url: "https://github.com/topics/python" }
+          { name: "Vercel Platform Deployment", url: "https://vercel.com/" },
+          { name: "Netlify Web Hosting", url: "https://www.netlify.com/" },
+          { name: "SonarQube Code Quality Checker", url: "https://www.sonarqube.org/" }
         ],
-        what: "Build, profile, and test a complete algorithmic engine utilizing OOP, custom data structures, and optimized search/sort routines.",
-        why: "Demonstrates overall computational problem-solving proficiency.",
-        when: "~22 hours dedicated project sprint.",
-        where: "GitHub Repository & PyPI CLI package.",
-        how: "1. Build and test your final Semester 1 project.\n2. Publish your codebase to GitHub with complete README documentation.\n3. Fulfill your Special Quest requirement.\n4. Write Guidebook Chapter #4 summarizing CS foundations."
+        what: "Deploy EcoHarvest platform (pure HTML5/CSS Grid/Flexbox/GSAP + Python scraper) and release final OpenRelief Archivist PWA with 100/100 Lighthouse score proof.",
+        why: "Earns official 'Junior Frontend Developer & Scripting Specialist' professional title credential.",
+        when: "~22 hours dedicated exam sprint.",
+        where: "Vercel/Netlify Deployment & GitHub.",
+        how: "1. Deploy EcoHarvest platform live to Vercel/Netlify.\n2. Complete OpenRelief Archivist deployment and upload defense video walkthrough.\n3. Publish Guidebook Chapter #6."
       }
     ]
   },
   {
     sem: 2,
-    title: "Software Engineering & Backend Systems",
-    unlockTitle: "Software Systems Engineer",
-    badgeIcon: "fa-server",
-    badgeBg: "#059669",
-    resources: "FastAPI · PostgreSQL · Docker · System Design",
+    title: "Full-Stack & Component Architecture",
+    unlockTitle: "Full-Stack Web Developer",
+    badgeIcon: "fa-brands fa-react",
+    badgeBg: "#0891B2",
+    resources: "Learning React · Tailwind CSS · Fluent Python · Learning SQL · Django for Beginners · React Design Patterns",
     weeks: [
       {
-        w: 13,
-        title: "Advanced Python & AsyncIO Concurrency",
-        resource: "Python AsyncIO Docs",
-        type: "odd",
-        challenge: "Async Crawler Katas — Fetch multi-endpoint data concurrently with `asyncio`.",
-        video: 'Devlog #7 — "Asynchronous Programming in Python with AsyncIO"',
-        what: "Event loops, coroutines, `async`/`await` syntax, `aiohttp`, concurrent task execution (`asyncio.gather`), and threading vs multiprocessing tradeoffs.",
-        why: "High-throughput API microservices and AI pipelines rely heavily on asynchronous I/O performance.",
-        when: "~16 hours total time commitment.",
-        where: "Python AsyncIO Official Documentation.",
-        how: "1. Build an asynchronous web scraper fetching multi-source data concurrently.\n2. Measure execution speedup compared to synchronous requests.\n3. Record Devlog #7 explaining event loop execution."
-      },
-      {
-        w: 14,
-        title: "Relational Databases & SQL Schema Design",
-        resource: "PostgreSQL Tutorial",
-        type: "even",
-        asn: "Normalized Relational Schema & Complex Query Suite",
-        blog: 'Guidebook Chapter #5 — "SQL Relational Modeling & Indexing"',
-        what: "Relational modeling, ER diagrams, 1NF/2NF/3NF normalization, SQL DDL/DML, JOIN operations, aggregation functions, and indexing strategies in PostgreSQL.",
-        why: "Relational databases deliver structural integrity and complex query capabilities required by enterprise backend systems.",
-        when: "~16 hours total time commitment.",
-        where: "Postgres Documentation & SQL Zoo.",
-        how: "1. Model a normalized schema for an event ingestion backend.\n2. Write SQL scripts for table generation and complex multi-JOIN queries.\n3. Publish Guidebook Chapter #5 on database indexing."
-      },
-      {
-        w: 15,
-        title: "ORMs & Database Migrations (SQLAlchemy & Alembic)",
-        resource: "SQLAlchemy 2.0 Docs",
-        type: "odd",
-        challenge: "ORM Modeling Challenge — Build relationships & Alembic database migrations.",
-        video: 'Devlog #8 — "SQLAlchemy 2.0 & Alembic Migrations"',
-        what: "Object-Relational Mapping (ORM), declarative models, relationships (one-to-many, many-to-many), lazy vs eager loading, and migration management via Alembic.",
-        why: "ORMs bridge application code objects with database schemas safely while maintaining version-controlled schema migrations.",
-        when: "~15 hours total time commitment.",
-        where: "SQLAlchemy Official Documentation & Alembic Tutorials.",
-        how: "1. Define ORM models with SQLAlchemy 2.0.\n2. Execute schema migrations using Alembic commands.\n3. Record Devlog #8 detailing ORM mapping strategies."
-      },
-      {
-        w: 16,
-        title: "Building REST APIs with FastAPI",
-        resource: "FastAPI Official Tutorial",
-        type: "even",
-        asn: "Production FastAPI Web Service Brief",
-        blog: 'Guidebook Chapter #6 — "Designing Production-Ready REST APIs"',
-        what: "FastAPI architecture, automatic OpenAPI/Swagger documentation, Pydantic request/response schemas, path parameters, query parameters, and dependency injection.",
-        why: "FastAPI is the standard Python web framework for ultra-fast REST APIs and ML model deployment.",
-        when: "~16 hours total time commitment.",
-        where: "FastAPI Official Documentation.",
-        how: "1. Build a full CRUD REST API using FastAPI and Pydantic validation models.\n2. Test API routes using Swagger UI.\n3. Publish Guidebook Chapter #6 on API endpoint design."
-      },
-      {
         w: 17,
-        title: "Authentication & Authorization (JWT & Security)",
-        resource: "FastAPI Security Docs",
+        title: "Frontend Apps with React & Vite",
+        resource: "CS201: Learning React (Alex Banks & Eve Porcello)",
         type: "odd",
-        challenge: "OAuth2 & JWT Auth Challenge — Secure API endpoints with bearer tokens.",
-        video: 'Devlog #9 — "Implementing Secure JWT Authentication in FastAPI"',
-        what: "Password hashing (`passlib`/`bcrypt`), JSON Web Tokens (JWT), OAuth2 password flow, role-based access control (RBAC), and authorization middleware.",
-        why: "Securing backend API routes and protecting user records is a critical prerequisite for production deployments.",
+        challenge: "React State Katas — Build dynamic multi-component interfaces using Vite.",
+        video: 'Devlog #9 — "Modern React App Architecture with Vite"',
+        what: "React fundamentals: JSX syntax, component hierarchy, props passing, state handling with `useState`, and Vite project setup.",
+        why: "Component-driven development enables reusable, scalable UI application architecture.",
         when: "~16 hours total time commitment.",
-        where: "FastAPI OAuth2 Guide & JWT.io.",
-        how: "1. Add secure user signup and login endpoints returning signed JWT tokens.\n2. Create protected routes enforcing role-based permissions.\n3. Record Devlog #9 verifying endpoint security."
+        where: "React.dev & Learning React Ch. 1–5.",
+        how: "1. Bootstrap React application using Vite.\n2. Build reusable dynamic UI components.\n3. Record Devlog #9."
       },
       {
         w: 18,
-        title: "Midterm Project — Code Labs",
-        resource: "Backend Midterm",
-        type: "midterm",
-        video: "Midterm API Showcase & Live Demo",
-        what: "Architect and deploy a high-performance RESTful microservice featuring FastAPI, PostgreSQL, SQLAlchemy ORM, and JWT authentication.",
-        why: "Validates backend systems engineering capability.",
-        when: "~20 hours dedicated project sprint.",
-        where: "Render / Railway & GitHub.",
-        how: "1. Build and deploy your FastAPI backend microservice to cloud hosting.\n2. Document API endpoints with Swagger UI.\n3. Record a video walkthrough demonstrating live API operations.",
-        projectOptions: [
-          {
-            id: "s2_m_opt1",
-            title: "Option A: Real-Time Telemetry & Data Processing API",
-            desc: "Develop a multi-endpoint async API ingesting high-frequency sensor streams with PostgreSQL storage.",
-            pdfBrief: "../assets/project-briefs/cs_sem2_midterm_option_a.pdf"
-          },
-          {
-            id: "s2_m_opt2",
-            title: "Option B: Authenticated Microservice Gateway",
-            desc: "Build a secure authentication & resource distribution API with role-based JWT permissions.",
-            pdfBrief: "../assets/project-briefs/cs_sem2_midterm_option_b.pdf"
-          }
-        ],
-        aiPrompt: "Act as a Lead Systems Architect. Generate 3 REST API project briefs using FastAPI, PostgreSQL, and JWT auth."
+        title: "Advanced CSS & Design Systems with Tailwind",
+        resource: "CS202: Tailwind CSS Official Documentation",
+        type: "even",
+        asn: "Design Token System — Custom Tailwind Design System Setup",
+        blog: 'Guidebook #7 — "Building Scalable Design Systems with Tailwind"',
+        what: "Tailwind CSS configuration, utility-first styling, design token definitions, dynamic dark mode classes, and component extraction.",
+        why: "Utility-first design systems drastically accelerate UI development cycles while keeping visual styling consistent.",
+        when: "~15 hours total time commitment.",
+        where: "Tailwind CSS Documentation (Vite setup).",
+        how: "1. Configure custom Tailwind theme tokens inside local VS Code setup.\n2. Build dark-mode compatible interface views.\n3. Publish Guidebook Chapter #7."
       },
       {
         w: 19,
-        title: "Distributed Systems & Task Queues (Redis & Celery)",
-        resource: "Celery Official Docs",
+        title: "Python Core & Advanced Syntax",
+        resource: "CS203: Fluent Python (Luciano Ramalho)",
         type: "odd",
-        challenge: "Asynchronous Worker Challenge — Offload background tasks to Celery/Redis.",
-        video: 'Devlog #10 — "Background Task Offloading with Celery & Redis"',
-        what: "Distributed task queues, message brokers (Redis), asynchronous background workers (Celery), scheduled tasks (Celery Beat), and task status monitoring.",
-        why: "Long-running computational tasks and AI inferences must be decoupled from client API response cycles.",
+        challenge: "Python Advanced Katas — Asynchronous loops, dataclasses, and custom iterators.",
+        video: 'Devlog #10 — "Advanced Python Syntax & Data Structures"',
+        what: "Advanced Python features: Asynchronous execution (`asyncio`), dataclasses, custom iterators, generators, context managers, and type hinting.",
+        why: "Deep Python mechanics mastery is required for developing high-performance backend systems and AI pipelines.",
         when: "~16 hours total time commitment.",
-        where: "Celery Project Docs & Redis Documentation.",
-        how: "1. Integrate Redis and Celery into your FastAPI application.\n2. Offload heavy computational jobs to background workers.\n3. Record Devlog #10 demonstrating async task queue execution."
+        where: "Fluent Python & IPython/Jupyter Environment.",
+        how: "1. Build async scripts and custom iterators locally inside IPython.\n2. Record Devlog #10 breaking down async generator execution."
       },
       {
         w: 20,
-        title: "Containerization with Docker & Docker Compose",
-        resource: "Docker Docs",
+        title: "Relational Databases & SQL Mastery",
+        resource: "CS204: Learning SQL (Alan Beaulieu)",
         type: "even",
-        asn: "Multi-Container Application Brief (FastAPI + Postgres + Redis)",
-        blog: 'Guidebook Chapter #7 — "Containerizing Python Microservices with Docker"',
-        what: "Containerization concepts, Dockerfiles, image optimization, multi-stage builds, Docker Compose orchestration, volume persistence, and container networking.",
-        why: "Docker ensures reproducible environment execution across development, staging, and production servers.",
+        asn: "PostgreSQL Database Schema — Entity Relationship & Normalized Tables",
+        blog: 'Guidebook #8 — "Relational Schema Normalization & SQL Queries"',
+        what: "PostgreSQL setup, Entity-Relationship Diagramming (ERD), schema normalization (1NF, 2NF, 3NF), index optimization, and multi-table JOIN queries.",
+        why: "Relational database integrity guarantees reliable storage for complex web applications.",
         when: "~16 hours total time commitment.",
-        where: "Docker Official Guides & Docker Compose Documentation.",
-        how: "1. Write Dockerfiles for FastAPI and Celery worker services.\n2. Orchestrate multi-container architecture using `docker-compose.yml`.\n3. Publish Guidebook Chapter #7 detailing containerization workflows."
+        where: "Learning SQL & PostgreSQL Documentation.",
+        how: "1. Design normalized relational schema inside local PostgreSQL instance.\n2. Solve query optimization challenges on SQLZoo.\n3. Publish Guidebook Chapter #8."
       },
       {
         w: 21,
-        title: "Linux Systems Programming & Bash Automation",
-        resource: "Linux Command Line Book",
+        title: "Term Project Kickoff: GeoStory Platform",
+        resource: "CS204/CS205 / Term Project Brief",
         type: "odd",
-        challenge: "Shell Scripting Challenge — Build a system health & backup CLI script.",
-        video: 'Devlog #11 — "Linux Systems Administration & Bash Automation"',
-        what: "Linux environment commands, file system permissions (`chmod`, `chown`), process management (`htop`, `systemctl`), environment variable configurations, and Bash shell scripting.",
-        why: "Servers and cloud environments execute on Linux distribution kernels.",
-        when: "~15 hours total time commitment.",
-        where: "Linux Foundation Courses & SS64 Command Reference.",
-        how: "1. Write a Bash automation script to backup PostgreSQL databases automatically.\n2. Configure systemd service files to manage background processes.\n3. Record Devlog #11 profiling Linux server operations."
+        challenge: "Architecture Specification — Submit ARCHITECTURE.md & spatial database specs.",
+        video: 'Devlog #11 — "Architecture Planning for GeoStory Mapping Platform"',
+        what: "Scope and document PostGIS spatial database schemas, Mapbox canvas integrations, and state models for the GeoStory cultural mapping platform.",
+        why: "Architectural blueprints prevent integration bottlenecks between GIS spatial data models and React frontends.",
+        when: "~16 hours total time commitment.",
+        where: "GeoStory Project Brief.",
+        how: "1. Design PostGIS spatial data schemas.\n2. Submit ARCHITECTURE.md to GitHub repository."
       },
       {
         w: 22,
-        title: "Automated Testing & CI/CD with PyTest",
-        resource: "PyTest Documentation",
+        title: "Django Monolithic Web Architecture",
+        resource: "CS205: Django for Beginners (William S. Vincent)",
         type: "even",
-        asn: "Test Suite & GitHub Actions CI Pipeline Setup",
-        blog: 'Guidebook Chapter #8 — "Test-Driven Development in Python"',
-        what: "Unit testing, integration testing, PyTest fixtures, test coverage metrics (`pytest-cov`), mocking external dependencies, and GitHub Actions CI pipelines.",
-        why: "Automated test suites guarantee code quality and prevent software regressions.",
+        asn: "Django Web Application — Monolithic App with Auth & PostgreSQL",
+        blog: 'Guidebook #9 — "Building Production-Ready Apps with Django"',
+        what: "Django web development: Models, views, templates, custom user models, authentication workflows, admin portal, and ORM query optimization.",
+        why: "Django provides a robust server framework with security features built-in out of the box.",
         when: "~16 hours total time commitment.",
-        where: "PyTest Docs & GitHub Actions Workflow Documentation.",
-        how: "1. Write 10 unit and integration tests covering your API endpoints.\n2. Set up `.github/workflows/ci.yml` to run PyTest automatically on pull requests.\n3. Publish Guidebook Chapter #8 on TDD strategies."
+        where: "Django Official Documentation & Django for Beginners.",
+        how: "1. Build a monolithic Django platform backed by PostgreSQL.\n2. Configure custom user model authentication.\n3. Publish Guidebook Chapter #9."
       },
       {
         w: 23,
-        title: "System Design & Architecture Patterns",
-        resource: "System Design Primer",
+        title: "Component-Driven Architecture & Storybook",
+        resource: "CS206: React Design Patterns (Michele Bertoli)",
         type: "odd",
-        challenge: "Architecture Blueprint Challenge — Design a scalable microservice system.",
-        video: 'Devlog #12 — "System Design Principles for High Availability"',
-        what: "Monolith vs Microservices, Load Balancing, Caching strategies, Database Sharding/Replication, and CAP Theorem.",
-        why: "Critical for engineering software infrastructure capable of supporting millions of concurrent requests.",
-        when: "~16 hours total time commitment.",
-        where: "System Design Primer GitHub Repo.",
-        how: "1. Draft a System Design blueprint document for a high-traffic AI data ingestion platform.\n2. Diagram component communication and caching layers.\n3. Record Devlog #12 detailing system design choices."
+        challenge: "Storybook Component Suite — Isolated React components with stories.",
+        video: 'Devlog #12 — "Isolated Component Development using Storybook"',
+        what: "Isolated component development with Storybook, compound component patterns, render props, custom hooks encapsulation, and visual testing.",
+        why: "Isolated component engineering ensures UI component reliability across large engineering teams.",
+        when: "~15 hours total time commitment.",
+        where: "Storybook Official Documentation.",
+        how: "1. Develop and document complex React compound components inside an isolated Storybook workspace.\n2. Record Devlog #12."
       },
       {
         w: 24,
-        title: "Final Project & Special Quest",
-        resource: "Semester 2 Capstone",
+        title: "Midterm Practical Exam — AtlasUI & Relational Django Portal",
+        resource: "Midterm Exam Brief",
+        type: "midterm",
+        video: "Midterm Code Tour & Django ORM Walkthrough",
+        what: "Deliver AtlasUI: Published Storybook React UI library styled with Tailwind CSS alongside a server-side Django web portal backed by PostgreSQL and session auth.",
+        why: "Validates component design systems and relational full-stack Django framework mastery.",
+        when: "~20 hours dedicated exam sprint.",
+        where: "GitHub Repository Submission.",
+        how: "1. Publish Storybook component library.\n2. Build Django PostgreSQL portal with custom authentication.\n3. Submit repo with DEFENSE.md and video walkthrough."
+      },
+      {
+        w: 25,
+        title: "GeoStory Sprint 1: PostGIS Schema & GeoJSON API",
+        resource: "CS204/CS205 / GeoStory",
+        type: "odd",
+        challenge: "Sprint 1 Deliverable — PostGIS spatial database & Django REST GeoJSON endpoints.",
+        video: 'Devlog #13 — "Building GeoJSON APIs with Django & PostGIS"',
+        what: "PostGIS spatial queries, spatial indexes, and GeoJSON endpoint serialization using Django.",
+        why: "Spatial APIs deliver map coordinate datasets efficiently to web mapping clients.",
+        when: "~16 hours total time commitment.",
+        where: "PostGIS & Django GIS (GeoDjango) Docs.",
+        how: "1. Setup PostGIS database and write GeoJSON serialization endpoints.\n2. Record Devlog #13."
+      },
+      {
+        w: 26,
+        title: "GeoStory Sprint 2: Mapbox GL React Integration",
+        resource: "CS201/CS206 / GeoStory",
+        type: "even",
+        asn: "Sprint 2 Deliverable — Interactive Mapbox GL Canvas & Clustering Layer",
+        blog: 'Guidebook #10 — "Rendering Interactive Maps in React with Mapbox"',
+        what: "Mapbox GL JS setup, React canvas integration, dynamic spatial marker clustering, and custom layer rendering.",
+        why: "Interactive GIS maps provide visual spatial context for localized user stories.",
+        when: "~16 hours total time commitment.",
+        where: "Mapbox GL JS Official Documentation.",
+        how: "1. Integrate Mapbox GL canvas into React rendering cluster markers dynamically.\n2. Publish Guidebook Chapter #10."
+      },
+      {
+        w: 27,
+        title: "GeoStory Sprint 3: React Spatial Submission Drawer",
+        resource: "CS201 / GeoStory",
+        type: "odd",
+        challenge: "Sprint 3 Deliverable — Multi-step story submission drawer with spatial picker.",
+        video: 'Devlog #14 — "Building Multi-Step Form Drawers in React"',
+        what: "Multi-step React forms, state synchronization, spatial coordinate pickers, and file upload handling.",
+        why: "Intuitive multi-step input flows improve story contribution submission rates.",
+        when: "~16 hours total time commitment.",
+        where: "GeoStory Sprint 3 Brief.",
+        how: "1. Build multi-step story submission drawer with interactive spatial map picker."
+      },
+      {
+        w: 28,
+        title: "GeoStory Sprint 4: Geolocation Hooks & Dynamic Filters",
+        resource: "CS201 / GeoStory",
+        type: "even",
+        asn: "Sprint 4 Deliverable — Custom Geolocation Hooks & Radius Filter Controls",
+        blog: 'Guidebook #11 — "Writing Custom React Hooks for Browser APIs"',
+        what: "Custom React hooks (`useGeolocation`), radius-based spatial distance calculations, and real-time category filtering.",
+        why: "Location-aware filtering personalizes application data based on proximity.",
+        when: "~16 hours total time commitment.",
+        where: "MDN Geolocation API Documentation.",
+        how: "1. Write custom `useGeolocation` hook and radius filter control UI.\n2. Publish Guidebook Chapter #11."
+      },
+      {
+        w: 29,
+        title: "GeoStory Sprint 5: Persistent Audio Narrative Player",
+        resource: "CS201 / GeoStory",
+        type: "odd",
+        challenge: "Sprint 5 Deliverable — Persistent global audio player across map views.",
+        video: 'Devlog #15 — "Managing Global Media State in React Applications"',
+        what: "Global audio playback state management, HTML5 Audio API controls, and uninterrupted playback during map navigation.",
+        why: "Uninterrupted audio stream playback creates seamless spatial storytelling user experiences.",
+        when: "~15 hours total time commitment.",
+        where: "MDN HTMLAudioElement Documentation.",
+        how: "1. Build persistent global audio player component retaining playback across routes.\n2. Record Devlog #15."
+      },
+      {
+        w: 30,
+        title: "GeoStory Sprint 6: Cypress Testing & Code Audit",
+        resource: "Cypress & SonarQube",
+        type: "even",
+        asn: "Sprint 6 Deliverable — End-to-End Cypress Suite & Quality Clearance",
+        blog: 'Guidebook #12 — "Automating E2E Testing with Cypress"',
+        what: "End-to-end testing with Cypress, user interaction flow assertion, and SonarQube code quality clearance.",
+        why: "Automated end-to-end test suites protect core workflows from dynamic regression bugs.",
+        when: "~16 hours total time commitment.",
+        where: "Cypress Official Documentation.",
+        how: "1. Write end-to-end spec tests for map interaction and story submission.\n2. Run SonarQube audit and publish Guidebook Chapter #12."
+      },
+      {
+        w: 31,
+        title: "Global State Management & Zustand",
+        resource: "Zustand & React Design Patterns",
+        type: "odd",
+        challenge: "Zustand Store Refactor — Migrate complex state to centralized store.",
+        video: 'Devlog #16 — "Lightweight Global State Management with Zustand"',
+        what: "Centralized state management using Zustand, store slice organization, state persistence middleware, and selectors.",
+        why: "Zustand offers lightweight state management without the verbose boilerplate of traditional Redux.",
+        when: "~15 hours total time commitment.",
+        where: "Zustand Documentation.",
+        how: "1. Implement Zustand stores for full-stack client application state.\n2. Record Devlog #16."
+      },
+      {
+        w: 32,
+        title: "Final Practical Exam — PulseBoard Enterprise SaaS Platform",
+        resource: "Final Capstone Week",
         type: "final",
-        blog: 'Guidebook Chapter #9 — "Building Scalable Backend Infrastructure"',
-        specialQuest: "Special Quest Gate: Deploy your multi-container application live on cloud hosting to claim the Software Systems Engineer title.",
+        blog: 'Guidebook #13 — "Architecting Enterprise Full-Stack Web Applications"',
+        specialQuest: "Special Quest Gate: Complete GeoStory platform deployment and launch PulseBoard live to Vercel and Render.",
         specialQuestLinks: [
-          { name: "Render Cloud Hosting", url: "https://render.com/" },
-          { name: "Railway App Infrastructure", url: "https://railway.app/" }
+          { name: "Render Cloud Hosting Platform", url: "https://render.com/" },
+          { name: "Cypress Testing Suite", url: "https://www.cypress.io/" },
+          { name: "Django REST Framework Docs", url: "https://www.django-rest-framework.org/" }
         ],
-        what: "Deploy a production-ready, containerized microservice suite with live database persistence, background worker queues, and automated CI/CD pipelines.",
-        why: "Proves enterprise backend systems proficiency.",
-        when: "~22 hours dedicated project sprint.",
-        where: "Cloud Host & GitHub.",
-        how: "1. Complete and launch your multi-container Docker application.\n2. Configure live cloud domain endpoints and test security.\n3. Fulfill your Special Quest requirement.\n4. Write Guidebook Chapter #9 summarizing backend system engineering."
+        what: "Build and deploy PulseBoard: Enterprise React SPA using Zustand and Tailwind CSS connected to a Django + PostgreSQL production backend with zero failing Cypress tests.",
+        why: "Earns official 'Full-Stack Web Developer' professional title credential.",
+        when: "~25 hours dedicated exam sprint.",
+        where: "Vercel + Render Deployment & GitHub.",
+        how: "1. Deploy React SPA to Vercel and Django PostgreSQL backend to Render.\n2. Execute Cypress E2E test suite and submit final project video defense.\n3. Publish Guidebook Chapter #13."
       }
     ]
   },
   {
     sem: 3,
-    title: "Data Science & Machine Learning Engineering",
-    unlockTitle: "Machine Learning Engineer",
-    badgeIcon: "fa-brain",
-    badgeBg: "#0891B2",
-    resources: "NumPy · Pandas · Scikit-Learn · PyTorch",
+    title: "AI Integration & Automation Systems",
+    unlockTitle: "AI Integration & Automation Engineer",
+    badgeIcon: "fa-robot",
+    badgeBg: "#059669",
+    resources: "LangChain Docs · OpenAI API · HTMX Essentials · Vector DB Guides · Celery & Redis",
     weeks: [
       {
-        w: 25,
-        title: "Mathematics for AI: Linear Algebra & Vectors",
-        resource: "Khan Academy / 3Blue1Brown",
-        type: "odd",
-        challenge: "NumPy Vector Katas — Implement matrix multiplication & dot products from scratch.",
-        video: 'Devlog #13 — "Linear Algebra for Machine Learning Visualized"',
-        what: "Vectors, Matrices, Dot Products, Matrix Multiplication, Matrix Inversion, Eigenvalues, Eigenvectors, and Vector spaces using Python and NumPy.",
-        why: "Linear algebra forms the core mathematical foundation for neural network operations and data transformations.",
-        when: "~16 hours total time commitment.",
-        where: "3Blue1Brown Essence of Linear Algebra & NumPy Documentation.",
-        how: "1. Implement custom matrix multiplication algorithms in pure Python and compare speed to `numpy.dot`.\n2. Compute vector projections and eigenvalues.\n3. Record Devlog #13 explaining matrix operations in AI."
-      },
-      {
-        w: 26,
-        title: "Probability & Applied Statistics for ML",
-        resource: "StatQuest with Josh Starmer",
-        type: "even",
-        asn: "Statistical Data Profiler Brief",
-        blog: 'Guidebook Chapter #10 — "Probability Distributions in Machine Learning"',
-        what: "Probability distributions (Normal, Binomial, Poisson), Mean/Variance/Standard Deviation, Hypothesis Testing, p-values, Bayes' Theorem, and Maximum Likelihood Estimation.",
-        why: "Statistical foundations allow machine learning engineers to validate data distributions and model metrics correctly.",
-        when: "~16 hours total time commitment.",
-        where: "StatQuest ML Videos & Scipy Stats Docs.",
-        how: "1. Conduct statistical hypothesis tests on sample datasets using `scipy.stats`.\n2. Compute probability densities and confidence intervals.\n3. Publish Guidebook Chapter #10 on applied probability."
-      },
-      {
-        w: 27,
-        title: "Data Wrangling with Pandas & NumPy",
-        resource: "Pandas Official Documentation",
-        type: "odd",
-        challenge: "Data Cleaning Challenge — Clean messy real-world datasets with Pandas.",
-        video: 'Devlog #14 — "High-Speed Data Wrangling with Pandas"',
-        what: "DataFrames, Series, missing value imputation, indexing/slicing, data merging/joining, `groupby` aggregations, and feature transformations.",
-        why: "Data cleaning and manipulation represent over 70% of a Machine Learning Engineer's daily workflow.",
-        when: "~15 hours total time commitment.",
-        where: "Pandas User Guide & Kaggle Data Wrangling Courses.",
-        how: "1. Clean and transform a corrupted multi-table CSV dataset using Pandas.\n2. Perform aggregation operations across categorical variables.\n3. Record Devlog #14 demonstrating Pandas indexing tricks."
-      },
-      {
-        w: 28,
-        title: "Exploratory Data Analysis (EDA) & Visualization",
-        resource: "Seaborn & Matplotlib Tutorials",
-        type: "even",
-        asn: "Full EDA Report & Insight Dashboard",
-        blog: 'Guidebook Chapter #11 — "Visualizing Feature Correlations & Anomalies"',
-        what: "Data visualization using Matplotlib and Seaborn: Histograms, Scatter plots, Box plots, Heatmaps, Feature correlation analysis, and Outlier detection.",
-        why: "EDA exposes underlying patterns, anomalies, and feature relationships before model training.",
-        when: "~16 hours total time commitment.",
-        where: "Seaborn Official Documentation & Matplotlib Guides.",
-        how: "1. Execute a full exploratory data analysis on a public machine learning dataset.\n2. Generate heatmaps highlighting feature correlations.\n3. Publish Guidebook Chapter #11 documenting visual data discovery."
-      },
-      {
-        w: 29,
-        title: "Supervised Learning: Regression Models",
-        resource: "Scikit-Learn Documentation",
-        type: "odd",
-        challenge: "Linear Regression from Scratch — Implement Gradient Descent optimization.",
-        video: 'Devlog #15 — "Coding Linear Regression & Gradient Descent from Scratch"',
-        what: "Linear Regression, Multiple Linear Regression, Cost Functions (MSE/RMSE), Gradient Descent optimization algorithm, Regularization (Ridge/Lasso).",
-        why: "Regression models form the foundational baseline for continuous variable estimation.",
-        when: "~16 hours total time commitment.",
-        where: "Scikit-Learn Supervised Learning Docs & Andrew Ng ML Course.",
-        how: "1. Implement Gradient Descent optimization for linear regression in pure Python/NumPy.\n2. Train Ridge and Lasso regression models using Scikit-Learn.\n3. Record Devlog #15 explaining cost function minimization."
-      },
-      {
-        w: 30,
-        title: "Midterm Project — Code Labs",
-        resource: "ML Midterm Project",
-        type: "midterm",
-        video: "Midterm ML Pipeline Showcase",
-        what: "Build an end-to-end Machine Learning data pipeline: Data Cleaning, Feature Engineering, EDA, and Model Training for continuous variable prediction.",
-        why: "Validates practical ML data pipeline development skills.",
-        when: "~20 hours dedicated project sprint.",
-        where: "Kaggle / GitHub & Jupyter Notebook.",
-        how: "1. Build and train your continuous variable regression model on a public dataset.\n2. Evaluate model performance using cross-validation metrics.\n3. Record a video walkthrough explaining feature selection and evaluation."
-      },
-      {
-        w: 31,
-        title: "Supervised Learning: Classification Models",
-        resource: "Scikit-Learn Classification",
-        type: "odd",
-        challenge: "Classifier Comparison Challenge — Benchmark Logistic Regression, SVMs & Decision Trees.",
-        video: 'Devlog #16 — "Evaluating Classifiers: Confusion Matrix & ROC-AUC"',
-        what: "Logistic Regression, Decision Trees, Random Forests, Support Vector Machines (SVM), Confusion Matrices, Precision, Recall, F1-Score, and ROC-AUC curves.",
-        why: "Classification algorithms power critical tasks such as spam detection, risk evaluation, and medical diagnostics.",
-        when: "~16 hours total time commitment.",
-        where: "Scikit-Learn Classifier Documentation.",
-        how: "1. Train Logistic Regression, Random Forest, and SVM classifiers on a binary dataset.\n2. Plot ROC-AUC curves and compare F1-scores.\n3. Record Devlog #16 demonstrating confusion matrix analysis."
-      },
-      {
-        w: 32,
-        title: "Unsupervised Learning & Dimensionality Reduction",
-        resource: "Scikit-Learn Unsupervised",
-        type: "even",
-        asn: "Clustering & Customer Segmentation Pipeline Brief",
-        blog: 'Guidebook Chapter #12 — "Unsupervised Clustering & PCA Dimensionality Reduction"',
-        what: "K-Means Clustering, Hierarchical Clustering, DBSCAN, Principal Component Analysis (PCA), and T-SNE for feature space reduction.",
-        why: "Unsupervised learning discovers hidden patterns in unlabeled data distributions.",
-        when: "~16 hours total time commitment.",
-        where: "Scikit-Learn Unsupervised Learning Tutorials.",
-        how: "1. Perform K-Means clustering and find the optimal cluster count using the Elbow method.\n2. Reduce dataset dimensions using PCA and plot results.\n3. Publish Guidebook Chapter #12 on feature dimension reduction."
-      },
-      {
         w: 33,
-        title: "Model Evaluation & Hyperparameter Tuning",
-        resource: "Scikit-Learn Model Selection",
+        title: "LLM APIs & Prompt Engineering Architectures",
+        resource: "OpenAI API & Anthropic SDK Documentation",
         type: "odd",
-        challenge: "Hyperparameter Optimization Challenge — Run GridSearch & RandomizedSearch CV.",
-        video: 'Devlog #17 — "Optimizing ML Models with GridSearchCV & Bayesian Tuning"',
-        what: "K-Fold Cross-Validation, Stratified Sampling, Overfitting vs Underfitting (Bias-Variance Tradeoff), GridSearchCV, RandomizedSearchCV, and Optuna.",
-        why: "Systematic hyperparameter tuning unlocks optimal performance without model overfitting.",
-        when: "~15 hours total time commitment.",
-        where: "Scikit-Learn Tuning Guides & Optuna Docs.",
-        how: "1. Execute 5-fold cross-validation across multiple model architectures.\n2. Optimize hyperparameters using `GridSearchCV` and `Optuna`.\n3. Record Devlog #17 breaking down bias-variance trade-offs."
+        challenge: "Prompt Pipeline Script — Structured JSON parsing from LLM outputs.",
+        video: 'Devlog #17 — "Building Production-Grade LLM API Pipelines"',
+        what: "Interfacing with LLM APIs (OpenAI / Anthropic), structured JSON outputs using Pydantic, token optimization strategies, and robust retry logic.",
+        why: "Reliable structured data extraction from probabilistic LLMs is fundamental to building production AI tools.",
+        when: "~16 hours total time commitment.",
+        where: "OpenAI API Docs & Instructor Library Guides.",
+        how: "1. Build Python script extracting validated JSON from raw text using Pydantic.\n2. Record Devlog #17."
       },
       {
         w: 34,
-        title: "Introduction to Neural Networks & Perceptrons",
-        resource: "Deep Learning Specialization",
+        title: "Vector Databases & Embeddings (Pinecone / ChromaDB)",
+        resource: "ChromaDB & Pinecone Documentation",
         type: "even",
-        asn: "Single-Layer Perceptron Implementation from Scratch",
-        blog: 'Guidebook Chapter #13 — "Artificial Neural Networks & Backpropagation Mechanics"',
-        what: "Biological vs Artificial Neurons, Single-Layer Perceptrons, Multi-Layer Perceptrons (MLP), Activation Functions (Sigmoid, ReLU, Tanh), Forward Propagation, and Backpropagation.",
-        why: "Neural networks serve as the foundational building blocks for modern deep learning and AI models.",
+        asn: "Semantic Vector Search Tool — Document Embedding & Similarity Search",
+        blog: 'Guidebook #14 — "Understanding Embeddings & Vector Search Engines"',
+        what: "Text embedding generation, vector distance metrics (Cosine/Euclidean), vector index creation, and fast similarity queries using ChromaDB / Pinecone.",
+        why: "Vector search allows applications to perform semantic queries across large unstructured knowledge bases.",
         when: "~16 hours total time commitment.",
-        where: "DeepLearning.AI & Michael Nielsen's Neural Networks Book.",
-        how: "1. Code a simple Multi-Layer Perceptron from scratch using NumPy.\n2. Implement forward propagation, MSE loss, and backpropagation step-by-step.\n3. Publish Guidebook Chapter #13 on backpropagation mathematics."
+        where: "ChromaDB Docs & Pinecone Learning Center.",
+        how: "1. Build vector search index over custom markdown documentation.\n2. Query index using semantic embeddings.\n3. Publish Guidebook Chapter #14."
       },
       {
         w: 35,
-        title: "Deep Learning Frameworks: PyTorch Core",
-        resource: "PyTorch Official Tutorials",
+        title: "Retrieval-Augmented Generation (RAG) Architecture",
+        resource: "LangChain & LlamaIndex Documentation",
         type: "odd",
-        challenge: "PyTorch Neural Net Challenge — Build & train a PyTorch MLP classifier.",
-        video: 'Devlog #18 — "Building Neural Networks with PyTorch Tensors & Autograd"',
-        what: "PyTorch ecosystem: Tensors, `torch.autograd`, `nn.Module`, Loss functions, Optimizers (`Adam`, `SGD`), DataLoaders, and GPU acceleration (`cuda`/`mps`).",
-        why: "PyTorch is the premier industry-standard research and production framework for modern Deep Learning.",
+        challenge: "RAG Pipeline Challenge — Build document chunking, retrieval, and synthesis pipeline.",
+        video: 'Devlog #18 — "Building Accurate RAG Systems without Hallucinations"',
+        what: "Document chunking strategies, vector store retrieval, prompt context window augmentation, and ground-truth validation to prevent LLM hallucinations.",
+        why: "RAG connects general LLMs with private, up-to-date knowledge bases safely.",
         when: "~16 hours total time commitment.",
-        where: "PyTorch Official Learning Portal.",
-        how: "1. Build a PyTorch model training loop using `nn.Module` and custom `DataLoader` objects.\n2. Train the model on GPU/MPS hardware acceleration.\n3. Record Devlog #18 explaining PyTorch's computational graph."
+        where: "LangChain Python Documentation.",
+        how: "1. Implement document RAG pipeline with custom text chunking and sources citation.\n2. Record Devlog #18."
       },
       {
         w: 36,
-        title: "Final Project & Special Quest",
-        resource: "Semester 3 Capstone",
+        title: "HTMX & Dynamic Django Interfaces",
+        resource: "HTMX Official Documentation & Django Guides",
+        type: "even",
+        asn: "HTMX Dynamic Dashboard — Reactive Server UI without JS Frameworks",
+        blog: 'Guidebook #15 — "Simpler Web Development with HTMX and Django"',
+        what: "Server-driven UI reactivity using HTMX: `hx-get`, `hx-post`, `hx-swap`, partial HTML rendering, and dynamic DOM updating without SPA build setups.",
+        why: "HTMX drastically reduces JavaScript complexity by rendering dynamic UI changes directly from the server.",
+        when: "~15 hours total time commitment.",
+        where: "HTMX.org Docs & Django HTMX tutorials.",
+        how: "1. Build reactive dashboard using Django templates and HTMX attributes.\n2. Publish Guidebook Chapter #15."
+      },
+      {
+        w: 37,
+        title: "Asynchronous Workflows: Celery, Redis & Task Queues",
+        resource: "Celery & Redis Official Documentation",
+        type: "odd",
+        challenge: "Background Worker Pipeline — Process long-running AI tasks asynchronously.",
+        video: 'Devlog #19 — "Managing Asynchronous Task Queues with Celery & Redis"',
+        what: "Configuring Celery task queues, Redis message brokers, background AI job processing, task status polling, and retry mechanisms.",
+        why: "Asynchronous workers keep web servers responsive when processing long-running AI inference tasks.",
+        when: "~16 hours total time commitment.",
+        where: "Celery Project Docs & Redis Guides.",
+        how: "1. Setup Celery worker queue offloading heavy Python AI computations.\n2. Record Devlog #19."
+      },
+      {
+        w: 38,
+        title: "Event-Driven AI Workflows & Webhooks",
+        resource: "Event-Driven System Architecture Guides",
+        type: "even",
+        asn: "Automated AI Webhook Router — Intercepts Events & Triggers AI Tasks",
+        blog: 'Guidebook #16 — "Building Event-Driven Automation Pipelines"',
+        what: "Webhook receiver construction, event-driven payload validation, async trigger dispatches, and third-party SaaS integrations.",
+        why: "Event-driven design connects isolated services into automated, real-time workflows.",
+        when: "~15 hours total time commitment.",
+        where: "Django Webhooks & FastAPI Event Guides.",
+        how: "1. Build webhook receiver parsing inbound payload events and triggering automated AI routines.\n2. Publish Guidebook Chapter #16."
+      },
+      {
+        w: 39,
+        title: "Term Project Kickoff: Intelligent Knowledge Retrieval Agent",
+        resource: "Term Project Brief",
+        type: "odd",
+        challenge: "Architecture Specification — Submit ARCHITECTURE.md & RAG workflow spec.",
+        video: 'Devlog #20 — "Designing Enterprise Knowledge Retrieval Agents"',
+        what: "Scope and document vector index pipeline, document ingestion strategies, and RAG search architecture for the intelligent retrieval system.",
+        why: "Clear design scoping guarantees data privacy and low retrieval latency.",
+        when: "~16 hours total time commitment.",
+        where: "Knowledge Retrieval Agent Brief.",
+        how: "1. Define RAG architecture and schema.\n2. Commit ARCHITECTURE.md to GitHub repository."
+      },
+      {
+        w: 40,
+        title: "Midterm Exam — Event-Driven RAG Automation Hub",
+        resource: "Midterm Exam Brief",
+        type: "midterm",
+        video: "Midterm Demo & RAG Architecture Review",
+        what: "Deliver Event-Driven RAG Automation Hub: A full server pipeline processing inbound webhooks, chunking documents, querying vector indexes, and returning grounded answers.",
+        why: "Validates vector storage, RAG pipelines, and event-driven automation capabilities.",
+        when: "~20 hours dedicated exam sprint.",
+        where: "GitHub Repository Submission.",
+        how: "1. Build end-to-end event-driven RAG pipeline.\n2. Submit repo with DEFENSE.md and video walkthrough."
+      },
+      {
+        w: 41,
+        title: "Retrieval Agent Sprint 1: Document Chunking & Vector Indexing",
+        resource: "ChromaDB / LangChain",
+        type: "odd",
+        challenge: "Sprint 1 Deliverable — Ingestion pipeline chunking PDFs & indexing vectors.",
+        video: 'Devlog #21 — "Optimizing Chunking Strategies for RAG Accuracy"',
+        what: "Recursive text splitting, metadata tagging, and vector store batch ingestion.",
+        why: "High quality text chunking directly improves semantic retrieval precision.",
+        when: "~16 hours total time commitment.",
+        where: "LangChain Text Splitter Documentation.",
+        how: "1. Build document ingestion pipeline with recursive chunking and metadata tags."
+      },
+      {
+        w: 42,
+        title: "Retrieval Agent Sprint 2: HTMX Reactive Query Interface",
+        resource: "HTMX & Django",
+        type: "even",
+        asn: "Sprint 2 Deliverable — Dynamic HTMX Search UI with Real-Time Stream",
+        blog: 'Guidebook #17 — "Streaming AI Responses with HTMX and Server-Sent Events"',
+        what: "Server-Sent Events (SSE), streaming LLM tokens to browser UI, and HTMX reactive response swapping.",
+        why: "Token streaming lowers perceived user latency during multi-second LLM generations.",
+        when: "~16 hours total time commitment.",
+        where: "HTMX SSE Extension Documentation.",
+        how: "1. Build streaming HTMX UI displaying LLM token stream in real-time.\n2. Publish Guidebook Chapter #17."
+      },
+      {
+        w: 43,
+        title: "Retrieval Agent Sprint 3: Grounded Sources & Citation Engine",
+        resource: "RAG Evaluation Frameworks",
+        type: "odd",
+        challenge: "Sprint 3 Deliverable — Citation metadata tagging and source link drawer.",
+        video: 'Devlog #22 — "Implementing Source Verification in RAG Systems"',
+        what: "Metadata source link binding, inline citation highlights, and response trust verification.",
+        why: "Citations enable users to verify factual context and build trust in AI responses.",
+        when: "~15 hours total time commitment.",
+        where: "RAG Citation Guidelines.",
+        how: "1. Add dynamic citation links linking AI output sentences to source document chunks."
+      },
+      {
+        w: 44,
+        title: "Retrieval Agent Sprint 4: Background Task Processing",
+        resource: "Celery & Redis",
+        type: "even",
+        asn: "Sprint 4 Deliverable — Celery Background Processing for Heavy Ingestion",
+        blog: 'Guidebook #18 — "Scaling Ingestion Pipelines with Background Queues"',
+        what: "Asynchronous document indexing via Celery workers with progress status updates.",
+        why: "Offloading multi-megabyte PDF ingestion prevents web request timeouts.",
+        when: "~16 hours total time commitment.",
+        where: "Celery Task Queue Guides.",
+        how: "1. Move ingestion process to Celery background task with status progress updates.\n2. Publish Guidebook Chapter #18."
+      },
+      {
+        w: 45,
+        title: "Retrieval Agent Sprint 5: Evaluation & Hallucination Guardrails",
+        resource: "Ragas / TruLens Frameworks",
+        type: "odd",
+        challenge: "Sprint 5 Deliverable — Automated evaluation suite testing retrieval context relevance.",
+        video: 'Devlog #23 — "Measuring RAG Accuracy with Automated Guardrails"',
+        what: "Automated RAG metrics evaluation (Context Precision, Groundedness, Answer Relevance) using Ragas.",
+        why: "Systematic metrics evaluation prevents regression during prompt or pipeline updates.",
+        when: "~16 hours total time commitment.",
+        where: "Ragas Framework Documentation.",
+        how: "1. Write Ragas evaluation suite asserting >85% groundedness score.\n2. Record Devlog #23."
+      },
+      {
+        w: 46,
+        title: "Retrieval Agent Sprint 6: Production Packaging & Docker Setup",
+        resource: "Docker & Containerization Guides",
+        type: "even",
+        asn: "Sprint 6 Deliverable — Multi-Container Docker Setup (App + Redis + Worker + DB)",
+        blog: 'Guidebook #19 — "Containerizing AI Workflows with Docker Compose"',
+        what: "Containerization using Docker, writing `Dockerfile`, configuring multi-container services with `docker-compose.yml`.",
+        why: "Docker containers guarantee consistent code execution environments across development and production servers.",
+        when: "~15 hours total time commitment.",
+        where: "Docker Official Guides.",
+        how: "1. Write Dockerfile and docker-compose setup packaging entire platform stack.\n2. Publish Guidebook Chapter #19."
+      },
+      {
+        w: 47,
+        title: "AI Pipeline Security & Vulnerability Auditing",
+        resource: "OWASP Top 10 for LLM Applications",
+        type: "odd",
+        challenge: "Security Audit — Harden system against Prompt Injection and Data Leakage.",
+        video: 'Devlog #24 — "Securing AI Applications against Prompt Injection"',
+        what: "OWASP LLM Top 10 security: Defending against prompt injections, data extraction, insecure output handling, and API rate limits.",
+        why: "Securing AI endpoints protects database context from malicious adversarial attacks.",
+        when: "~15 hours total time commitment.",
+        where: "OWASP LLM Top 10 Security Project.",
+        how: "1. Run security audit patching prompt injection vulnerabilities.\n2. Record Devlog #24."
+      },
+      {
+        w: 48,
+        title: "Final Practical Exam — Enterprise Dynamic AI Workflows Platform",
+        resource: "Final Capstone Week",
         type: "final",
-        blog: 'Guidebook Chapter #14 — "From Data to Production ML Models"',
-        specialQuest: "Special Quest Gate: Publish a working ML Model notebook or dataset on Kaggle / Hugging Face to unlock the Machine Learning Engineer title.",
+        blog: 'Guidebook #20 — "The Architecture of Production AI Automation Systems"',
+        specialQuest: "Special Quest Gate: Complete Retrieval Agent platform release and deploy multi-container stack live to cloud infrastructure.",
         specialQuestLinks: [
-          { name: "Kaggle Datasets & Models", url: "https://www.kaggle.com/" },
-          { name: "Hugging Face Hub", url: "https://huggingface.co/" }
+          { name: "Docker Containerization Portal", url: "https://www.docker.com/" },
+          { name: "OWASP Top 10 for LLMs", url: "https://owasp.org/www-project-top-10-for-large-language-model-applications/" },
+          { name: "LangChain Ecosystem", url: "https://www.langchain.com/" }
         ],
-        what: "Train, tune, and evaluate an enterprise Machine Learning model suite utilizing Scikit-Learn or PyTorch, deployed as an inference API.",
-        why: "Demonstrates complete Machine Learning engineering capability.",
-        when: "~22 hours dedicated project sprint.",
-        where: "GitHub & Kaggle / Hugging Face.",
-        how: "1. Complete and evaluate your machine learning prediction project.\n2. Export model artifacts (`.onnx` or `.pkl`) and deploy an inference endpoint.\n3. Fulfill your Special Quest requirement.\n4. Write Guidebook Chapter #14 summarizing practical ML pipelines."
+        what: "Deploy production-grade HTMX + Django Dynamic AI Workflows platform featuring RAG pipelines, background Celery workers, Docker multi-container packaging, and OWASP security clearance.",
+        why: "Earns official 'AI Integration & Automation Engineer' professional title credential.",
+        when: "~25 hours dedicated exam sprint.",
+        where: "Cloud Hosting Host (Render/AWS) & GitHub.",
+        how: "1. Launch containerized AI platform to cloud infrastructure.\n2. Submit final video defense walkthrough.\n3. Publish Guidebook Chapter #20."
       }
     ]
   },
   {
     sem: 4,
-    title: "Applied AI Engineering & LLMs",
-    unlockTitle: "AI Systems Engineer",
-    badgeIcon: "fa-robot",
+    title: "Autonomous AI Systems & Product Architecture",
+    unlockTitle: "Autonomous AI Systems Engineer & Product Architect",
+    badgeIcon: "fa-brain",
     badgeBg: "#7C3AED",
-    resources: "PyTorch · Hugging Face · LangChain / LlamaIndex · MLOps",
+    resources: "LangGraph Docs · CrewAI · AutoGen · System Design Interview (Alex Xu) · Cloud Deployment (AWS/Kubernetes)",
     weeks: [
       {
-        w: 37,
-        title: "Convolutional Neural Networks (CNNs) & Computer Vision",
-        resource: "PyTorch Vision Tutorials",
+        w: 49,
+        title: "Multi-Agent Systems & LangGraph Foundations",
+        resource: "LangGraph & LangChain Documentation",
         type: "odd",
-        challenge: "CNN Image Classification Challenge — Build a PyTorch CNN for image recognition.",
-        video: 'Devlog #19 — "Convolutional Layers & Feature Maps Visualized"',
-        what: "Computer vision fundamentals: Convolutional layers, Pooling (Max/Avg), Stride, Padding, Transfer Learning with ResNet/EfficientNet, and Image augmentation (`torchvision`).",
-        why: "CNNs enable computer vision applications, automated image analysis, and visual AI perception.",
+        challenge: "Stateful Agent Graph Challenge — Build cyclic multi-agent graph with state nodes.",
+        video: 'Devlog #25 — "Architecting Stateful Multi-Agent Graphs with LangGraph"',
+        what: "Stateful agent graphs using LangGraph: State nodes, conditional edges, cyclic loops, and multi-agent task execution.",
+        why: "Cyclic state graphs enable autonomous agents to self-correct and iterate until tasks succeed.",
         when: "~16 hours total time commitment.",
-        where: "Stanford CS231n & PyTorch Vision Guides.",
-        how: "1. Train a CNN image classifier using PyTorch and `torchvision` models.\n2. Fine-tune a pre-trained ResNet architecture using transfer learning.\n3. Record Devlog #19 demonstrating feature map extraction."
+        where: "LangGraph Official Guides.",
+        how: "1. Build multi-node LangGraph agent graph processing and self-correcting input tasks.\n2. Record Devlog #25."
       },
       {
-        w: 38,
-        title: "Sequence Modeling & Recurrent Neural Networks (RNNs)",
-        resource: "PyTorch Sequence Models",
+        w: 50,
+        title: "Autonomous Agent Orchestration (CrewAI / AutoGen)",
+        resource: "CrewAI & Microsoft AutoGen Frameworks",
         type: "even",
-        asn: "Time-Series Forecasting / Sequence Modeling Brief",
-        blog: 'Guidebook Chapter #15 — "RNNs, LSTMs & Sequence Processing Mechanics"',
-        what: "Sequential data modeling: Recurrent Neural Networks (RNNs), Long Short-Term Memory (LSTM) networks, Gated Recurrent Units (GRU), and time-series forecasting.",
-        why: "Sequence models handle temporal distributions, financial time-series data, and text processing sequences.",
+        asn: "Autonomous Agent Crew — Multi-Role Task Delegation & Execution",
+        blog: 'Guidebook #21 — "Orchestrating Autonomous Agent Crews for Complex Tasks"',
+        what: "Hierarchical agent roles, tool binding, autonomous task delegation, agent memory, and inter-agent communication protocols.",
+        why: "Specialized multi-agent crews break down high-level goal directives into executed sub-tasks without human intervention.",
         when: "~16 hours total time commitment.",
-        where: "PyTorch NLP & Sequence Documentation.",
-        how: "1. Implement an LSTM sequence model for temporal data prediction.\n2. Compare LSTM model performance against standard RNNs.\n3. Publish Guidebook Chapter #15 on sequence gradient retention."
+        where: "CrewAI & AutoGen Documentation.",
+        how: "1. Build CrewAI task execution team with specialized Researcher and Writer agents.\n2. Publish Guidebook Chapter #21."
       },
       {
-        w: 39,
-        title: "Transformer Architecture & Self-Attention Mechanics",
-        resource: "Illustrated Transformer by Jay Alammar",
+        w: 51,
+        title: "Agent Tool Binding & Custom Code Execution",
+        resource: "LangChain Tools & Python Sandbox Execution",
         type: "odd",
-        challenge: "Self-Attention Implementation Challenge — Code scaled dot-product attention in PyTorch.",
-        video: 'Devlog #20 — "Understanding Self-Attention & The Transformer Architecture"',
-        what: "Transformer architecture deep dive: Scaled Dot-Product Attention, Multi-Head Attention, Positional Encoding, Encoder-Decoder structures, and Query/Key/Value matrix projections.",
-        why: "Transformers represent the core architectural breakthrough powering modern Large Language Models and Generative AI.",
-        when: "~18 hours total time commitment.",
-        where: "Jay Alammar's Blog & 'Attention Is All You Need' Paper.",
-        how: "1. Implement scaled dot-product attention in PyTorch from scratch.\n2. Build a minimal Multi-Head Attention module.\n3. Record Devlog #20 walking through attention projection matrices."
+        challenge: "Custom Tool Suite — Bind custom API and Python REPL execution tools to agents.",
+        video: 'Devlog #26 — "Equipping AI Agents with Safe Custom Execution Tools"',
+        what: "Tool definition schema, custom Python execution sandboxes, external API tool integrations, and error feedback loops.",
+        why: "Tools enable autonomous agents to execute actions in real-world environments beyond pure text generation.",
+        when: "~16 hours total time commitment.",
+        where: "LangChain Tool Customization Guides.",
+        how: "1. Bind custom REST API and code evaluation tools to agent graph.\n2. Record Devlog #26."
       },
       {
-        w: 40,
-        title: "Natural Language Processing (NLP) with Hugging Face",
-        resource: "Hugging Face Course",
+        w: 52,
+        title: "System Design for High-Scalability Applications",
+        resource: "System Design Interview by Alex Xu",
         type: "even",
-        asn: "NLP Text Classification & Sentiment Analysis Pipeline",
-        blog: 'Guidebook Chapter #16 — "Leveraging Hugging Face Transformers for NLP"',
-        what: "Hugging Face ecosystem: `transformers` library, Tokenization (BPE, WordPiece), Pre-trained models (BERT, RoBERTa), Text Classification, and Model Fine-tuning (`Trainer` API).",
-        why: "Hugging Face provides the industry ecosystem for utilizing and fine-tuning open-source NLP models.",
-        when: "~16 hours total time commitment.",
-        where: "Hugging Face Official Course (huggingface.co/course).",
-        how: "1. Tokenize text data using Hugging Face AutoTokenizers.\n2. Fine-tune a pre-trained BERT model for text classification using the Hugging Face `Trainer` API.\n3. Publish Guidebook Chapter #16 on NLP tokenization strategies."
-      },
-      {
-        w: 41,
-        title: "Large Language Models (LLMs) & Prompt Engineering",
-        resource: "DeepLearning.AI ChatGPT Prompt Engineering",
-        type: "odd",
-        challenge: "Structured Output Challenge — Enforce JSON schema responses from LLMs.",
-        video: 'Devlog #21 — "Advanced Prompt Engineering & Structured LLM Outputs"',
-        what: "LLM principles, System vs User prompts, Few-shot learning, Chain-of-Thought (CoT) prompting, Function Calling, and Structured JSON output parsing (Instructor / Pydantic).",
-        why: "Prompt engineering and structured schema output extraction are required for reliable agentic integration.",
+        asn: "System Design Blueprint — Architecture Spec for Scalable Web/AI Platform",
+        blog: 'Guidebook #22 — "System Design Principles for High-Scale Infrastructure"',
+        what: "System architecture fundamentals: Load balancers, database sharding, caching strategies (Redis), message queues (Kafka/RabbitMQ), and rate limiting.",
+        why: "Scalable system design ensures production availability during high traffic surges.",
         when: "~15 hours total time commitment.",
-        where: "OpenAI API Docs & Anthropic Claude Cookbook.",
-        how: "1. Build an LLM pipeline enforcing strict JSON output schemas using Pydantic.\n2. Implement Chain-of-Thought prompt templates.\n3. Record Devlog #21 demonstrating structured schema enforcement."
+        where: "System Design Interview Vol 1 & 2.",
+        how: "1. Draw complete system design diagram covering load balancing, caching, and queues.\n2. Publish Guidebook Chapter #22."
       },
       {
-        w: 42,
-        title: "Midterm Project — Code Labs",
-        resource: "AI Midterm Project",
-        type: "midterm",
-        video: "Midterm AI Application Showcase",
-        what: "Build an interactive AI web application integrating FastAPI, Hugging Face Transformers, or LLM APIs to deliver intelligent user capabilities.",
-        why: "Validates applied AI engineering skills.",
-        when: "~20 hours dedicated project sprint.",
-        where: "Vercel / Render & GitHub.",
-        how: "1. Build and deploy your AI web application.\n2. Connect backend AI models to a fast client interface.\n3. Record a video demo showcasing live model inference."
-      },
-      {
-        w: 43,
-        title: "Retrieval-Augmented Generation (RAG) & Vector DBs",
-        resource: "LangChain / LlamaIndex Documentation",
-        type: "even",
-        asn: "Enterprise Knowledge Base RAG Application Brief",
-        blog: 'Guidebook Chapter #17 — "RAG Systems Architecture & Vector Embeddings"',
-        what: "Retrieval-Augmented Generation (RAG), Vector Embeddings (`text-embedding-3`), Vector Databases (ChromaDB, Pinecone, Qdrant), Chunking strategies, and Semantic Search.",
-        why: "RAG enables LLMs to query custom private domain documentation without expensive model retrain cycles.",
-        when: "~16 hours total time commitment.",
-        where: "LangChain & LlamaIndex Official Guides.",
-        how: "1. Ingest PDF documentation, chunk text, and compute vector embeddings.\n2. Store vectors in ChromaDB and execute semantic similarity search.\n3. Publish Guidebook Chapter #17 detailing RAG indexing architecture."
-      },
-      {
-        w: 44,
-        title: "Fine-Tuning Open Source LLMs (LoRA & QLoRA)",
-        resource: "Hugging Face PEFT Docs",
+        w: 53,
+        title: "Flagship Capstone Kickoff: Autonomous Multi-Agent Orchestrator",
+        resource: "Flagship Capstone Brief",
         type: "odd",
-        challenge: "LoRA Fine-Tuning Challenge — Fine-tune Llama / Mistral model on custom instructions.",
-        video: 'Devlog #22 — "Fine-Tuning Llama 3 with QLoRA & PEFT"',
-        what: "Parameter-Efficient Fine-Tuning (PEFT), Low-Rank Adaptation (LoRA), Quantization (4-bit/8-bit QLoRA), SFTTrainer, and Dataset Preparation for instruction tuning.",
-        why: "Fine-tuning custom open-source models delivers domain-specific intelligence with lower inference latency.",
+        challenge: "Architecture Blueprint — Submit comprehensive TSD, ERD, and Graph Schemas.",
+        video: 'Devlog #27 — "Scoping the Flagship Autonomous AI Capstone"',
+        what: "Scope and document complete system architecture, multi-agent graph flows, database ERDs, and deployment milestones for your flagship capstone.",
+        why: "Rigorous planning guarantees successful engineering execution for enterprise systems.",
         when: "~18 hours total time commitment.",
-        where: "Hugging Face PEFT Documentation & Unsloth AI Guides.",
-        how: "1. Prepare a custom instruction-following JSON dataset.\n2. Fine-tune an open-source model (e.g., Llama/Mistral) using QLoRA.\n3. Record Devlog #22 comparing pre and post fine-tuning responses."
+        where: "Flagship Capstone Guidelines.",
+        how: "1. Submit Technical Specification Document (TSD) with system diagrams and ERD to repo."
       },
       {
-        w: 45,
-        title: "AI Agents, Tool Calling & Multi-Agent Frameworks",
-        resource: "LangGraph / CrewAI Docs",
+        w: 54,
+        title: "Observability, Tracing & Evaluation (LangSmith)",
+        resource: "LangSmith & Phoenix Arize Docs",
         type: "even",
-        asn: "Autonomous AI Research Agent Engine Brief",
-        blog: 'Guidebook Chapter #18 — "Building Autonomous Multi-Agent Workflows"',
-        what: "Autonomous AI Agents, ReAct (Reasoning + Acting) loops, Tool Calling, State Graphs (LangGraph), and Multi-Agent Orchestration.",
-        why: "AI agents execute multi-step analytical reasoning and invoke external tools autonomously to complete complex goals.",
-        when: "~16 hours total time commitment.",
-        where: "LangGraph Documentation & CrewAI Tutorials.",
-        how: "1. Build a multi-agent research workflow using LangGraph.\n2. Equip agents with web search and calculator execution tools.\n3. Publish Guidebook Chapter #18 on stateful agent graph design."
+        asn: "Observability Pipeline — Instrumentation with LangSmith Tracing",
+        blog: 'Guidebook #23 — "Production Observability and Tracing for AI Agents"',
+        what: "Agent execution tracing using LangSmith, latency monitoring, token cost tracking, call stack inspection, and failure debugging.",
+        why: "Observability tooling reveals internal agent reasoning paths and isolates failure points in production.",
+        when: "~15 hours total time commitment.",
+        where: "LangSmith Official Documentation.",
+        how: "1. Instrument multi-agent graph with LangSmith tracing.\n2. Publish Guidebook Chapter #23."
       },
       {
-        w: 46,
-        title: "MLOps: Model Deployment, Monitoring & MLflow",
-        resource: "MLflow Documentation",
+        w: 55,
+        title: "Production Infrastructure & Cloud Deployment (AWS / Kubernetes)",
+        resource: "AWS Cloud Architecture & Kubernetes Essentials",
         type: "odd",
-        challenge: "MLOps Pipeline Challenge — Log experiments & serve model via Triton / vLLM.",
-        video: 'Devlog #23 — "MLOps: Experiment Tracking with MLflow & vLLM Serving"',
-        what: "MLOps lifecycle, Model Registry, Experiment Tracking (MLflow, WandB), Model Serving (vLLM, Triton), API monitoring, and Model Drift detection.",
-        why: "MLOps bridges AI research models with stable, monitored production infrastructure.",
+        challenge: "Cloud Deployment Challenge — Deploy containerized agent platform to AWS / Cloud host.",
+        video: 'Devlog #28 — "Deploying Production AI Systems to Cloud Infrastructure"',
+        what: "Cloud deployment strategies: Provisioning AWS resources, SSL configuration, domain setup, environment variable security, and basic Kubernetes deployment manifests.",
+        why: "Cloud infrastructure deployment transforms local software builds into resilient global services.",
         when: "~16 hours total time commitment.",
-        where: "MLflow Official Docs & vLLM Guides.",
-        how: "1. Log hyperparameter search runs and artifacts using MLflow.\n2. Deploy an optimized inference server using vLLM or FastAPI.\n3. Record Devlog #23 demonstrating real-time model monitoring."
+        where: "AWS & Kubernetes Official Documentation.",
+        how: "1. Deploy containerized platform to cloud infrastructure with managed PostgreSQL and Redis.\n2. Record Devlog #28."
       },
       {
-        w: 47,
-        title: "Capstone Sprint 1 — AI Systems Architecture Plan",
-        resource: "Capstone Architecture Guide",
+        w: 56,
+        title: "Midterm Exam — Autonomous Multi-Agent Task Orchestrator",
+        resource: "Midterm Exam Brief",
+        type: "midterm",
+        video: "Midterm Multi-Agent System Walkthrough",
+        what: "Deliver Autonomous Multi-Agent Task Orchestrator System: A deployed agent framework featuring stateful LangGraph nodes, custom execution tools, and LangSmith tracing instrumentation.",
+        why: "Validates multi-agent orchestration, state management, and operational tracing capabilities.",
+        when: "~22 hours dedicated exam sprint.",
+        where: "GitHub Repository Submission.",
+        how: "1. Deploy stateful multi-agent system.\n2. Submit repo with DEFENSE.md and video walkthrough."
+      },
+      {
+        w: 57,
+        title: "Capstone Sprint 1: Agent Core & Graph State Architecture",
+        resource: "LangGraph & Capstone Spec",
         type: "odd",
-        challenge: "System Blueprint — Design Flagship AI Engineering System Architecture.",
-        video: 'Devlog #24 — "Flagship AI Capstone: Systems Architecture & Schema Design"',
-        what: "Executing Capstone Sprint 1: Formulating technical specification documents, dynamic RAG pipelines, data ingestion workflows, and UI component integration.",
-        why: "Ensures comprehensive system architecture planning before final production deployment.",
+        challenge: "Sprint 1 Deliverable — Stateful multi-agent graph engine with dynamic routing.",
+        video: 'Devlog #29 — "Building Flagship Capstone State Graphs"',
+        what: "Implementing primary multi-agent graph architecture, node state definition, and routing logic.",
+        why: "Sprint 1 establishes core agent decision engine logic.",
         when: "~20 hours dedicated project sprint.",
-        where: "GitHub Repository & System Architecture Specs.",
-        how: "1. Define system schema, database models, RAG vector index structures, and API routes.\n2. Implement core backend AI engine pipelines.\n3. Record Devlog #24 presenting your AI system blueprint."
+        where: "Flagship Capstone Repo.",
+        how: "1. Build and test primary LangGraph agent nodes locally."
       },
       {
-        w: 48,
-        title: "Capstone Launch & Special Quest",
-        resource: "Capstone Launch",
+        w: 58,
+        title: "Capstone Sprint 2: Full-Stack Web Interface & Real-Time Monitoring",
+        resource: "React / HTMX + Django",
+        type: "even",
+        asn: "Sprint 2 Deliverable — Production Web Interface & Live Agent State Stream",
+        blog: 'Guidebook #24 — "Building Web Interfaces for Autonomous Systems"',
+        what: "Building web dashboard interface displaying real-time agent execution status, thought logs, and interactive intervention controls.",
+        why: "Real-time visual feedback lets users monitor autonomous agent decision processes live.",
+        when: "~20 hours dedicated project sprint.",
+        where: "Flagship Capstone Repo.",
+        how: "1. Connect frontend web dashboard to backend live agent execution stream.\n2. Publish Guidebook Chapter #24."
+      },
+      {
+        w: 59,
+        title: "Capstone Sprint 3: Production Database & Persistence Storage",
+        resource: "PostgreSQL & Redis",
+        type: "odd",
+        challenge: "Sprint 3 Deliverable — Persistent agent state storage with PostgreSQL & Redis.",
+        video: 'Devlog #30 — "Persisting Multi-Agent Memory in Production Databases"',
+        what: "Database schema implementation for multi-tenant agent execution memory, user authentication, and persistent run logs.",
+        why: "Persistent state storage allows agents to pause, resume, and retain long-term memory across sessions.",
+        when: "~20 hours dedicated project sprint.",
+        where: "Flagship Capstone Repo.",
+        how: "1. Wire state graphs to PostgreSQL database persistence layers."
+      },
+      {
+        w: 60,
+        title: "Capstone Sprint 4: Automated CI/CD Pipeline & GitHub Actions",
+        resource: "GitHub Actions & DevOps Guides",
+        type: "even",
+        asn: "Sprint 4 Deliverable — Automated GitHub Actions CI/CD Deployment Pipeline",
+        blog: 'Guidebook #25 — "Automating CI/CD Workflows for AI Systems"',
+        what: "Configuring `.github/workflows/main.yml`, automated test suite execution on pull requests, linting checks, and zero-downtime automated deployment.",
+        why: "CI/CD automation guarantees continuous integration stability and rapid release cycles.",
+        when: "~18 hours total time commitment.",
+        where: "GitHub Actions Official Docs.",
+        how: "1. Configure GitHub Actions workflow running tests and deploying updates automatically on git push.\n2. Publish Guidebook Chapter #25."
+      },
+      {
+        w: 61,
+        title: "Capstone Sprint 5: Performance Optimization & Load Testing",
+        resource: "Locust / K6 Performance Tools",
+        type: "odd",
+        challenge: "Sprint 5 Deliverable — Load test suite validating low-latency agent routing.",
+        video: 'Devlog #31 — "Optimizing Multi-Agent System Performance & Latency"',
+        what: "Database indexing optimization, Redis caching layers, async execution tuning, and load testing using Locust / K6.",
+        why: "Performance tuning ensures system stability under heavy user load.",
+        when: "~18 hours total time commitment.",
+        where: "Locust.io Documentation.",
+        how: "1. Conduct load testing and optimize database query indexing.\n2. Record Devlog #31."
+      },
+      {
+        w: 62,
+        title: "Capstone Sprint 6: Open-Source Documentation & Quality Audit",
+        resource: "Open Source Maintenance Guides",
+        type: "even",
+        asn: "Sprint 6 Deliverable — Open-Source Developer Suite & Zero-Bug Audit",
+        blog: 'Guidebook #26 — "Maintaining High-Quality Open-Source Repositories"',
+        what: "Drafting comprehensive README.md, API documentation, contribution guidelines (CONTRIBUTING.md), and obtaining SonarQube quality clearance.",
+        why: "Comprehensive documentation enables community adoption and project maintainability.",
+        when: "~18 hours total time commitment.",
+        where: "GitHub Open Source Guides.",
+        how: "1. Finalize open-source developer docs and pass SonarQube audit.\n2. Publish Guidebook Chapter #26."
+      },
+      {
+        w: 63,
+        title: "Capstone Final Polish & Security Hardening",
+        resource: "Security Audit & Production Release Prep",
+        type: "odd",
+        challenge: "Final Penetration Audit — Complete security audit & code polish.",
+        video: 'Devlog #32 — "Final Pre-Launch Hardening & Polish"',
+        what: "Conducting end-to-end security penetration testing, API key encryption verification, bug fixing, and final UI styling pass.",
+        why: "Final security hardening guarantees production reliability prior to public launch.",
+        when: "~20 hours total time commitment.",
+        where: "Flagship Capstone Repo.",
+        how: "1. Complete final security audit and verify zero open vulnerability reports."
+      },
+      {
+        w: 64,
+        title: "Graduation Flagship Capstone Launch & Defense",
+        resource: "Graduation Capstone Release",
         type: "final",
-        blog: 'Guidebook Chapter #19 — "My Journey to AI Systems Engineer"',
-        specialQuest: "Special Quest Gate: Deploy your Flagship AI System live to production cloud infrastructure to graduate and earn your AI Systems Engineer title!",
+        blog: 'Guidebook #27 — "My Journey to Autonomous AI Systems Engineer & Product Architect"',
+        specialQuest: "Special Quest Gate: Complete Flagship Capstone production release, upload academic defense presentation, and submit open-source contribution.",
         specialQuestLinks: [
-          { name: "Hugging Face Spaces Deployment", url: "https://huggingface.co/spaces" },
-          { name: "Vercel Cloud Platform", url: "https://vercel.com/" }
+          { name: "LangChain Open Source Repository", url: "https://github.com/langchain-ai/langchain" },
+          { name: "CrewAI Framework Repo", url: "https://github.com/joaomdmoura/crewAI" },
+          { name: "AWS Cloud Architecture Portal", url: "https://aws.amazon.com/" }
         ],
-        what: "Deploy your Flagship Applied AI System (combining RAG, fine-tuned models, vector storage, and an interactive interface) live to production servers.",
-        why: "Marks overall graduation and confirms AI Systems Engineer credential status.",
+        what: "Launch Enterprise Autonomous AI Systems Platform live to production cloud servers, present formal academic defense video, and graduate from the Applied Computer Science & AI Engineering Program!",
+        why: "Unlocks your ultimate graduation and earns the primary official professional title: 'Autonomous AI Systems Engineer & Product Architect'!",
         when: "~25 hours final sprint.",
-        where: "Live Cloud Deployment & GitHub.",
-        how: "1. Complete final model optimization, load testing, and live web deployment.\n2. Submit public demo links and GitHub repository documentation.\n3. Fulfill your final Special Quest requirement.\n4. Publish Guidebook Chapter #19 summarizing your learning pathway."
+        where: "Live Production Cloud Deployment & HCA LMS.",
+        how: "1. Launch Flagship Capstone live to cloud servers.\n2. Submit academic defense video walkthrough.\n3. Publish Guidebook Chapter #27 summarizing your 64-week engineering journey."
       }
     ]
   }
@@ -723,7 +899,7 @@ function getQuestItemsForWeek(wObj) {
   list.push({
     tag: "CORE MODULE STUDY",
     title: `Read & Master: ${wObj.title}`,
-    desc: `Primary Resource: ${wObj.resource}. Complete assigned documentation, video modules, and syntax exercises.`
+    desc: `Primary Resource: ${wObj.resource}. Complete assigned textbook chapters, documentation, and exercises.`
   });
 
   if (wObj.type === "odd") {
@@ -736,19 +912,19 @@ function getQuestItemsForWeek(wObj) {
     list.push({
       tag: "ASSIGNMENT BRIEF",
       title: `Assignment: ${wObj.asn}`,
-      desc: "Build and commit a functional project brief to your public GitHub repository."
+      desc: "Build and commit a functional application brief to your public GitHub repository."
     });
   } else if (wObj.type === "midterm") {
     list.push({
-      tag: "MIDTERM PROJECT SPRINT",
-      title: `Midterm Project Sprint: ${wObj.title}`,
-      desc: "Synthesize all concepts learned so far into a complete deployed project from the available project options."
+      tag: "MIDTERM PRACTICAL EXAM",
+      title: `Midterm Practical Exam: ${wObj.title}`,
+      desc: "Deliver practical midterm exam project package complete with DEFENSE.md and demo video."
     });
   } else if (wObj.type === "final") {
     list.push({
       tag: "FLAGSHIP CAPSTONE SPRINT",
-      title: `Capstone Final Sprint: ${wObj.title}`,
-      desc: "Build, polish, test, and launch your major milestone capstone application live to the web."
+      title: `Capstone Final Release: ${wObj.title}`,
+      desc: "Build, polish, test, and launch your capstone application live to cloud infrastructure."
     });
   }
 
@@ -772,7 +948,7 @@ function getQuestItemsForWeek(wObj) {
     list.push({
       tag: "SPECIAL QUEST",
       title: `${wObj.specialQuest}`,
-      desc: "Must fulfill 1 free career/community action item from verified sources to clear the semester gate."
+      desc: "Must fulfill career/community action item from verified resources to clear the semester gate."
     });
   }
 
@@ -797,22 +973,22 @@ const DEFAULT_STATE = {
     titles: [],
     earnedBalanceLogs: {},
     shown70Popups: [],
-    shown100Popups: []
+    shown100Popups: [],
   },
   startDate: new Date().toISOString(),
   currentTheme: "light",
   activeWeekSelected: 1,
-  questStates: {}
+  questStates: {},
 };
 
-let state = JSON.parse(localStorage.getItem("HCA_LMS_STATE_V3")) || DEFAULT_STATE;
+let state = JSON.parse(localStorage.getItem("HCA_LMS_STATE_V4")) || DEFAULT_STATE;
 if (!state.startDate) state.startDate = new Date().toISOString();
 if (!state.user.shown70Popups) state.user.shown70Popups = [];
 if (!state.user.shown100Popups) state.user.shown100Popups = [];
 if (!state.user.name) state.user.name = "Developer";
 
 function saveState() {
-  localStorage.setItem("HCA_LMS_STATE_V3", JSON.stringify(state));
+  localStorage.setItem("HCA_LMS_STATE_V4", JSON.stringify(state));
   renderApp();
 }
 
@@ -840,7 +1016,7 @@ function getWeekDeadlineText(weekNum) {
 
 function getSemesterDeadlineText(semNum) {
   const startMs = new Date(state.startDate).getTime();
-  const semEndMs = startMs + semNum * 12 * 7 * 24 * 60 * 60 * 1000;
+  const semEndMs = startMs + semNum * 16 * 7 * 24 * 60 * 60 * 1000;
   const nowMs = Date.now();
   const diffMs = semEndMs - nowMs;
 
@@ -859,6 +1035,7 @@ function getSemesterDeadlineText(semNum) {
    ========================================================================== */
 function calculateSemesterProgress(semNum) {
   const semData = ROADMAP.find((s) => s.sem === semNum);
+  if (!semData) return { total: 0, completed: 0, pct: 0 };
   let totalItems = 0;
   let completedItems = 0;
 
@@ -872,7 +1049,7 @@ function calculateSemesterProgress(semNum) {
   return {
     total: totalItems,
     completed: completedItems,
-    pct: totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0
+    pct: totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0,
   };
 }
 
@@ -887,15 +1064,15 @@ function calculateOverallProgress() {
   return {
     total: total,
     completed: completed,
-    pct: total > 0 ? Math.round((completed / total) * 100) : 0
+    pct: total > 0 ? Math.round((completed / total) * 100) : 0,
   };
 }
 
 function getWeekUnlockStatus(weekNum) {
   if (weekNum === 1) return true;
 
-  const currentSemNum = Math.ceil(weekNum / 12);
-  const isFirstWeekOfSemester = (weekNum - 1) % 12 === 0;
+  const currentSemNum = Math.ceil(weekNum / 16);
+  const isFirstWeekOfSemester = (weekNum - 1) % 16 === 0;
 
   if (isFirstWeekOfSemester && currentSemNum > 1) {
     const prevSemProgress = calculateSemesterProgress(currentSemNum - 1);
@@ -931,7 +1108,7 @@ function checkMilestonesAndTriggers() {
 }
 
 function getCurrentTitle() {
-  if (state.user.titles.length === 0) return "Aspiring Engineer";
+  if (state.user.titles.length === 0) return "Junior Frontend Developer & Scripting Specialist (Student)";
   return state.user.titles[state.user.titles.length - 1];
 }
 
@@ -1036,7 +1213,7 @@ function switchTab(tabId) {
     accountbook: ["Account Book", "Track your accountability targets against logged earnings"],
     schedule: ["Schedule & Routine", "Daily and weekly time investment structures"],
     mycourse: ["My Course", "Full course syllabus, semester titles, and certificates"],
-    profile: ["Student Profile", "Manage your titles, display name, and export progress cards"]
+    profile: ["Student Profile", "Manage your titles, display name, and export progress cards"],
   };
 
   if (titleMap[tabId]) {
@@ -1059,7 +1236,7 @@ function renderDashboard() {
   document.getElementById("full-course-progress-text").innerText = `${overall.pct}%`;
   document.getElementById("full-course-items-text").innerText = `${overall.completed} / ${overall.total} quest items complete`;
 
-  const currentSemNum = Math.min(4, Math.ceil(state.activeWeekSelected / 12));
+  const currentSemNum = Math.min(4, Math.ceil(state.activeWeekSelected / 16));
   const semProgress = calculateSemesterProgress(currentSemNum);
   const semData = ROADMAP.find((s) => s.sem === currentSemNum);
 
@@ -1107,7 +1284,7 @@ function renderDashboard() {
     titlesContainer.innerHTML = state.user.titles
       .map(
         (t) =>
-          `<span style="display:inline-flex; align-items:center; gap:0.4rem; background:var(--surface2); padding:0.3rem 0.6rem; border-radius:8px; margin-right:0.4rem; margin-bottom:0.4rem; font-size:0.85rem;"><i class="fa-solid fa-award" style="color:var(--gold);"></i> ${t}</span>`
+          `<span style="display:inline-flex; align-items:center; gap:0.4rem; background:var(--surface2); padding:0.3rem 0.6rem; border-radius:8px; margin-right:0.4rem; margin-bottom:0.4rem; font-size:0.85rem;"><i class="fa-solid fa-award" style="color:var(--gold);"></i> ${t}</span>`,
       )
       .join("");
   }
@@ -1115,7 +1292,7 @@ function renderDashboard() {
 
 /* LEARN PATHWAY */
 function renderLearnPathway() {
-  const currentSemNum = Math.ceil(state.activeWeekSelected / 12);
+  const currentSemNum = Math.ceil(state.activeWeekSelected / 16);
   const semData = ROADMAP.find((s) => s.sem === currentSemNum);
   document.getElementById("learn-sem-title").innerText = `Semester ${semData.sem} – ${semData.title}`;
 
@@ -1126,7 +1303,7 @@ function renderLearnPathway() {
     btn.className = `week-chip ${s.sem === currentSemNum ? "active" : ""}`;
     btn.innerText = `Semester ${s.sem}`;
     btn.onclick = () => {
-      state.activeWeekSelected = (s.sem - 1) * 12 + 1;
+      state.activeWeekSelected = (s.sem - 1) * 16 + 1;
       saveState();
     };
     semBtnContainer.appendChild(btn);
@@ -1173,7 +1350,7 @@ function renderLearnPathway() {
 
 function openWeekDrawer(weekNum) {
   const wObj = getWeekData(weekNum);
-  const semNum = Math.ceil(weekNum / 12);
+  const semNum = Math.ceil(weekNum / 16);
 
   document.getElementById("drawer-week-tag").innerText = `SEMESTER ${semNum} · WEEK ${wObj.w}`;
   document.getElementById("drawer-week-title").innerText = wObj.title;
@@ -1195,7 +1372,7 @@ function openWeekDrawer(weekNum) {
   const whySec = document.createElement("div");
   whySec.className = "drawer-section";
   whySec.innerHTML = `
-    <div class="drawer-section-title"><i class="fa-solid fa-lightbulb"></i> WHY (Career Relevance & Impact)</div>
+    <div class="drawer-section-title"><i class="fa-solid fa-lightbulb"></i> WHY (Career Relevance & Industry Impact)</div>
     <p style="line-height:1.6;">${wObj.why}</p>
   `;
   body.appendChild(whySec);
@@ -1214,7 +1391,7 @@ function openWeekDrawer(weekNum) {
   const whereSec = document.createElement("div");
   whereSec.className = "drawer-section";
   whereSec.innerHTML = `
-    <div class="drawer-section-title"><i class="fa-solid fa-location-dot"></i> WHERE (Learning Material & Resources)</div>
+    <div class="drawer-section-title"><i class="fa-solid fa-location-dot"></i> WHERE (Learning Material & Textbooks)</div>
     <p>Primary Resource: <strong>${wObj.resource}</strong></p>
     <p style="margin-top:0.3rem;">References: ${wObj.where}</p>
   `;
@@ -1229,45 +1406,7 @@ function openWeekDrawer(weekNum) {
   `;
   body.appendChild(howSec);
 
-  if (wObj.projectOptions && wObj.projectOptions.length > 0) {
-    const projSec = document.createElement("div");
-    projSec.className = "drawer-section";
-    projSec.style.borderColor = "var(--gold)";
-
-    let optionsHTML = `
-      <div class="drawer-section-title"><i class="fa-solid fa-diagram-project"></i> PROJECT BRIEFS & OPTIONS (Choose 1)</div>
-      <p style="font-size:0.85rem; color:var(--ink-dim); margin-bottom:1rem;">Select one of the project options below:</p>
-      <div style="display:flex; flex-direction:column; gap:0.75rem;">
-    `;
-
-    wObj.projectOptions.forEach((opt) => {
-      optionsHTML += `
-        <div style="background:var(--surface); border:1px solid var(--line); padding:1rem; border-radius:10px;">
-          <h4 style="color:var(--plum); font-size:0.95rem;">${opt.title}</h4>
-          <p style="font-size:0.82rem; color:var(--ink-dim); margin:0.3rem 0 0.6rem 0;">${opt.desc}</p>
-        </div>
-      `;
-    });
-
-    optionsHTML += `</div>`;
-
-    if (wObj.aiPrompt) {
-      optionsHTML += `
-        <div style="margin-top:1.25rem; padding-top:1rem; border-top:1px dashed var(--line);">
-          <div style="font-size:0.8rem; font-weight:800; color:var(--gold); margin-bottom:0.4rem;">
-            <i class="fa-solid fa-robot"></i> AI PROJECT IDEA GENERATOR PROMPT
-          </div>
-          <div style="position:relative; background:var(--surface2); padding:0.85rem; border-radius:8px; border:1px solid var(--line); font-size:0.8rem; color:var(--ink); font-family:monospace; line-height:1.4;">
-            ${wObj.aiPrompt}
-          </div>
-        </div>
-      `;
-    }
-
-    projSec.innerHTML = optionsHTML;
-    body.appendChild(projSec);
-  }
-
+  // SPECIAL QUEST SECTION
   if (wObj.specialQuest) {
     const sqSec = document.createElement("div");
     sqSec.className = "drawer-section";
@@ -1275,10 +1414,44 @@ function openWeekDrawer(weekNum) {
     sqSec.innerHTML = `
       <div class="drawer-section-title" style="color:var(--sage);"><i class="fa-solid fa-star"></i> SPECIAL QUEST (Semester Gate)</div>
       <p style="font-size:0.9rem; font-weight:700; color:var(--ink);">${wObj.specialQuest}</p>
+      <div style="display:flex; flex-direction:column; gap:0.4rem; margin-top:0.6rem;">
+        ${
+          wObj.specialQuestLinks
+            ? wObj.specialQuestLinks
+                .map(
+                  (link) =>
+                    `<a href="${link.url}" target="_blank" rel="noopener" style="font-size:0.82rem; color:var(--plum); font-weight:600; display:inline-flex; align-items:center; gap:0.4rem;"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${link.name}</a>`,
+                )
+                .join("")
+            : ""
+        }
+      </div>
     `;
     body.appendChild(sqSec);
   }
 
+  // DETAILED QUEST BREAKDOWN LIST
+  const questBreakdown = document.createElement("div");
+  questBreakdown.className = "drawer-section";
+  questBreakdown.innerHTML = `
+    <div class="drawer-section-title"><i class="fa-solid fa-tasks"></i> WEEKLY QUESTS BREAKDOWN</div>
+    <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.5rem;">
+      ${getQuestItemsForWeek(wObj)
+        .map(
+          (q, i) => `
+        <div style="background:var(--surface); border:1px solid var(--line); padding:0.75rem; border-radius:8px;">
+          <span style="font-size:0.7rem; font-weight:800; color:var(--gold); text-transform:uppercase;">${i + 1}. ${q.tag}</span>
+          <div style="font-size:0.88rem; font-weight:700; color:var(--ink);">${q.title}</div>
+          <div style="font-size:0.8rem; color:var(--ink-dim); margin-top:0.2rem;">${q.desc}</div>
+        </div>
+      `,
+        )
+        .join("")}
+    </div>
+  `;
+  body.appendChild(questBreakdown);
+
+  // CTA Button
   const ctaDiv = document.createElement("div");
   ctaDiv.style.marginTop = "0.5rem";
   ctaDiv.innerHTML = `<button class="btn-primary" style="width:100%;" onclick="jumpToQuestsFromDrawer(${wObj.w})">Open Quests Checklist for Week ${wObj.w} &rsaquo;</button>`;
@@ -1303,7 +1476,7 @@ function renderQuests() {
   const weekBar = document.getElementById("quests-week-bar");
   weekBar.innerHTML = "";
 
-  for (let w = 1; w <= 48; w++) {
+  for (let w = 1; w <= 64; w++) {
     const isUnlocked = getWeekUnlockStatus(w);
     const chip = document.createElement("div");
     chip.className = `week-chip ${w === state.activeWeekSelected ? "active" : ""} ${!isUnlocked ? "disabled" : ""}`;
@@ -1318,7 +1491,7 @@ function renderQuests() {
   }
 
   const weekObj = getWeekData(state.activeWeekSelected);
-  const currentSemNum = Math.ceil(weekObj.w / 12);
+  const currentSemNum = Math.ceil(weekObj.w / 16);
 
   document.getElementById("quest-header-sem").innerText = `SEMESTER ${currentSemNum} · WEEK ${weekObj.w}`;
   document.getElementById("quest-header-title").innerText = weekObj.title;
@@ -1356,12 +1529,12 @@ function renderQuests() {
 /* ACCOUNT BOOK TAB */
 function renderAccountBook() {
   const targetPerMonth = 400;
-  let totalExpected = 11 * targetPerMonth;
+  let totalExpected = 16 * targetPerMonth;
   let totalLogged = 0;
 
   const select = document.getElementById("log-month-select");
   select.innerHTML = "";
-  for (let m = 1; m <= 11; m++) {
+  for (let m = 1; m <= 16; m++) {
     const opt = document.createElement("option");
     opt.value = m;
     opt.innerText = `Month ${m}`;
@@ -1371,7 +1544,7 @@ function renderAccountBook() {
   const tbody = document.getElementById("account-log-tbody");
   tbody.innerHTML = "";
 
-  for (let m = 1; m <= 11; m++) {
+  for (let m = 1; m <= 16; m++) {
     const logged =
       state.user.earnedBalanceLogs[m] !== undefined
         ? Number(state.user.earnedBalanceLogs[m])
@@ -1417,27 +1590,26 @@ function renderMyCourse() {
 
   ROADMAP.forEach((s) => {
     const p = calculateSemesterProgress(s.sem);
-    const isUnlocked = getWeekUnlockStatus((s.sem - 1) * 12 + 1);
+    const isUnlocked = getWeekUnlockStatus((s.sem - 1) * 16 + 1);
 
     const card = document.createElement("div");
     card.className = `semester-card ${!isUnlocked ? "locked" : ""}`;
     card.innerHTML = `
-          <div style="display:flex; justify-space-between; align-items:flex-start; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
             <div>
-              <span style="font-size:0.75rem; font-weight:700; color:var(--gold); text-transform:uppercase;">SEMESTER ${s.sem}</span>
+              <span style="font-size:0.75rem; font-weight:700; color:var(--gold); text-transform:uppercase;">SEMESTER ${s.sem} (16 WEEKS)</span>
               <h3 class="brand-font" style="font-size:1.3rem;">${s.title}</h3>
             </div>
             <div>${getSemesterDeadlineText(s.sem)}</div>
           </div>
-          <p style="font-size:0.85rem; color:var(--ink-dim); margin-bottom:1rem;">
-            Title Unlock: <strong style="color:var(--gold);"><i class="fa-solid ${s.badgeIcon}"></i> ${s.unlockTitle}</strong>
-          </p>
+          <p style="font-size:0.82rem; color:var(--ink-dim); margin:0.5rem 0 1rem 0;">${s.resources}</p>
+
           <div class="progress-bar-container">
-            <div class="progress-bar-fill" style="width:${p.pct}%"></div>
+            <div class="progress-bar-fill" style="width: ${p.pct}%"></div>
           </div>
-          <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--ink-dim); margin-top:0.4rem;">
-            <span>${p.pct}% Completed</span>
-            <span>${p.completed}/${p.total} Quests</span>
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--ink-dim); margin-top:0.35rem; align-items:center;">
+            <span><strong>${p.pct}%</strong> complete (${p.completed}/${p.total} quests)</span>
+            <span style="color:var(--plum); font-weight:700;">Title: "${s.unlockTitle}"</span>
           </div>
         `;
     container.appendChild(card);
@@ -1446,104 +1618,187 @@ function renderMyCourse() {
 
 /* PROFILE TAB */
 function renderProfile() {
+  let targetSem = ROADMAP.find((s) => calculateSemesterProgress(s.sem).pct < 70);
+  const encouragementEl = document.getElementById("badge-encouragement-text");
+
+  if (targetSem) {
+    encouragementEl.innerText = `Reach 70% in Semester ${targetSem.sem} to earn "${targetSem.unlockTitle}" proudly!`;
+  } else {
+    encouragementEl.innerText = `Congratulations! You have earned all official titles across all semesters!`;
+  }
+
   const titlesList = document.getElementById("profile-titles-list");
   titlesList.innerHTML = "";
 
   if (state.user.titles.length === 0) {
-    titlesList.innerHTML = `<span style="font-size:0.85rem; color:var(--ink-dim);">No titles unlocked yet. Reach 70% in any semester to claim its title!</span>`;
+    titlesList.innerHTML = `<p style="font-size:0.88rem; color:var(--ink-dim);">No titles earned yet. Reach 70% completion in Semester 1 to unlock your first title certification.</p>`;
   } else {
-    state.user.titles.forEach((title) => {
-      const semObj = ROADMAP.find((s) => s.unlockTitle === title);
-      const icon = semObj ? semObj.badgeIcon : "fa-award";
-      const bg = semObj ? semObj.badgeBg : "#2563EB";
-
-      const badge = document.createElement("div");
-      badge.className = "title-badge";
-      badge.style.background = bg;
-      badge.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${title}</span>`;
-      titlesList.appendChild(badge);
+    ROADMAP.forEach((s) => {
+      const isEarned = state.user.titles.includes(s.unlockTitle);
+      if (isEarned) {
+        const item = document.createElement("div");
+        item.className = "profile-badge-card";
+        item.innerHTML = `
+          <div class="badge-icon-circle" style="background:${s.badgeBg};"><i class="fa-solid ${s.badgeIcon}"></i></div>
+          <div>
+            <h4 style="font-size:1rem; color:var(--ink);">${s.unlockTitle}</h4>
+            <p style="font-size:0.78rem; color:var(--ink-dim);">Semester ${s.sem} Verified Graduate · ${s.title}</p>
+          </div>
+        `;
+        titlesList.appendChild(item);
+      }
     });
-  }
-
-  const encouragementText = document.getElementById("badge-encouragement-text");
-  const nextSem = ROADMAP.find((s) => !state.user.titles.includes(s.unlockTitle));
-  if (nextSem) {
-    encouragementText.innerText = `Reach 70% in Semester ${nextSem.sem} to earn "${nextSem.unlockTitle}" proudly!`;
-  } else {
-    encouragementText.innerText = `Master Systems Engineer! You have unlocked all titles in the Applied CS & AI Engineering Pathway!`;
   }
 }
 
-function triggerCongratsModal(semNum, pct) {
-  const modal = document.getElementById("congrats-modal-overlay");
-  const semData = ROADMAP.find((s) => s.sem === semNum);
-  const title = document.getElementById("modal-title");
-  const msg = document.getElementById("modal-message");
+/* REAL-TIME ACHIEVEMENT CARD GENERATOR */
+function generateAchievementCard() {
+  const canvas = document.getElementById("card-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
 
-  if (pct === 70) {
-    title.innerText = `Title Unlocked: ${semData.unlockTitle}!`;
-    msg.innerText = `Congratulations! You hit 70% in Semester ${semNum} (${semData.title}) and officially unlocked the title of ${semData.unlockTitle}!`;
-  } else if (pct === 100) {
-    title.innerText = `Semester ${semNum} Mastered!`;
-    msg.innerText = `Incredible work! You achieved 100% completion in Semester ${semNum} (${semData.title})!`;
-  }
-  modal.classList.add("open");
+  ctx.fillStyle = "#110B15";
+  ctx.fillRect(0, 0, 2000, 2000);
+
+  const grad = ctx.createLinearGradient(0, 0, 2000, 2000);
+  grad.addColorStop(0, "#4A0C37");
+  grad.addColorStop(0.5, "#1C1322");
+  grad.addColorStop(1, "#110B15");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 2000, 2000);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "800 48px 'Space Grotesk', sans-serif";
+  ctx.fillText("APPLIED COMPUTER SCIENCE & AI ENGINEERING", 120, 160);
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 92px 'Space Grotesk', sans-serif";
+  ctx.fillText("LEARNING ACHIEVEMENT", 120, 270);
+
+  ctx.fillStyle = "#281B30";
+  ctx.beginPath();
+  ctx.roundRect(120, 340, 1760, 280, 32);
+  ctx.fill();
+
+  ctx.fillStyle = "#D9469F";
+  ctx.beginPath();
+  ctx.arc(240, 480, 80, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 80px 'Space Grotesk', sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText(state.user.name.charAt(0).toUpperCase(), 240, 508);
+
+  ctx.textAlign = "left";
+  ctx.font = "800 64px 'Space Grotesk', sans-serif";
+  ctx.fillText(state.user.name, 360, 450);
+
+  ctx.fillStyle = "#F59E0B";
+  ctx.font = "600 42px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText(`Title: ${getCurrentTitle()}`, 360, 520);
+
+  const overall = calculateOverallProgress();
+  const portfolioCount = countCompletedProjects();
+  const shippedCount = countShippedContent();
+
+  const stats = [
+    { label: "OVERALL PROGRESS", val: `${overall.pct}%` },
+    { label: "COMPLETED QUESTS", val: `${overall.completed}/${overall.total}` },
+    { label: "EXAM & TERM PROJECTS", val: `${portfolioCount}/8` },
+    { label: "ITEMS SHIPPED", val: `${shippedCount}` },
+  ];
+
+  stats.forEach((s, i) => {
+    const x = 120 + (i % 2) * 900;
+    const y = 680 + Math.floor(i / 2) * 360;
+
+    ctx.fillStyle = "#1C1322";
+    ctx.strokeStyle = "#372642";
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.roundRect(x, y, 840, 300, 28);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#BBA9BC";
+    ctx.font = "700 36px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillText(s.label, x + 50, y + 90);
+
+    ctx.fillStyle = "#D9469F";
+    ctx.font = "800 90px 'Space Grotesk', sans-serif";
+    ctx.fillText(s.val, x + 50, y + 210);
+  });
+
+  ctx.fillStyle = "#281B30";
+  ctx.beginPath();
+  ctx.roundRect(120, 1460, 1760, 360, 32);
+  ctx.fill();
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.font = "800 52px 'Space Grotesk', sans-serif";
+  ctx.fillText("VERIFIED ACADEMIC RECORD & COMPETENCY PROFILE", 180, 1560);
+
+  ctx.fillStyle = "#BBA9BC";
+  ctx.font = "400 36px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText("Autonomous AI Systems & Full-Stack Engineering Program", 180, 1640);
+  ctx.fillText(
+    `Generated on: ${new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`,
+    180,
+    1720,
+  );
+
+  const link = document.createElement("a");
+  link.download = `AI_Engineering_Achievement_${state.user.name.replace(/\s+/g, "_")}.png`;
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
+
+/* CONGRATS POPUP MODAL */
+function triggerCongratsModal(semNum, pct) {
+  const semData = ROADMAP.find((s) => s.sem === semNum);
+  const title = pct === 70 ? "Professional Title Unlocked!" : "Semester Complete!";
+  const msg =
+    pct === 70
+      ? `Congratulations! You reached 70% completion in Semester ${semNum} (${semData.title}) and earned the official professional title "${semData.unlockTitle}"!`
+      : `Outstanding work! You reached 100% completion in Semester ${semNum} (${semData.title})!`;
+
+  document.getElementById("modal-title").innerText = title;
+  document.getElementById("modal-message").innerText = msg;
+  document.getElementById("congrats-modal-overlay").classList.add("open");
 }
 
 function closeCongratsModal() {
   document.getElementById("congrats-modal-overlay").classList.remove("open");
 }
 
+/* RESET ALL PROGRESS */
 function resetAllProgress() {
-  if (confirm("Are you sure you want to reset all progress? This action cannot be undone.")) {
-    localStorage.removeItem("HCA_LMS_STATE_V3");
-    state = JSON.parse(JSON.stringify(DEFAULT_STATE));
-    state.startDate = new Date().toISOString();
+  if (
+    confirm(
+      "Are you sure you want to reset all progress, titles, and quest states? This action cannot be undone.",
+    )
+  ) {
+    state = {
+      user: {
+        name: "Developer",
+        titles: [],
+        earnedBalanceLogs: {},
+        shown70Popups: [],
+        shown100Popups: [],
+      },
+      startDate: new Date().toISOString(),
+      currentTheme: "light",
+      activeWeekSelected: 1,
+      questStates: {},
+    };
     saveState();
   }
 }
 
-function generateAchievementCard() {
-  const canvas = document.getElementById("card-canvas");
-  const ctx = canvas.getContext("2d");
-
-  const grad = ctx.createLinearGradient(0, 0, 2000, 2000);
-  grad.addColorStop(0, "#0F172A");
-  grad.addColorStop(1, "#1E1B4B");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, 2000, 2000);
-
-  ctx.fillStyle = "#FFFFFF";
-  ctx.font = "bold 90px 'Space Grotesk', sans-serif";
-  ctx.fillText("HUMANITARIAN CODE ACADEMY", 150, 220);
-
-  ctx.fillStyle = "#F59E0B";
-  ctx.font = "bold 65px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("APPLIED COMPUTER SCIENCE & AI ENGINEERING", 150, 320);
-
-  ctx.fillStyle = "#E2E8F0";
-  ctx.font = "bold 110px 'Space Grotesk', sans-serif";
-  ctx.fillText(state.user.name, 150, 500);
-
-  ctx.fillStyle = "#94A3B8";
-  ctx.font = "50px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText(`Current Rank: ${getCurrentTitle()}`, 150, 580);
-
-  const overall = calculateOverallProgress();
-  ctx.fillStyle = "#10B981";
-  ctx.font = "bold 140px 'Space Grotesk', sans-serif";
-  ctx.fillText(`${overall.pct}%`, 150, 800);
-
-  ctx.fillStyle = "#94A3B8";
-  ctx.font = "45px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText(`Overall Program Progress (${overall.completed} / ${overall.total} Quests)`, 150, 870);
-
-  const link = document.createElement("a");
-  link.download = `${state.user.name.replace(/\s+/g, "_")}_AI_Achievement.png`;
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-}
-
+/* ==========================================================================
+   6. INITIALIZATION
+   ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   renderApp();
 });
