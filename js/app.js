@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HUMANITARIAN CODE ACADEMY LMS - MAIN ENGINE
+   HUMANITARIAN CODE ACADEMY LMS - CORE ENGINE
    ========================================================================== */
 
 const DEFAULT_STATE = {
@@ -72,12 +72,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 300);
 });
 
-/* APP SETTINGS APPLICATOR */
+/* APP SETTINGS APPLICATOR - DYNAMIC FONT & THEME */
 function applyAppSettings() {
   document.documentElement.setAttribute("data-theme", state.settings.theme);
+  
+  // Set fonts globally so all headers, body text, buttons, and inputs adapt instantly
   document.documentElement.style.setProperty("--font-main", state.settings.fontFamily);
+  document.documentElement.style.setProperty("--font-brand", state.settings.fontFamily);
   document.documentElement.style.setProperty("--font-base-size", state.settings.fontSize);
   document.documentElement.style.setProperty("--app-scale", state.settings.appScale);
+
+  // Sync setting inputs if on settings tab
+  const fontSelect = document.getElementById("setting-font-family");
+  if (fontSelect) fontSelect.value = state.settings.fontFamily;
+  const sizeSelect = document.getElementById("setting-font-size");
+  if (sizeSelect) sizeSelect.value = state.settings.fontSize;
+  const scaleSelect = document.getElementById("setting-app-scale");
+  if (scaleSelect) scaleSelect.value = state.settings.appScale;
 }
 
 /* NAVIGATION */
@@ -152,17 +163,14 @@ function updateUserRankings() {
 
 /* 1. DASHBOARD */
 function renderDashboard() {
-  // Study Time Display
   const hrs = Math.floor(state.totalStudyTimeSeconds / 3600);
   const mins = Math.floor((state.totalStudyTimeSeconds % 3600) / 60);
   const secs = state.totalStudyTimeSeconds % 60;
   document.getElementById("dash-total-study-time").innerText = `${hrs}h ${mins}m ${secs}s`;
 
-  // Days Studied Count
   const daysStudied = Object.values(state.attendance).filter(val => val === true).length;
   document.getElementById("dash-days-studied").innerText = `${daysStudied} Days`;
 
-  // Completed Quests
   let completedCount = 0;
   let totalQuests = 0;
   state.semesters.forEach(s => s.weeks.forEach(w => w.quests.forEach(q => {
@@ -171,21 +179,19 @@ function renderDashboard() {
   })));
   document.getElementById("dash-quests-completed").innerText = `${completedCount} / ${totalQuests}`;
 
-  // Attendance Quick Widget
   const todayStr = new Date().toISOString().split('T')[0];
   const todayMarked = state.attendance[todayStr];
   const quickWidget = document.getElementById("dash-attendance-quick-widget");
   quickWidget.innerHTML = `
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem;">
       <div>Status for Today (${todayStr}): <strong>${todayMarked === true ? 'Studied (Present)' : todayMarked === false ? 'Not Studied (Absent)' : 'Unmarked'}</strong></div>
-      <div style="display:flex; gap:0.5rem;">
-        <button class="btn-primary" style="background:var(--sage);" onclick="toggleAttendanceDay('${todayStr}', true)">Mark Studied</button>
-        <button class="btn-secondary" style="color:var(--rust); border-color:var(--rust);" onclick="toggleAttendanceDay('${todayStr}', false)">Mark Absent</button>
+      <div style="display:flex; gap:0.75rem;">
+        <button class="btn-primary" style="background:var(--sage);" onclick="toggleAttendanceDay('${todayStr}', true)"><i class="fa-solid fa-check"></i> Mark Studied</button>
+        <button class="btn-secondary" style="color:var(--rust); border-color:var(--rust);" onclick="toggleAttendanceDay('${todayStr}', false)"><i class="fa-solid fa-xmark"></i> Mark Absent</button>
       </div>
     </div>
   `;
 
-  // Progress Card Body
   const cfg = state.settings.progressCardConfig;
   const pBody = document.getElementById("progress-card-body");
   pBody.innerHTML = "";
@@ -193,8 +199,8 @@ function renderDashboard() {
   if (cfg.showSemProg) {
     const semPct = totalQuests > 0 ? Math.round((completedCount / totalQuests) * 100) : 0;
     pBody.innerHTML += `
-      <div style="margin-bottom:0.75rem;">
-        <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600;"><span>Semester Quests Progress</span><span>${semPct}%</span></div>
+      <div style="margin-bottom:1.25rem;">
+        <div style="display:flex; justify-content:space-between; font-size:0.9rem; font-weight:600;"><span>Semester Quests Progress</span><span>${semPct}%</span></div>
         <div class="progress-bar-container"><div class="progress-bar-fill" style="width:${semPct}%;"></div></div>
       </div>
     `;
@@ -206,7 +212,7 @@ function renderDashboard() {
     const chPct = totCh > 0 ? Math.round((compCh / totCh) * 100) : 0;
     pBody.innerHTML += `
       <div>
-        <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600;"><span>Course Material Reading Progress</span><span>${chPct}% (${compCh}/${totCh} chapters)</span></div>
+        <div style="display:flex; justify-content:space-between; font-size:0.9rem; font-weight:600;"><span>Course Material Reading Progress</span><span>${chPct}% (${compCh}/${totCh} chapters)</span></div>
         <div class="progress-bar-container"><div class="progress-bar-fill" style="background:var(--sage); width:${chPct}%;"></div></div>
       </div>
     `;
@@ -239,8 +245,8 @@ function renderAttendanceCalendar() {
     const cell = document.createElement("div");
     cell.className = `calendar-day-cell ${statusClass}`;
     cell.innerHTML = `
-      <span style="font-weight:700; font-size:0.85rem;">${day}</span>
-      <span style="font-size:0.7rem;">${status === true ? 'Present' : status === false ? 'Absent' : ''}</span>
+      <span style="font-weight:700; font-size:0.9rem;">${day}</span>
+      <span style="font-size:0.75rem;">${status === true ? 'Present' : status === false ? 'Absent' : ''}</span>
     `;
     cell.onclick = () => {
       const nextStatus = status === true ? false : status === false ? undefined : true;
@@ -283,13 +289,13 @@ function renderSemesterDetails(semId) {
 
   const header = document.getElementById("semester-detail-header");
   header.innerHTML = `
-    <div style="display:flex; justify-content:space-between; align-items:center;">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
       <div>
         <h3 class="brand-font">${sem.title}</h3>
-        <p style="font-size:0.85rem; color:var(--ink-dim);">${sem.description}</p>
+        <p style="font-size:0.9rem; color:var(--ink-dim);">${sem.description}</p>
       </div>
       <div>
-        <button class="btn-secondary" onclick="deleteSemester(${sem.id})" style="color:var(--rust);"><i class="fa-solid fa-trash"></i> Delete Semester</button>
+        <button class="btn-secondary" onclick="deleteSemester(${sem.id})" style="color:var(--rust); border-color:var(--rust);"><i class="fa-solid fa-trash"></i> Delete Semester</button>
       </div>
     </div>
   `;
@@ -303,23 +309,23 @@ function renderSemesterDetails(semId) {
     card.style.background = "var(--surface2)";
 
     let questHtml = w.quests.map(q => `
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:0.4rem 0; border-bottom:1px solid var(--line);">
-        <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px solid var(--line);">
+        <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.92rem;">
           <input type="checkbox" ${q.completed ? 'checked' : ''} onchange="toggleQuestCompleted(${sem.id}, ${w.id}, ${q.id})">
           <span style="${q.completed ? 'text-decoration:line-through; color:var(--ink-dim);' : ''}">${q.title} (${q.type})</span>
         </label>
-        <button class="btn-secondary" onclick="deleteQuest(${sem.id}, ${w.id}, ${q.id})" style="padding:0.2rem 0.4rem; font-size:0.75rem; color:var(--rust);"><i class="fa-solid fa-xmark"></i></button>
+        <button class="btn-secondary" onclick="deleteQuest(${sem.id}, ${w.id}, ${q.id})" style="padding:0.25rem 0.5rem; font-size:0.75rem; color:var(--rust);"><i class="fa-solid fa-xmark"></i></button>
       </div>
     `).join("");
 
     card.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-        <h4>${w.title}</h4>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+        <h4 style="font-size:1.05rem;">${w.title}</h4>
         <div>
-          <button class="btn-primary" onclick="openAddQuestModal(${sem.id}, ${w.id})" style="padding:0.3rem 0.6rem; font-size:0.75rem;"><i class="fa-solid fa-plus"></i> Add Quest</button>
+          <button class="btn-primary" onclick="openAddQuestModal(${sem.id}, ${w.id})" style="padding:0.35rem 0.75rem; font-size:0.8rem;"><i class="fa-solid fa-plus"></i> Add Quest</button>
         </div>
       </div>
-      <div>${questHtml || '<p style="font-size:0.8rem; color:var(--ink-dim);">No quests in this week.</p>'}</div>
+      <div>${questHtml || '<p style="font-size:0.85rem; color:var(--ink-dim);">No quests in this week.</p>'}</div>
     `;
     weeksContainer.appendChild(card);
   });
@@ -392,18 +398,18 @@ function renderMyCourse() {
     card.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:center;">
         <div>
-          <h4>${m.title}</h4>
-          <span style="font-size:0.75rem; color:var(--ink-dim);">${m.type} · ${m.author}</span>
+          <h4 style="font-size:1.1rem;">${m.title}</h4>
+          <span style="font-size:0.8rem; color:var(--ink-dim);">${m.type} · ${m.author}</span>
         </div>
         <button class="btn-secondary" onclick="deleteCourseMaterial(${m.id})" style="color:var(--rust);"><i class="fa-solid fa-trash"></i></button>
       </div>
-      <div style="margin-top:1rem;">
-        <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
+      <div style="margin-top:1.25rem;">
+        <div style="display:flex; justify-content:space-between; font-size:0.88rem;">
           <span>Chapters Studied: ${m.completedChapters} / ${m.totalChapters}</span>
           <span>${Math.round((m.completedChapters / m.totalChapters) * 100 || 0)}%</span>
         </div>
         <div class="progress-bar-container"><div class="progress-bar-fill" style="width:${(m.completedChapters / m.totalChapters) * 100}%;"></div></div>
-        <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+        <div style="display:flex; gap:0.6rem; margin-top:0.75rem;">
           <button class="btn-secondary" onclick="updateChapterCount(${m.id}, 1)">+ Chapter</button>
           <button class="btn-secondary" onclick="updateChapterCount(${m.id}, -1)">- Chapter</button>
         </div>
@@ -461,11 +467,11 @@ function renderSchedule() {
   const items = state.schedule.filter(s => s.type === currentSchedTab);
   items.forEach(item => {
     const div = document.createElement("div");
-    div.style.padding = "0.75rem";
+    div.style.padding = "1rem 1.25rem";
     div.style.borderLeft = "4px solid var(--plum)";
     div.style.background = "var(--surface2)";
-    div.style.marginBottom = "0.5rem";
-    div.style.borderRadius = "0 8px 8px 0";
+    div.style.marginBottom = "0.75rem";
+    div.style.borderRadius = "0 12px 12px 0";
     div.style.display = "flex";
     div.style.justifyContent = "space-between";
     div.style.alignItems = "center";
@@ -473,8 +479,8 @@ function renderSchedule() {
     div.innerHTML = `
       <div>
         <strong style="font-size:0.85rem; color:var(--plum);">${item.time}</strong>
-        <h4 style="margin:0.2rem 0;">${item.title}</h4>
-        <p style="font-size:0.8rem; color:var(--ink-dim);">${item.description}</p>
+        <h4 style="margin:0.25rem 0; font-size:1.05rem;">${item.title}</h4>
+        <p style="font-size:0.85rem; color:var(--ink-dim);">${item.description}</p>
       </div>
       <button class="btn-secondary" onclick="deleteScheduleItem(${item.id})" style="color:var(--rust);"><i class="fa-solid fa-trash"></i></button>
     `;
@@ -499,27 +505,23 @@ function deleteScheduleItem(id) {
 
 /* 6. PORTFOLIO */
 function renderPortfolio() {
-  // Skills list from completed study quests
   const skillsContainer = document.getElementById("portfolio-skills-container");
   skillsContainer.innerHTML = "";
   state.semesters.forEach(s => s.weeks.forEach(w => w.quests.forEach(q => {
     if (q.completed) {
-      skillsContainer.innerHTML += `<span style="background:var(--surface2); border:1px solid var(--line); padding:0.3rem 0.6rem; border-radius:6px; font-size:0.8rem;"><i class="fa-solid fa-check" style="color:var(--sage);"></i> ${q.title}</span>`;
+      skillsContainer.innerHTML += `<span style="background:var(--surface2); border:1px solid var(--line); padding:0.4rem 0.8rem; border-radius:8px; font-size:0.85rem;"><i class="fa-solid fa-check" style="color:var(--sage);"></i> ${q.title}</span>`;
     }
   })));
 
-  // Social Links Bar
   const socialsBar = document.getElementById("portfolio-socials-bar");
   const links = state.user.socialLinks;
-  socialsBar.innerHTML = Object.keys(links).map(k => links[k] ? `<a href="${links[k]}" target="_blank" style="color:#FFF; background:rgba(255,255,255,0.2); padding:0.3rem 0.6rem; border-radius:6px; font-size:0.8rem; text-decoration:none;"><i class="fa-brands fa-${k}"></i> ${k}</a>` : '').join("");
+  socialsBar.innerHTML = Object.keys(links).map(k => links[k] ? `<a href="${links[k]}" target="_blank" style="color:#FFF; background:rgba(255,255,255,0.2); padding:0.4rem 0.8rem; border-radius:8px; font-size:0.85rem; text-decoration:none;"><i class="fa-brands fa-${k}"></i> ${k}</a>` : '').join("");
 
-  // Code labs
   const labsList = document.getElementById("portfolio-codelabs-list");
-  labsList.innerHTML = state.portfolioSubmissions.codelabs.map(l => `<div style="padding:0.4rem 0; border-bottom:1px solid var(--line);"><a href="${l.link}" target="_blank" style="color:var(--plum); font-weight:600;">${l.title}</a></div>`).join("");
+  labsList.innerHTML = state.portfolioSubmissions.codelabs.map(l => `<div style="padding:0.5rem 0; border-bottom:1px solid var(--line);"><a href="${l.link}" target="_blank" style="color:var(--plum-accent); font-weight:600;">${l.title}</a></div>`).join("");
 
-  // Projects
   const projList = document.getElementById("portfolio-projects-list");
-  projList.innerHTML = state.portfolioSubmissions.projects.map(p => `<div style="padding:0.4rem 0; border-bottom:1px solid var(--line);"><a href="${p.link}" target="_blank" style="color:var(--gold); font-weight:600;">${p.title}</a></div>`).join("");
+  projList.innerHTML = state.portfolioSubmissions.projects.map(p => `<div style="padding:0.5rem 0; border-bottom:1px solid var(--line);"><a href="${p.link}" target="_blank" style="color:var(--gold-dark); font-weight:600;">${p.title}</a></div>`).join("");
 }
 
 function openSocialProfilesModal() {
@@ -547,8 +549,8 @@ function renderNotesList() {
     const div = document.createElement("div");
     div.className = `note-item-card ${state.activeNoteId === note.id ? 'active' : ''}`;
     div.innerHTML = `
-      <strong style="font-size:0.85rem;">${note.title || 'Untitled Note'}</strong>
-      <div style="font-size:0.7rem; color:var(--ink-dim);">${note.tags ? 'Tags: ' + note.tags : ''}</div>
+      <strong style="font-size:0.9rem;">${note.title || 'Untitled Note'}</strong>
+      <div style="font-size:0.75rem; color:var(--ink-dim); margin-top:0.2rem;">${note.tags ? 'Tags: ' + note.tags : ''}</div>
     `;
     div.onclick = () => loadNoteIntoEditor(note.id);
     container.appendChild(div);
@@ -623,7 +625,7 @@ function applyNoteLetterSpacing(ls) {
 }
 
 function insertNoteChecklist() {
-  const html = `<div style="display:flex; align-items:center; gap:0.4rem;"><input type="checkbox"> <span>Checklist Item</span></div>`;
+  const html = `<div style="display:flex; align-items:center; gap:0.5rem; margin:0.25rem 0;"><input type="checkbox"> <span>Checklist Item</span></div>`;
   document.execCommand("insertHTML", false, html);
 }
 
@@ -644,10 +646,10 @@ function insertNoteExternalLinkPrompt() {
 
 function insertInternalNoteLinkPrompt() {
   const noteTitle = prompt("Enter Title of note to link:");
-  if (noteTitle) document.execCommand("insertHTML", false, `<a href="#" style="color:var(--plum); font-weight:bold;">[Note: ${noteTitle}]</a>`);
+  if (noteTitle) document.execCommand("insertHTML", false, `<a href="#" style="color:var(--plum-accent); font-weight:bold;">[Note: ${noteTitle}]</a>`);
 }
 
-/* 8. STUDY TIMERS (STACK, DRAG & DROP, DUPLICATE) */
+/* 8. STUDY TIMERS */
 function renderTimers() {
   const container = document.getElementById("timers-stack-container");
   container.innerHTML = "";
@@ -663,20 +665,19 @@ function renderTimers() {
 
     card.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <strong style="font-size:0.9rem;"><i class="fa-solid fa-grip-vertical" style="color:var(--ink-dim); margin-right:0.4rem;"></i> ${timer.name}</strong>
+        <strong style="font-size:0.95rem;"><i class="fa-solid fa-grip-vertical" style="color:var(--ink-dim); margin-right:0.5rem;"></i> ${timer.name}</strong>
         <div>
-          <button class="btn-secondary" onclick="duplicateTimer(${timer.id})" style="padding:0.2rem 0.4rem; font-size:0.75rem;"><i class="fa-solid fa-copy"></i></button>
-          <button class="btn-secondary" onclick="deleteTimer(${timer.id})" style="padding:0.2rem 0.4rem; font-size:0.75rem; color:var(--rust);"><i class="fa-solid fa-trash"></i></button>
+          <button class="btn-secondary" onclick="duplicateTimer(${timer.id})" style="padding:0.25rem 0.5rem; font-size:0.8rem;"><i class="fa-solid fa-copy"></i></button>
+          <button class="btn-secondary" onclick="deleteTimer(${timer.id})" style="padding:0.25rem 0.5rem; font-size:0.8rem; color:var(--rust);"><i class="fa-solid fa-trash"></i></button>
         </div>
       </div>
       <div class="timer-display">${formatted}</div>
-      <div style="display:flex; gap:0.5rem;">
+      <div style="display:flex; gap:0.6rem;">
         <button class="btn-primary" style="flex:1;" onclick="toggleTimer(${timer.id})">${timer.isRunning ? 'Pause' : 'Start'}</button>
         <button class="btn-secondary" onclick="resetTimer(${timer.id})">Reset</button>
       </div>
     `;
 
-    // Drag & Drop event handlers
     card.ondragstart = (e) => { e.dataTransfer.setData("text/plain", index); card.classList.add("dragging"); };
     card.ondragend = () => card.classList.remove("dragging");
     card.ondragover = (e) => e.preventDefault();
@@ -752,7 +753,7 @@ function openAddTimerModal() {
   }
 }
 
-/* 9. SETTINGS & CUSTOMIZATION */
+/* 9. SETTINGS & APP CUSTOMIZATION */
 function toggleQuickTheme() {
   state.settings.theme = state.settings.theme === "light" ? "dark" : "light";
   saveState();
