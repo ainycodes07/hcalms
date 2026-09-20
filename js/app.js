@@ -1,740 +1,731 @@
 /* ==========================================================================
-   1. STATE ENGINE & DEFAULT DATA
+   HUMANITARIAN CODE ACADEMY LMS - MAIN ENGINE
    ========================================================================== */
+
 const DEFAULT_STATE = {
   user: {
-    name: "Alex Vance",
-    rank: "Novice Scholar",
-    socialLinks: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com",
-      website: "https://myportfolio.dev"
-    }
+    name: "Developer",
+    title: "Aspiring Developer",
+    rankingsTitle: "Aspiring Developer",
+    socialLinks: { github: "", linkedin: "", twitter: "", portfolio: "" }
   },
   settings: {
-    themeMode: "system",
-    fontFamily: "plus-jakarta-sans",
-    fontSize: "medium",
-    appSize: "100",
-    progressCardTitle: "Semester Mastery Goal",
-    progressCardTag: "CUSTOM PROGRESS CARD",
-    progressCardMotto: "Consistency over intensity. Keep pushing forward!"
+    theme: "light",
+    fontFamily: "Plus Jakarta Sans",
+    fontSize: "16px",
+    appScale: "1.0",
+    progressCardConfig: { showSemProg: true, showOverallProg: true, showChapterProg: true }
   },
-  modulesConfig: {
-    semestersCount: 2,
-    weeksPerSemester: 8,
-    semesters: [
-      { id: 1, name: "CS & Web Foundations" },
-      { id: 2, name: "Full-Stack Architecture" }
-    ]
-  },
-  quests: [
-    { id: "q1", sem: 1, week: 1, title: "HTML5 Semantics & CSS Layouts", category: "Study", done: true, link: "" },
-    { id: "q2", sem: 1, week: 1, title: "Lab 1: Flexbox & Grid Playground", category: "Lab", done: true, link: "https://github.com/lab1" },
-    { id: "q3", sem: 1, week: 2, title: "JavaScript ES6+ Core Concepts", category: "Study", done: false, link: "" },
-    { id: "q4", sem: 1, week: 2, title: "Term Project: Personal LMS Dashboard", category: "Project", done: false, link: "https://github.com/project-lms" }
+  attendance: {}, // "YYYY-MM-DD": true/false
+  totalStudyTimeSeconds: 0,
+  semesters: [
+    {
+      id: 1,
+      title: "CS & Web Foundations",
+      description: "Core Web Architecture, HTML5, CSS3, & Modern JS",
+      weeks: [
+        {
+          id: 1,
+          title: "HTML5 & CSS3 Semantics",
+          quests: [
+            { id: 101, title: "Study Semantic Elements & CSS Flexbox", type: "study", completed: false },
+            { id: 102, title: "Build Responsive Personal Bio Page", type: "lab", completed: false, link: "" }
+          ]
+        }
+      ]
+    }
   ],
-  attendance: {}, // Format: "YYYY-MM-DD": true/false
-  timers: [
-    { id: "t1", name: "Study - Deep Work", duration: 1500, elapsed: 0, running: false },
-    { id: "t2", name: "Break", duration: 300, elapsed: 0, running: false }
-  ],
-  totalStudyTimeSeconds: 0, // Calculated from timers named "Study"
-  notes: [
-    { id: "n1", title: "JavaScript Closures Notes", tags: ["javascript", "concept"], published: true, content: "<p>A <b>closure</b> is the combination of a function bundled together with references to its surrounding state.</p>", lineSpacing: "1.6", wordSpacing: "0px", letterSpacing: "0px" }
-  ],
-  currentNoteId: "n1",
   courseMaterials: [
-    { id: "c1", sem: 1, title: "Eloquent JavaScript (3rd Ed)", type: "Book", link: "https://eloquentjavascript.net", totalChapters: 12, studiedChapters: [1, 2, 3] }
+    { id: 1, semesterId: 1, title: "HTML and CSS: Design and Build Websites", author: "Jon Duckett", totalChapters: 12, completedChapters: 0, type: "Book" }
   ],
   schedule: [
-    { id: "s1", day: "Monday", time: "09:00 - 10:30", title: "Deep Study Block", category: "Study", done: false },
-    { id: "s2", day: "Wednesday", time: "14:00 - 15:30", title: "Coding Lab Practice", category: "Practice", done: false }
+    { id: 1, type: "daily", time: "09:00 - 10:30", title: "Core Study Block", description: "Read book chapters & complete quests" }
+  ],
+  portfolioSubmissions: {
+    codelabs: [],
+    projects: []
+  },
+  notes: [],
+  activeNoteId: null,
+  timers: [
+    { id: 1, name: "Study", durationMinutes: 25, remainingSeconds: 1500, isRunning: false, category: "Study" }
   ]
 };
 
-let state = JSON.parse(localStorage.getItem("PRO_LMS_STATE")) || DEFAULT_STATE;
-
-function saveState() {
-  localStorage.setItem("PRO_LMS_STATE", JSON.stringify(state));
-  renderAll();
-}
-
-/* ==========================================================================
-   2. INITIALIZATION & ROUTING
-   ========================================================================== */
-document.addEventListener("DOMContentLoaded", () => {
-  initNavigation();
-  applySettings();
-  renderAll();
-  startTimerTicker();
-});
-
-function initNavigation() {
-  const navItems = document.querySelectorAll(".nav-item");
-  navItems.forEach(item => {
-    item.addEventListener("click", () => {
-      navItems.forEach(n => n.classList.remove("active"));
-      item.classList.add("active");
-      const tabKey = item.getAttribute("data-tab");
-      switchTab(tabKey);
-    });
-  });
-}
-
-function switchTab(tabKey) {
-  document.querySelectorAll(".tab-pane").forEach(pane => pane.classList.remove("active"));
-  const targetPane = document.getElementById(`tab-${tabKey}`);
-  if (targetPane) targetPane.classList.add("active");
-
-  // Update top bar title
-  const titleMap = {
-    dashboard: ["Dashboard", "Track your study time, attendance consistency, and course progress"],
-    attendance: ["Attendance Calendar", "Log daily study attendance and edit past dates"],
-    quests: ["Quests & Modules", "Manage study modules, semesters, and weekly quests"],
-    portfolio: ["Portfolio", "Showcase your completed skills, code labs, and project links"],
-    notepad: ["Rich Notepad", "Create, format, and organize study notes with sticky tools"],
-    timer: ["Study Timers", "Manage timer stacks with drag-and-drop support"],
-    course: ["My Course", "Track learning materials, books, and chapter progress"],
-    schedule: ["Schedule Manager", "Design and follow your weekly learning routine"],
-    settings: ["LMS Settings", "Customize appearance, font sizes, app scale, and layout"]
-  };
-
-  if (titleMap[tabKey]) {
-    document.getElementById("page-heading").innerText = titleMap[tabKey][0];
-    document.getElementById("page-subheading").innerText = titleMap[tabKey][1];
-  }
-}
-
-/* ==========================================================================
-   3. SETTINGS & THEMES ENGINE
-   ========================================================================== */
-function applySettings() {
-  const html = document.documentElement;
-  const cfg = state.settings;
-
-  // Theme
-  if (cfg.themeMode === "system") {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    html.setAttribute("data-theme", prefersDark ? "dark" : "light");
-  } else {
-    html.setAttribute("data-theme", cfg.themeMode);
-  }
-
-  // Font Family, Font Size, App Scale
-  html.setAttribute("data-font", cfg.fontFamily);
-  html.setAttribute("data-font-size", cfg.fontSize);
-  html.setAttribute("data-app-size", cfg.appSize);
-
-  // Settings inputs sync
-  const modeBtn = document.getElementById(`theme-mode-${cfg.themeMode}`);
-  if (modeBtn) {
-    document.querySelectorAll(".segmented-control .seg-btn").forEach(b => b.classList.remove("active"));
-    modeBtn.classList.add("active");
-  }
-  document.getElementById("settings-font-family").value = cfg.fontFamily;
-  document.getElementById("settings-font-size").value = cfg.fontSize;
-  document.getElementById("settings-app-size").value = cfg.appSize;
-
-  document.getElementById("cfg-progress-title").value = cfg.progressCardTitle;
-  document.getElementById("cfg-progress-tag").value = cfg.progressCardTag;
-  document.getElementById("cfg-progress-motto").value = cfg.progressCardMotto;
-}
-
-function setThemeMode(mode) {
-  state.settings.themeMode = mode;
-  saveState();
-}
-
-function toggleQuickTheme() {
-  state.settings.themeMode = state.settings.themeMode === "dark" ? "light" : "dark";
-  saveState();
-}
-
-function changeFontFamily(val) { state.settings.fontFamily = val; saveState(); }
-function changeFontSize(val) { state.settings.fontSize = val; saveState(); }
-function changeAppSize(val) { state.settings.appSize = val; saveState(); }
-
-function updateProgressCardConfig() {
-  state.settings.progressCardTitle = document.getElementById("cfg-progress-title").value;
-  state.settings.progressCardTag = document.getElementById("cfg-progress-tag").value;
-  state.settings.progressCardMotto = document.getElementById("cfg-progress-motto").value;
-  saveState();
-}
-
-/* ==========================================================================
-   4. RENDER PIPELINE
-   ========================================================================== */
-function renderAll() {
-  applySettings();
-  updateRankings();
-  renderDashboard();
-  renderAttendanceCalendar();
-  renderQuestsTab();
-  renderPortfolioTab();
-  renderNotesList();
-  renderTimersTab();
-  renderCourseTab();
-  renderScheduleTab();
-}
-
-function updateRankings() {
-  const completedQuests = state.quests.filter(q => q.done).length;
-  let rank = "Novice Scholar";
-  if (completedQuests >= 15) rank = "Master Architect";
-  else if (completedQuests >= 10) rank = "Senior Engineer";
-  else if (completedQuests >= 5) rank = "Junior Developer";
-
-  state.user.rank = rank;
-  document.getElementById("nav-user-name").innerText = state.user.name;
-  document.getElementById("nav-user-initial").innerText = state.user.name.charAt(0);
-  document.getElementById("nav-user-rank").innerText = rank;
-}
-
-/* ==========================================================================
-   5. DASHBOARD ENGINE
-   ========================================================================== */
-function renderDashboard() {
-  // 1. Total Time Studied
-  const totalSecs = state.totalStudyTimeSeconds;
-  const hours = Math.floor(totalSecs / 3600);
-  const mins = Math.floor((totalSecs % 3600) / 60);
-  document.getElementById("dash-total-study-time").innerText = `${hours}h ${mins}m`;
-
-  // 2. Days Studied count from attendance
-  const daysStudied = Object.values(state.attendance).filter(v => v === true).length;
-  document.getElementById("dash-days-studied").innerText = `${daysStudied} Days`;
-
-  // 3. Completed Quests
-  const totalQuests = state.quests.length;
-  const doneQuests = state.quests.filter(q => q.done).length;
-  const pct = totalQuests > 0 ? Math.round((doneQuests / totalQuests) * 100) : 0;
-
-  document.getElementById("dash-quests-completed").innerText = `${doneQuests} / ${totalQuests}`;
-  document.getElementById("dash-quests-pct").innerText = `${pct}% complete`;
-  document.getElementById("dash-user-rank-display").innerText = state.user.rank;
-
-  // Progress Card Custom
-  document.getElementById("progress-card-title").innerText = state.settings.progressCardTitle;
-  document.getElementById("progress-card-tag").innerText = state.settings.progressCardTag;
-  document.getElementById("progress-card-motto").innerText = `"${state.settings.progressCardMotto}"`;
-  document.getElementById("progress-card-val").innerText = `${pct}%`;
-  document.getElementById("progress-card-bar").style.width = `${pct}%`;
-
-  // Mini Quests
-  const miniQuestContainer = document.getElementById("dash-recent-quests-list");
-  miniQuestContainer.innerHTML = state.quests.slice(0, 4).map(q => `
-    <div class="quest-item-card" style="padding: 8px 12px; margin-bottom: 6px;">
-      <div class="quest-left">
-        <input type="checkbox" ${q.done ? 'checked' : ''} onchange="toggleQuestDone('${q.id}')">
-        <span class="quest-title ${q.done ? 'done' : ''}">${q.title}</span>
-      </div>
-      <span class="quest-tag">${q.category}</span>
-    </div>
-  `).join('');
-}
-
-/* ==========================================================================
-   6. ATTENDANCE ENGINE (CALENDAR & PAST DATES)
-   ========================================================================== */
+let state = JSON.parse(localStorage.getItem("HCA_LMS_FULL_STATE_V2")) || DEFAULT_STATE;
+let timerInterval = null;
 let currentCalDate = new Date();
 
-function renderAttendanceCalendar() {
-  const grid = document.getElementById("calendar-days-grid");
-  const monthYearHeader = document.getElementById("calendar-month-year");
+function saveState() {
+  localStorage.setItem("HCA_LMS_FULL_STATE_V2", JSON.stringify(state));
+  renderApp();
+}
 
-  const year = currentCalDate.getFullYear();
-  const month = currentCalDate.getMonth();
+/* INITIALIZATION */
+document.addEventListener("DOMContentLoaded", () => {
+  applyAppSettings();
+  startTimerTicker();
+  renderApp();
+  setTimeout(() => {
+    const l = document.getElementById("loader");
+    if (l) l.classList.add("hidden");
+  }, 300);
+});
 
-  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  monthYearHeader.innerText = `${monthNames[month]} ${year}`;
+/* APP SETTINGS APPLICATOR */
+function applyAppSettings() {
+  document.documentElement.setAttribute("data-theme", state.settings.theme);
+  document.documentElement.style.setProperty("--font-main", state.settings.fontFamily);
+  document.documentElement.style.setProperty("--font-base-size", state.settings.fontSize);
+  document.documentElement.style.setProperty("--app-scale", state.settings.appScale);
+}
 
-  grid.innerHTML = "";
+/* NAVIGATION */
+function switchTab(tabId) {
+  document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
+  const activeNav = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+  if (activeNav) activeNav.classList.add("active");
 
-  const firstDay = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  document.querySelectorAll(".tab-pane").forEach(el => el.classList.remove("active"));
+  const target = document.getElementById(`tab-${tabId}`);
+  if (target) target.classList.add("active");
 
-  // Padding empty cells
-  for (let i = 0; i < firstDay; i++) {
-    grid.innerHTML += `<div class="cal-day-cell empty"></div>`;
+  const titles = {
+    dashboard: ["Dashboard", "Track your study time, attendance consistency, and course progression"],
+    attendance: ["Attendance Log", "Mark/unmark daily study consistency"],
+    quests: ["Study Modules & Quests", "CRUD your semesters, weeks, and study goals"],
+    mycourse: ["My Course Materials", "Track reading lists, books, and chapter progress"],
+    schedule: ["Schedule Manager", "Configure your daily and weekly routines"],
+    portfolio: ["Portfolio & Submissions", "Review your earned skills, code labs, and projects"],
+    notepad: ["Study Notepad", "Rich text study notes with sticky toolbar and tagging"],
+    timers: ["Study Timers Stack", "Run and stack customizable study timers"],
+    settings: ["Settings", "Customize themes, fonts, interface scale, and reset progress"]
+  };
+
+  if (titles[tabId]) {
+    document.getElementById("page-heading").innerText = titles[tabId][0];
+    document.getElementById("page-subheading").innerText = titles[tabId][1];
+  }
+}
+
+document.querySelectorAll(".nav-item button").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    const tab = e.currentTarget.parentElement.getAttribute("data-tab");
+    switchTab(tab);
+  });
+});
+
+/* MAIN RENDER ROUTINE */
+function renderApp() {
+  applyAppSettings();
+  updateUserRankings();
+
+  document.getElementById("sidebar-user-name").innerText = state.user.name;
+  document.getElementById("dash-user-name").innerText = state.user.name;
+  document.getElementById("sidebar-avatar-initial").innerText = state.user.name.charAt(0).toUpperCase();
+
+  renderDashboard();
+  renderAttendanceCalendar();
+  renderQuestsAndModules();
+  renderMyCourse();
+  renderSchedule();
+  renderPortfolio();
+  renderNotesList();
+  renderTimers();
+}
+
+/* USER RANKINGS CALCULATION */
+function updateUserRankings() {
+  let completedQuests = 0;
+  state.semesters.forEach(s => s.weeks.forEach(w => w.quests.forEach(q => { if (q.completed) completedQuests++; })));
+
+  let rank = "Aspiring Developer";
+  if (completedQuests >= 20) rank = "Master AI & Full-Stack Engineer";
+  else if (completedQuests >= 10) rank = "Full-Stack Developer";
+  else if (completedQuests >= 5) rank = "Junior Frontend Developer";
+
+  state.user.rankingsTitle = rank;
+  document.getElementById("sidebar-user-title").innerText = rank;
+  document.getElementById("dash-user-title").innerText = rank;
+  document.getElementById("portfolio-title-display").innerText = rank;
+}
+
+/* 1. DASHBOARD */
+function renderDashboard() {
+  // Study Time Display
+  const hrs = Math.floor(state.totalStudyTimeSeconds / 3600);
+  const mins = Math.floor((state.totalStudyTimeSeconds % 3600) / 60);
+  const secs = state.totalStudyTimeSeconds % 60;
+  document.getElementById("dash-total-study-time").innerText = `${hrs}h ${mins}m ${secs}s`;
+
+  // Days Studied Count
+  const daysStudied = Object.values(state.attendance).filter(val => val === true).length;
+  document.getElementById("dash-days-studied").innerText = `${daysStudied} Days`;
+
+  // Completed Quests
+  let completedCount = 0;
+  let totalQuests = 0;
+  state.semesters.forEach(s => s.weeks.forEach(w => w.quests.forEach(q => {
+    totalQuests++;
+    if (q.completed) completedCount++;
+  })));
+  document.getElementById("dash-quests-completed").innerText = `${completedCount} / ${totalQuests}`;
+
+  // Attendance Quick Widget
+  const todayStr = new Date().toISOString().split('T')[0];
+  const todayMarked = state.attendance[todayStr];
+  const quickWidget = document.getElementById("dash-attendance-quick-widget");
+  quickWidget.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div>Status for Today (${todayStr}): <strong>${todayMarked === true ? 'Studied (Present)' : todayMarked === false ? 'Not Studied (Absent)' : 'Unmarked'}</strong></div>
+      <div style="display:flex; gap:0.5rem;">
+        <button class="btn-primary" style="background:var(--sage);" onclick="toggleAttendanceDay('${todayStr}', true)">Mark Studied</button>
+        <button class="btn-secondary" style="color:var(--rust); border-color:var(--rust);" onclick="toggleAttendanceDay('${todayStr}', false)">Mark Absent</button>
+      </div>
+    </div>
+  `;
+
+  // Progress Card Body
+  const cfg = state.settings.progressCardConfig;
+  const pBody = document.getElementById("progress-card-body");
+  pBody.innerHTML = "";
+
+  if (cfg.showSemProg) {
+    const semPct = totalQuests > 0 ? Math.round((completedCount / totalQuests) * 100) : 0;
+    pBody.innerHTML += `
+      <div style="margin-bottom:0.75rem;">
+        <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600;"><span>Semester Quests Progress</span><span>${semPct}%</span></div>
+        <div class="progress-bar-container"><div class="progress-bar-fill" style="width:${semPct}%;"></div></div>
+      </div>
+    `;
   }
 
-  const todayStr = new Date().toISOString().split("T")[0];
-
-  for (let day = 1; day <= daysInMonth; day++) {
-    const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    const isStudied = state.attendance[formattedDate] === true;
-    const isToday = formattedDate === todayStr;
-
-    grid.innerHTML += `
-      <div class="cal-day-cell ${isStudied ? 'studied' : ''} ${isToday ? 'today' : ''}" onclick="toggleDateAttendance('${formattedDate}')">
-        <span>${day}</span>
-        ${isStudied ? '<i class="fa-solid fa-check studied-icon"></i>' : ''}
+  if (cfg.showChapterProg) {
+    let totCh = 0, compCh = 0;
+    state.courseMaterials.forEach(m => { totCh += m.totalChapters; compCh += m.completedChapters; });
+    const chPct = totCh > 0 ? Math.round((compCh / totCh) * 100) : 0;
+    pBody.innerHTML += `
+      <div>
+        <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600;"><span>Course Material Reading Progress</span><span>${chPct}% (${compCh}/${totCh} chapters)</span></div>
+        <div class="progress-bar-container"><div class="progress-bar-fill" style="background:var(--sage); width:${chPct}%;"></div></div>
       </div>
     `;
   }
 }
 
-function changeCalendarMonth(delta) {
+/* 2. ATTENDANCE */
+function renderAttendanceCalendar() {
+  const year = currentCalDate.getFullYear();
+  const month = currentCalDate.getMonth();
+
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  document.getElementById("attendance-month-year").innerText = `${monthNames[month]} ${year}`;
+
+  const grid = document.getElementById("attendance-calendar-grid");
+  grid.innerHTML = "";
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    grid.innerHTML += `<div style="background:transparent;"></div>`;
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const status = state.attendance[dateStr];
+    const statusClass = status === true ? 'present' : status === false ? 'absent' : '';
+
+    const cell = document.createElement("div");
+    cell.className = `calendar-day-cell ${statusClass}`;
+    cell.innerHTML = `
+      <span style="font-weight:700; font-size:0.85rem;">${day}</span>
+      <span style="font-size:0.7rem;">${status === true ? 'Present' : status === false ? 'Absent' : ''}</span>
+    `;
+    cell.onclick = () => {
+      const nextStatus = status === true ? false : status === false ? undefined : true;
+      toggleAttendanceDay(dateStr, nextStatus);
+    };
+    grid.appendChild(cell);
+  }
+}
+
+function changeAttendanceMonth(delta) {
   currentCalDate.setMonth(currentCalDate.getMonth() + delta);
   renderAttendanceCalendar();
 }
 
-function toggleDateAttendance(dateStr) {
-  state.attendance[dateStr] = !state.attendance[dateStr];
+function toggleAttendanceDay(dateStr, status) {
+  if (status === undefined) delete state.attendance[dateStr];
+  else state.attendance[dateStr] = status;
   saveState();
 }
 
-function markTodayAttendance() {
-  const todayStr = new Date().toISOString().split("T")[0];
-  state.attendance[todayStr] = true;
-  saveState();
-}
+/* 3. QUESTS & MODULES CRUD */
+function renderQuestsAndModules() {
+  const bar = document.getElementById("semester-tabs-bar");
+  bar.innerHTML = "";
 
-function toggleSelectedDateAttendance(status) {
-  const pickerVal = document.getElementById("attendance-picker-date").value;
-  if (!pickerVal) return alert("Please select a date first.");
-  state.attendance[pickerVal] = status;
-  saveState();
-}
-
-/* ==========================================================================
-   7. QUESTS & MODULES CONFIGURATOR ENGINE
-   ========================================================================== */
-function renderQuestsTab() {
-  // Populate filter selectors
-  const semFilter = document.getElementById("quest-sem-filter");
-  const weekFilter = document.getElementById("quest-week-filter");
-
-  if (semFilter.options.length === 0) {
-    semFilter.innerHTML = state.modulesConfig.semesters.map(s => `<option value="${s.id}">Semester ${s.id}: ${s.name}</option>`).join('');
-  }
-  if (weekFilter.options.length === 0) {
-    let opts = '<option value="all">All Weeks</option>';
-    for (let w = 1; w <= state.modulesConfig.weeksPerSemester; w++) {
-      opts += `<option value="${w}">Week ${w}</option>`;
-    }
-    weekFilter.innerHTML = opts;
-  }
-
-  const selectedSem = parseInt(semFilter.value) || 1;
-  const selectedWeek = weekFilter.value;
-
-  document.getElementById("module-structure-summary").innerText = 
-    `Structure: ${state.modulesConfig.semestersCount} Semesters · ${state.modulesConfig.weeksPerSemester} Weeks/Semester`;
-
-  const filteredQuests = state.quests.filter(q => {
-    const matchSem = q.sem === selectedSem;
-    const matchWeek = selectedWeek === "all" || q.week === parseInt(selectedWeek);
-    return matchSem && matchWeek;
+  state.semesters.forEach(s => {
+    const btn = document.createElement("button");
+    btn.className = `btn-secondary`;
+    btn.innerText = s.title;
+    btn.onclick = () => renderSemesterDetails(s.id);
+    bar.appendChild(btn);
   });
 
-  const questList = document.getElementById("quest-items-list");
-  questList.innerHTML = filteredQuests.map(q => `
-    <div class="quest-item-card">
-      <div class="quest-left">
-        <input type="checkbox" class="quest-checkbox" ${q.done ? 'checked' : ''} onchange="toggleQuestDone('${q.id}')">
-        <div>
-          <div class="quest-title ${q.done ? 'done' : ''}">${q.title}</div>
-          <small style="color:var(--text-dim)">Week ${q.week} · ${q.category} ${q.link ? '· <a href="' + q.link + '" target="_blank">Submission Link</a>' : ''}</small>
-        </div>
-      </div>
-      <div>
-        <button class="btn-secondary btn-sm" onclick="deleteQuest('${q.id}')"><i class="fa-solid fa-trash"></i></button>
-      </div>
-    </div>
-  `).join('');
+  if (state.semesters.length > 0) renderSemesterDetails(state.semesters[0].id);
 }
 
-function toggleQuestDone(id) {
-  const quest = state.quests.find(q => q.id === id);
-  if (quest) {
-    quest.done = !quest.done;
+function renderSemesterDetails(semId) {
+  const sem = state.semesters.find(s => s.id === semId);
+  if (!sem) return;
+
+  const header = document.getElementById("semester-detail-header");
+  header.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h3 class="brand-font">${sem.title}</h3>
+        <p style="font-size:0.85rem; color:var(--ink-dim);">${sem.description}</p>
+      </div>
+      <div>
+        <button class="btn-secondary" onclick="deleteSemester(${sem.id})" style="color:var(--rust);"><i class="fa-solid fa-trash"></i> Delete Semester</button>
+      </div>
+    </div>
+  `;
+
+  const weeksContainer = document.getElementById("weeks-accordion-container");
+  weeksContainer.innerHTML = "";
+
+  sem.weeks.forEach(w => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.background = "var(--surface2)";
+
+    let questHtml = w.quests.map(q => `
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:0.4rem 0; border-bottom:1px solid var(--line);">
+        <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;">
+          <input type="checkbox" ${q.completed ? 'checked' : ''} onchange="toggleQuestCompleted(${sem.id}, ${w.id}, ${q.id})">
+          <span style="${q.completed ? 'text-decoration:line-through; color:var(--ink-dim);' : ''}">${q.title} (${q.type})</span>
+        </label>
+        <button class="btn-secondary" onclick="deleteQuest(${sem.id}, ${w.id}, ${q.id})" style="padding:0.2rem 0.4rem; font-size:0.75rem; color:var(--rust);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    `).join("");
+
+    card.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+        <h4>${w.title}</h4>
+        <div>
+          <button class="btn-primary" onclick="openAddQuestModal(${sem.id}, ${w.id})" style="padding:0.3rem 0.6rem; font-size:0.75rem;"><i class="fa-solid fa-plus"></i> Add Quest</button>
+        </div>
+      </div>
+      <div>${questHtml || '<p style="font-size:0.8rem; color:var(--ink-dim);">No quests in this week.</p>'}</div>
+    `;
+    weeksContainer.appendChild(card);
+  });
+}
+
+function toggleQuestCompleted(semId, weekId, questId) {
+  const sem = state.semesters.find(s => s.id === semId);
+  const week = sem.weeks.find(w => w.id === weekId);
+  const quest = week.quests.find(q => q.id === questId);
+  if (quest) quest.completed = !quest.completed;
+  saveState();
+}
+
+function openAddSemesterModal() {
+  const title = prompt("Enter Semester Title:");
+  if (title) {
+    const desc = prompt("Enter Semester Description:");
+    state.semesters.push({ id: Date.now(), title, description: desc || "", weeks: [] });
     saveState();
   }
 }
 
-function deleteQuest(id) {
-  state.quests = state.quests.filter(q => q.id !== id);
-  saveState();
-}
-
-function openAddQuestModal() {
-  openModal("Add New Quest", `
-    <div class="form-group">
-      <label>Quest Title:</label>
-      <input type="text" id="m-quest-title" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Category:</label>
-      <select id="m-quest-cat" class="form-input">
-        <option value="Study">Study / Skill</option>
-        <option value="Lab">Code Lab</option>
-        <option value="Project">Project</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Semester:</label>
-      <input type="number" id="m-quest-sem" value="1" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Week:</label>
-      <input type="number" id="m-quest-week" value="1" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Submission Link (Optional for Lab/Project):</label>
-      <input type="url" id="m-quest-link" class="form-input">
-    </div>
-    <button class="btn-primary" onclick="submitAddQuest()">Save Quest</button>
-  `);
-}
-
-function submitAddQuest() {
-  const title = document.getElementById("m-quest-title").value;
-  const category = document.getElementById("m-quest-cat").value;
-  const sem = parseInt(document.getElementById("m-quest-sem").value) || 1;
-  const week = parseInt(document.getElementById("m-quest-week").value) || 1;
-  const link = document.getElementById("m-quest-link").value;
-
-  if (!title) return alert("Title is required!");
-
-  state.quests.push({
-    id: "q" + Date.now(),
-    sem, week, title, category, done: false, link
-  });
-  closeModal();
-  saveState();
-}
-
-function openModuleConfigModal() {
-  openModal("Configure Study Modules", `
-    <div class="form-group">
-      <label>Number of Semesters:</label>
-      <input type="number" id="m-sem-count" value="${state.modulesConfig.semestersCount}" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Weeks per Semester:</label>
-      <input type="number" id="m-weeks-count" value="${state.modulesConfig.weeksPerSemester}" class="form-input">
-    </div>
-    <button class="btn-primary" onclick="submitModuleConfig()">Save Configuration</button>
-  `);
-}
-
-function submitModuleConfig() {
-  const semCount = parseInt(document.getElementById("m-sem-count").value) || 1;
-  const weeksCount = parseInt(document.getElementById("m-weeks-count").value) || 1;
-
-  state.modulesConfig.semestersCount = semCount;
-  state.modulesConfig.weeksPerSemester = weeksCount;
-
-  // ensure semesters array exists
-  state.modulesConfig.semesters = [];
-  for (let i = 1; i <= semCount; i++) {
-    state.modulesConfig.semesters.push({ id: i, name: `Semester ${i} Topics` });
+function deleteSemester(semId) {
+  if (confirm("Are you sure you want to delete this semester?")) {
+    state.semesters = state.semesters.filter(s => s.id !== semId);
+    saveState();
   }
+}
 
-  closeModal();
+function openAddWeekModal() {
+  if (state.semesters.length === 0) return alert("Please create a semester first!");
+  const title = prompt("Enter Week Title (e.g. Week 1: Flexbox Layouts):");
+  if (title) {
+    state.semesters[0].weeks.push({ id: Date.now(), title, quests: [] });
+    saveState();
+  }
+}
+
+function openAddQuestModal(semId, weekId) {
+  const title = prompt("Enter Quest Title:");
+  if (title) {
+    const type = prompt("Enter Quest Type (study / lab / project):", "study") || "study";
+    const sem = state.semesters.find(s => s.id === semId);
+    const week = sem.weeks.find(w => w.id === weekId);
+    week.quests.push({ id: Date.now(), title, type, completed: false });
+    saveState();
+  }
+}
+
+function deleteQuest(semId, weekId, questId) {
+  const sem = state.semesters.find(s => s.id === semId);
+  const week = sem.weeks.find(w => w.id === weekId);
+  week.quests = week.quests.filter(q => q.id !== questId);
   saveState();
 }
 
-/* ==========================================================================
-   8. PORTFOLIO ENGINE
-   ========================================================================== */
-function renderPortfolioTab() {
-  document.getElementById("portfolio-user-name").innerText = state.user.name;
-  document.getElementById("portfolio-avatar-initial").innerText = state.user.name.charAt(0);
-  document.getElementById("portfolio-user-rank").innerText = state.user.rank;
+/* 4. MY COURSE CRUD */
+function renderMyCourse() {
+  const select = document.getElementById("course-semester-select");
+  select.innerHTML = state.semesters.map(s => `<option value="${s.id}">${s.title}</option>`).join("");
 
-  // Render Social Links
+  const activeSemId = Number(select.value) || (state.semesters[0] ? state.semesters[0].id : 1);
+  const grid = document.getElementById("course-materials-grid");
+  grid.innerHTML = "";
+
+  const materials = state.courseMaterials.filter(m => m.semesterId === activeSemId);
+  materials.forEach(m => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <h4>${m.title}</h4>
+          <span style="font-size:0.75rem; color:var(--ink-dim);">${m.type} · ${m.author}</span>
+        </div>
+        <button class="btn-secondary" onclick="deleteCourseMaterial(${m.id})" style="color:var(--rust);"><i class="fa-solid fa-trash"></i></button>
+      </div>
+      <div style="margin-top:1rem;">
+        <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
+          <span>Chapters Studied: ${m.completedChapters} / ${m.totalChapters}</span>
+          <span>${Math.round((m.completedChapters / m.totalChapters) * 100 || 0)}%</span>
+        </div>
+        <div class="progress-bar-container"><div class="progress-bar-fill" style="width:${(m.completedChapters / m.totalChapters) * 100}%;"></div></div>
+        <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+          <button class="btn-secondary" onclick="updateChapterCount(${m.id}, 1)">+ Chapter</button>
+          <button class="btn-secondary" onclick="updateChapterCount(${m.id}, -1)">- Chapter</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function openAddMaterialModal() {
+  const title = prompt("Enter Book/Material Title:");
+  if (title) {
+    const author = prompt("Author / Link:");
+    const totalChapters = Number(prompt("Total Chapters/Modules:", "10")) || 10;
+    const select = document.getElementById("course-semester-select");
+    state.courseMaterials.push({
+      id: Date.now(),
+      semesterId: Number(select.value) || 1,
+      title,
+      author: author || "N/A",
+      totalChapters,
+      completedChapters: 0,
+      type: "Book"
+    });
+    saveState();
+  }
+}
+
+function updateChapterCount(matId, delta) {
+  const mat = state.courseMaterials.find(m => m.id === matId);
+  if (mat) {
+    mat.completedChapters = Math.max(0, Math.min(mat.totalChapters, mat.completedChapters + delta));
+    saveState();
+  }
+}
+
+function deleteCourseMaterial(matId) {
+  state.courseMaterials = state.courseMaterials.filter(m => m.id !== matId);
+  saveState();
+}
+
+/* 5. SCHEDULE CRUD */
+let currentSchedTab = "daily";
+function toggleScheduleTab(tab) {
+  currentSchedTab = tab;
+  document.getElementById("sched-btn-daily").classList.toggle("active", tab === "daily");
+  document.getElementById("sched-btn-weekly").classList.toggle("active", tab === "weekly");
+  renderSchedule();
+}
+
+function renderSchedule() {
+  const container = document.getElementById("schedule-list-container");
+  container.innerHTML = "";
+
+  const items = state.schedule.filter(s => s.type === currentSchedTab);
+  items.forEach(item => {
+    const div = document.createElement("div");
+    div.style.padding = "0.75rem";
+    div.style.borderLeft = "4px solid var(--plum)";
+    div.style.background = "var(--surface2)";
+    div.style.marginBottom = "0.5rem";
+    div.style.borderRadius = "0 8px 8px 0";
+    div.style.display = "flex";
+    div.style.justifyContent = "space-between";
+    div.style.alignItems = "center";
+
+    div.innerHTML = `
+      <div>
+        <strong style="font-size:0.85rem; color:var(--plum);">${item.time}</strong>
+        <h4 style="margin:0.2rem 0;">${item.title}</h4>
+        <p style="font-size:0.8rem; color:var(--ink-dim);">${item.description}</p>
+      </div>
+      <button class="btn-secondary" onclick="deleteScheduleItem(${item.id})" style="color:var(--rust);"><i class="fa-solid fa-trash"></i></button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function openAddScheduleModal() {
+  const time = prompt("Enter Time Slot (e.g. 10:00 - 11:30):");
+  if (time) {
+    const title = prompt("Enter Activity Title:");
+    const desc = prompt("Enter Description:");
+    state.schedule.push({ id: Date.now(), type: currentSchedTab, time, title, description: desc || "" });
+    saveState();
+  }
+}
+
+function deleteScheduleItem(id) {
+  state.schedule = state.schedule.filter(s => s.id !== id);
+  saveState();
+}
+
+/* 6. PORTFOLIO */
+function renderPortfolio() {
+  // Skills list from completed study quests
+  const skillsContainer = document.getElementById("portfolio-skills-container");
+  skillsContainer.innerHTML = "";
+  state.semesters.forEach(s => s.weeks.forEach(w => w.quests.forEach(q => {
+    if (q.completed) {
+      skillsContainer.innerHTML += `<span style="background:var(--surface2); border:1px solid var(--line); padding:0.3rem 0.6rem; border-radius:6px; font-size:0.8rem;"><i class="fa-solid fa-check" style="color:var(--sage);"></i> ${q.title}</span>`;
+    }
+  })));
+
+  // Social Links Bar
+  const socialsBar = document.getElementById("portfolio-socials-bar");
   const links = state.user.socialLinks;
-  document.getElementById("portfolio-social-links").innerHTML = `
-    ${links.github ? `<a href="${links.github}" target="_blank" class="social-link-item"><i class="fa-brands fa-github"></i> GitHub</a>` : ''}
-    ${links.linkedin ? `<a href="${links.linkedin}" target="_blank" class="social-link-item"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>` : ''}
-    ${links.twitter ? `<a href="${links.twitter}" target="_blank" class="social-link-item"><i class="fa-brands fa-x-twitter"></i> Twitter</a>` : ''}
-    ${links.website ? `<a href="${links.website}" target="_blank" class="social-link-item"><i class="fa-solid fa-globe"></i> Website</a>` : ''}
-  `;
+  socialsBar.innerHTML = Object.keys(links).map(k => links[k] ? `<a href="${links[k]}" target="_blank" style="color:#FFF; background:rgba(255,255,255,0.2); padding:0.3rem 0.6rem; border-radius:6px; font-size:0.8rem; text-decoration:none;"><i class="fa-brands fa-${k}"></i> ${k}</a>` : '').join("");
 
-  // Render Skills (from done Study quests)
-  const skills = state.quests.filter(q => q.category === "Study" && q.done);
-  document.getElementById("portfolio-skills-container").innerHTML = skills.length > 0
-    ? skills.map(s => `<span class="skill-tag"><i class="fa-solid fa-check"></i> ${s.title}</span>`).join('')
-    : '<span style="color:var(--text-dim); font-size:0.85rem;">Mark Study Quests as completed to unlock skills here!</span>';
+  // Code labs
+  const labsList = document.getElementById("portfolio-codelabs-list");
+  labsList.innerHTML = state.portfolioSubmissions.codelabs.map(l => `<div style="padding:0.4rem 0; border-bottom:1px solid var(--line);"><a href="${l.link}" target="_blank" style="color:var(--plum); font-weight:600;">${l.title}</a></div>`).join("");
 
-  // Render Labs
-  const labs = state.quests.filter(q => q.category === "Lab" && q.done);
-  document.getElementById("portfolio-labs-container").innerHTML = labs.length > 0
-    ? labs.map(l => `
-        <div class="quest-item-card">
-          <div>
-            <strong>${l.title}</strong>
-            <div style="font-size:0.8rem; color:var(--text-dim);">${l.link ? `<a href="${l.link}" target="_blank">View Lab Submission</a>` : 'No link provided'}</div>
-          </div>
-          <span class="quest-tag" style="background:rgba(16,185,129,0.15); color:var(--success-color);">COMPLETED</span>
-        </div>
-      `).join('')
-    : '<div style="color:var(--text-dim); font-size:0.85rem;">No completed Code Labs yet.</div>';
-
-  // Render Projects
-  const projects = state.quests.filter(q => q.category === "Project" && q.done);
-  document.getElementById("portfolio-projects-container").innerHTML = projects.length > 0
-    ? projects.map(p => `
-        <div class="quest-item-card">
-          <div>
-            <strong>${p.title}</strong>
-            <div style="font-size:0.8rem; color:var(--text-dim);">${p.link ? `<a href="${p.link}" target="_blank">View Project Repo / Live Demo</a>` : 'No link provided'}</div>
-          </div>
-          <span class="quest-tag" style="background:rgba(245,158,11,0.15); color:var(--warning-color);">SHIPPED</span>
-        </div>
-      `).join('')
-    : '<div style="color:var(--text-dim); font-size:0.85rem;">No completed Projects yet.</div>';
+  // Projects
+  const projList = document.getElementById("portfolio-projects-list");
+  projList.innerHTML = state.portfolioSubmissions.projects.map(p => `<div style="padding:0.4rem 0; border-bottom:1px solid var(--line);"><a href="${p.link}" target="_blank" style="color:var(--gold); font-weight:600;">${p.title}</a></div>`).join("");
 }
 
 function openSocialProfilesModal() {
-  const links = state.user.socialLinks;
-  openModal("Edit Social Profile Links", `
-    <div class="form-group">
-      <label>GitHub Profile:</label>
-      <input type="url" id="m-soc-github" value="${links.github || ''}" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>LinkedIn Profile:</label>
-      <input type="url" id="m-soc-linkedin" value="${links.linkedin || ''}" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Twitter / X Profile:</label>
-      <input type="url" id="m-soc-twitter" value="${links.twitter || ''}" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Personal Website / Portfolio:</label>
-      <input type="url" id="m-soc-website" value="${links.website || ''}" class="form-input">
-    </div>
-    <button class="btn-primary" onclick="submitSocialProfiles()">Save Profiles</button>
-  `);
-}
-
-function submitSocialProfiles() {
-  state.user.socialLinks = {
-    github: document.getElementById("m-soc-github").value,
-    linkedin: document.getElementById("m-soc-linkedin").value,
-    twitter: document.getElementById("m-soc-twitter").value,
-    website: document.getElementById("m-soc-website").value
-  };
-  closeModal();
+  state.user.socialLinks.github = prompt("GitHub Profile URL:", state.user.socialLinks.github || "") || "";
+  state.user.socialLinks.linkedin = prompt("LinkedIn Profile URL:", state.user.socialLinks.linkedin || "") || "";
   saveState();
 }
 
-/* ==========================================================================
-   9. RICH NOTEPAD ENGINE
-   ========================================================================== */
-function renderNotesList() {
-  const search = document.getElementById("note-search-input").value.toLowerCase();
-  const listContainer = document.getElementById("notes-list-container");
-
-  const filtered = state.notes.filter(n => {
-    const titleMatch = n.title.toLowerCase().includes(search);
-    const tagMatch = n.tags.some(t => t.toLowerCase().includes(search));
-    return titleMatch || tagMatch;
-  });
-
-  listContainer.innerHTML = filtered.map(n => `
-    <div class="note-list-item ${n.id === state.currentNoteId ? 'active' : ''}" onclick="selectNote('${n.id}')">
-      <div style="font-weight:700;">${n.title || 'Untitled Note'}</div>
-      <small style="color:var(--text-dim);">${n.tags.map(t => '#' + t).join(' ')}</small>
-    </div>
-  `).join('');
-
-  loadCurrentNoteIntoEditor();
+function openAddSubmissionModal(type) {
+  const title = prompt("Enter Submission Title:");
+  if (title) {
+    const link = prompt("Enter Submission Link (GitHub/CodePen):");
+    if (type === 'codelab') state.portfolioSubmissions.codelabs.push({ id: Date.now(), title, link });
+    else state.portfolioSubmissions.projects.push({ id: Date.now(), title, link });
+    saveState();
+  }
 }
 
-function selectNote(id) {
-  state.currentNoteId = id;
-  renderNotesList();
+/* 7. NOTEPAD WITH STICKY TOOLBAR & ADVANCED FORMATTING */
+function renderNotesList() {
+  const container = document.getElementById("notes-list-container");
+  container.innerHTML = "";
+
+  state.notes.forEach(note => {
+    const div = document.createElement("div");
+    div.className = `note-item-card ${state.activeNoteId === note.id ? 'active' : ''}`;
+    div.innerHTML = `
+      <strong style="font-size:0.85rem;">${note.title || 'Untitled Note'}</strong>
+      <div style="font-size:0.7rem; color:var(--ink-dim);">${note.tags ? 'Tags: ' + note.tags : ''}</div>
+    `;
+    div.onclick = () => loadNoteIntoEditor(note.id);
+    container.appendChild(div);
+  });
 }
 
 function createNewNote() {
-  const newId = "n" + Date.now();
-  state.notes.push({
-    id: newId,
-    title: "Untitled Note",
-    tags: ["general"],
-    published: false,
-    content: "<p>Start typing your note here...</p>",
-    lineSpacing: "1.6",
-    wordSpacing: "0px",
-    letterSpacing: "0px"
-  });
-  state.currentNoteId = newId;
+  const newNote = { id: Date.now(), title: "New Study Note", tags: "", published: false, content: "" };
+  state.notes.push(newNote);
+  state.activeNoteId = newNote.id;
   saveState();
+  loadNoteIntoEditor(newNote.id);
 }
 
-function loadCurrentNoteIntoEditor() {
-  const note = state.notes.find(n => n.id === state.currentNoteId);
-  if (!note) return;
-
-  document.getElementById("note-title-input").value = note.title;
-  document.getElementById("note-tags-input").value = note.tags.join(', ');
-  document.getElementById("note-published-toggle").checked = note.published;
-
-  const canvas = document.getElementById("note-editor-canvas");
-  canvas.innerHTML = note.content;
-  canvas.style.lineHeight = note.lineSpacing || "1.6";
-  canvas.style.wordSpacing = note.wordSpacing || "0px";
-  canvas.style.letterSpacing = note.letterSpacing || "0px";
+function loadNoteIntoEditor(id) {
+  state.activeNoteId = id;
+  const note = state.notes.find(n => n.id === id);
+  if (note) {
+    document.getElementById("note-title-input").value = note.title;
+    document.getElementById("note-tags-input").value = note.tags;
+    document.getElementById("note-publish-checkbox").checked = note.published;
+    document.getElementById("note-editor-content").innerHTML = note.content;
+  }
 }
 
-function saveCurrentNote() {
-  const note = state.notes.find(n => n.id === state.currentNoteId);
-  if (!note) return;
+function saveCurrentNoteMeta() {
+  const note = state.notes.find(n => n.id === state.activeNoteId);
+  if (note) {
+    note.title = document.getElementById("note-title-input").value;
+    note.tags = document.getElementById("note-tags-input").value;
+    note.published = document.getElementById("note-publish-checkbox").checked;
+    saveState();
+  }
+}
 
-  note.title = document.getElementById("note-title-input").value;
-  note.tags = document.getElementById("note-tags-input").value.split(',').map(t => t.trim()).filter(Boolean);
-  note.published = document.getElementById("note-published-toggle").checked;
-  note.content = document.getElementById("note-editor-canvas").innerHTML;
-
-  localStorage.setItem("PRO_LMS_STATE", JSON.stringify(state));
+function autoSaveCurrentNoteContent() {
+  const note = state.notes.find(n => n.id === state.activeNoteId);
+  if (note) {
+    note.content = document.getElementById("note-editor-content").innerHTML;
+    localStorage.setItem("HCA_LMS_FULL_STATE_V2", JSON.stringify(state));
+  }
 }
 
 function deleteCurrentNote() {
-  if (state.notes.length <= 1) return alert("You must keep at least one note.");
-  state.notes = state.notes.filter(n => n.id !== state.currentNoteId);
-  state.currentNoteId = state.notes[0].id;
-  saveState();
+  if (state.activeNoteId && confirm("Delete active note?")) {
+    state.notes = state.notes.filter(n => n.id !== state.activeNoteId);
+    state.activeNoteId = null;
+    saveState();
+  }
 }
 
-/* FORMATTING EXECUTOR */
-function formatDoc(cmd, value = null) {
+/* NOTEPAD TOOLBAR COMMANDS */
+function applyNoteFormat(cmd, value = null) {
   document.execCommand(cmd, false, value);
-  saveCurrentNote();
 }
 
-function insertChecklist() {
-  const html = `<div style="display:flex; align-items:center; gap:8px;"><input type="checkbox"> <span>Checklist Item</span></div>`;
-  document.execCommand('insertHTML', false, html);
-  saveCurrentNote();
+function applyNoteFontFamily(font) { document.execCommand("fontName", false, font); }
+function applyNoteFontSize(size) {
+  const selection = window.getSelection();
+  if (!selection.rangeCount) return;
+  const span = document.createElement("span");
+  span.style.fontSize = size;
+  selection.getRangeAt(0).surroundContents(span);
 }
 
-function insertKbd() {
-  const sel = window.getSelection().toString() || "Ctrl";
-  const html = `<kbd>${sel}</kbd>`;
-  document.execCommand('insertHTML', false, html);
-  saveCurrentNote();
+function applyNoteLineHeight(lh) {
+  document.getElementById("note-editor-content").style.lineHeight = lh;
 }
 
-function insertImagePrompt() {
-  const url = prompt("Enter Image URL:");
-  if (url) document.execCommand('insertImage', false, url);
-  saveCurrentNote();
+function applyNoteLetterSpacing(ls) {
+  document.getElementById("note-editor-content").style.letterSpacing = ls;
 }
 
-function insertLinkPrompt() {
-  const url = prompt("Enter External Link URL:");
-  if (url) document.execCommand('createLink', false, url);
-  saveCurrentNote();
+function insertNoteChecklist() {
+  const html = `<div style="display:flex; align-items:center; gap:0.4rem;"><input type="checkbox"> <span>Checklist Item</span></div>`;
+  document.execCommand("insertHTML", false, html);
 }
 
-function insertNoteLinkPrompt() {
+function insertNoteKbd() {
+  const text = prompt("Enter shortcut text (e.g. Ctrl + C):");
+  if (text) document.execCommand("insertHTML", false, `<kbd>${text}</kbd>`);
+}
+
+function insertNoteImagePrompt() {
+  const url = prompt("Enter image URL:");
+  if (url) document.execCommand("insertImage", false, url);
+}
+
+function insertNoteExternalLinkPrompt() {
+  const url = prompt("Enter URL:");
+  if (url) document.execCommand("createLink", false, url);
+}
+
+function insertInternalNoteLinkPrompt() {
   const noteTitle = prompt("Enter Title of note to link:");
-  if (noteTitle) {
-    const html = `<a href="#" onclick="alert('Linking to note: ${noteTitle}')">📝 ${noteTitle}</a>`;
-    document.execCommand('insertHTML', false, html);
-  }
-  saveCurrentNote();
+  if (noteTitle) document.execCommand("insertHTML", false, `<a href="#" style="color:var(--plum); font-weight:bold;">[Note: ${noteTitle}]</a>`);
 }
 
-function openSpacingControlsModal() {
-  const note = state.notes.find(n => n.id === state.currentNoteId);
-  openModal("Typography Spacing Controls", `
-    <div class="form-group">
-      <label>Line Height:</label>
-      <input type="text" id="m-line-height" value="${note.lineSpacing || '1.6'}" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Word Spacing (e.g. 2px):</label>
-      <input type="text" id="m-word-spacing" value="${note.wordSpacing || '0px'}" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Letter Spacing (e.g. 1px):</label>
-      <input type="text" id="m-letter-spacing" value="${note.letterSpacing || '0px'}" class="form-input">
-    </div>
-    <button class="btn-primary" onclick="submitSpacingControls()">Apply Spacing</button>
-  `);
-}
-
-function submitSpacingControls() {
-  const note = state.notes.find(n => n.id === state.currentNoteId);
-  if (note) {
-    note.lineSpacing = document.getElementById("m-line-height").value;
-    note.wordSpacing = document.getElementById("m-word-spacing").value;
-    note.letterSpacing = document.getElementById("m-letter-spacing").value;
-  }
-  closeModal();
-  saveState();
-}
-
-/* ==========================================================================
-   10. STUDY TIMERS ENGINE (STACK & DRAG-DROP)
-   ========================================================================== */
-function renderTimersTab() {
+/* 8. STUDY TIMERS (STACK, DRAG & DROP, DUPLICATE) */
+function renderTimers() {
   const container = document.getElementById("timers-stack-container");
-  container.innerHTML = state.timers.map((t, idx) => `
-    <div class="timer-card" draggable="true" data-index="${idx}" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+  container.innerHTML = "";
+
+  state.timers.forEach((timer, index) => {
+    const card = document.createElement("div");
+    card.className = "timer-card card";
+    card.draggable = true;
+
+    const mins = Math.floor(timer.remainingSeconds / 60);
+    const secs = timer.remainingSeconds % 60;
+    const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+    card.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <strong>${t.name}</strong>
+        <strong style="font-size:0.9rem;"><i class="fa-solid fa-grip-vertical" style="color:var(--ink-dim); margin-right:0.4rem;"></i> ${timer.name}</strong>
         <div>
-          <button class="btn-secondary btn-sm" onclick="duplicateTimer('${t.id}')" title="Duplicate"><i class="fa-solid fa-copy"></i></button>
-          <button class="btn-danger btn-sm" onclick="deleteTimer('${t.id}')" title="Delete"><i class="fa-solid fa-trash"></i></button>
+          <button class="btn-secondary" onclick="duplicateTimer(${timer.id})" style="padding:0.2rem 0.4rem; font-size:0.75rem;"><i class="fa-solid fa-copy"></i></button>
+          <button class="btn-secondary" onclick="deleteTimer(${timer.id})" style="padding:0.2rem 0.4rem; font-size:0.75rem; color:var(--rust);"><i class="fa-solid fa-trash"></i></button>
         </div>
       </div>
-      <div class="timer-display">${formatTime(t.duration - t.elapsed)}</div>
-      <div class="timer-controls">
-        <button class="btn-primary btn-sm" onclick="toggleTimer('${t.id}')">${t.running ? '<i class="fa-solid fa-pause"></i> Pause' : '<i class="fa-solid fa-play"></i> Start'}</button>
-        <button class="btn-secondary btn-sm" onclick="resetTimer('${t.id}')"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+      <div class="timer-display">${formatted}</div>
+      <div style="display:flex; gap:0.5rem;">
+        <button class="btn-primary" style="flex:1;" onclick="toggleTimer(${timer.id})">${timer.isRunning ? 'Pause' : 'Start'}</button>
+        <button class="btn-secondary" onclick="resetTimer(${timer.id})">Reset</button>
       </div>
-    </div>
-  `).join('');
-}
+    `;
 
-function formatTime(secs) {
-  if (secs < 0) secs = 0;
-  const h = Math.floor(secs / 3600);
-  const m = Math.floor((secs % 3600) / 60);
-  const s = secs % 60;
-  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    // Drag & Drop event handlers
+    card.ondragstart = (e) => { e.dataTransfer.setData("text/plain", index); card.classList.add("dragging"); };
+    card.ondragend = () => card.classList.remove("dragging");
+    card.ondragover = (e) => e.preventDefault();
+    card.ondrop = (e) => {
+      e.preventDefault();
+      const fromIdx = Number(e.dataTransfer.getData("text/plain"));
+      const moved = state.timers.splice(fromIdx, 1)[0];
+      state.timers.splice(index, 0, moved);
+      saveState();
+    };
+
+    container.appendChild(card);
+  });
 }
 
 function startTimerTicker() {
-  setInterval(() => {
-    let stateChanged = false;
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    let hasRunningStudyTimer = false;
+
     state.timers.forEach(t => {
-      if (t.running) {
-        t.elapsed++;
-        stateChanged = true;
-        // If timer name contains "Study", accumulate total study time
-        if (t.name.toLowerCase().includes("study")) {
-          state.totalStudyTimeSeconds++;
+      if (t.isRunning) {
+        if (t.remainingSeconds > 0) {
+          t.remainingSeconds--;
+          if (t.name.toLowerCase().includes("study")) hasRunningStudyTimer = true;
+        } else {
+          t.isRunning = false;
         }
       }
     });
-    if (stateChanged) {
-      renderTimersTab();
-      renderDashboard();
-      localStorage.setItem("PRO_LMS_STATE", JSON.stringify(state));
-    }
+
+    if (hasRunningStudyTimer) state.totalStudyTimeSeconds++;
+
+    renderTimers();
+    if (document.getElementById("tab-dashboard").classList.contains("active")) renderDashboard();
   }, 1000);
 }
 
 function toggleTimer(id) {
   const timer = state.timers.find(t => t.id === id);
-  if (timer) timer.running = !timer.running;
+  if (timer) timer.isRunning = !timer.isRunning;
   saveState();
 }
 
 function resetTimer(id) {
   const timer = state.timers.find(t => t.id === id);
   if (timer) {
-    timer.running = false;
-    timer.elapsed = 0;
+    timer.isRunning = false;
+    timer.remainingSeconds = timer.durationMinutes * 60;
   }
   saveState();
 }
@@ -742,13 +733,7 @@ function resetTimer(id) {
 function duplicateTimer(id) {
   const timer = state.timers.find(t => t.id === id);
   if (timer) {
-    state.timers.push({
-      id: "t" + Date.now(),
-      name: timer.name + " (Copy)",
-      duration: timer.duration,
-      elapsed: 0,
-      running: false
-    });
+    state.timers.push({ ...timer, id: Date.now(), isRunning: false });
     saveState();
   }
 }
@@ -759,267 +744,50 @@ function deleteTimer(id) {
 }
 
 function openAddTimerModal() {
-  openModal("Create Study Timer", `
-    <div class="form-group">
-      <label>Timer Name (Include 'Study' to sync with Dashboard time):</label>
-      <input type="text" id="m-timer-name" value="Study - Session" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Duration in Minutes:</label>
-      <input type="number" id="m-timer-mins" value="25" class="form-input">
-    </div>
-    <button class="btn-primary" onclick="submitAddTimer()">Create Timer</button>
-  `);
-}
-
-function submitAddTimer() {
-  const name = document.getElementById("m-timer-name").value;
-  const mins = parseInt(document.getElementById("m-timer-mins").value) || 25;
-
-  state.timers.push({
-    id: "t" + Date.now(),
-    name,
-    duration: mins * 60,
-    elapsed: 0,
-    running: false
-  });
-  closeModal();
-  saveState();
-}
-
-/* DRAG & DROP FOR TIMERS STACK */
-let draggedIdx = null;
-function handleDragStart(e) {
-  draggedIdx = e.currentTarget.getAttribute("data-index");
-  e.currentTarget.classList.add("dragging");
-}
-function handleDragOver(e) { e.preventDefault(); }
-function handleDrop(e) {
-  e.preventDefault();
-  const targetIdx = e.currentTarget.getAttribute("data-index");
-  if (draggedIdx !== null && targetIdx !== null) {
-    const item = state.timers.splice(draggedIdx, 1)[0];
-    state.timers.splice(targetIdx, 0, item);
+  const name = prompt("Enter Timer Name (e.g. Study, Break):", "Study");
+  if (name) {
+    const mins = Number(prompt("Duration in minutes:", "25")) || 25;
+    state.timers.push({ id: Date.now(), name, durationMinutes: mins, remainingSeconds: mins * 60, isRunning: false, category: name });
     saveState();
   }
 }
 
-/* ==========================================================================
-   11. COURSE MATERIALS ENGINE
-   ========================================================================== */
-function renderCourseTab() {
-  const semSelect = document.getElementById("course-sem-select");
-  if (semSelect.options.length === 0) {
-    semSelect.innerHTML = state.modulesConfig.semesters.map(s => `<option value="${s.id}">Semester ${s.id}</option>`).join('');
-  }
-
-  const selectedSem = parseInt(semSelect.value) || 1;
-  const materials = state.courseMaterials.filter(c => c.sem === selectedSem);
-
-  const container = document.getElementById("course-materials-container");
-  container.innerHTML = materials.map(m => {
-    let chaptersChecklist = '';
-    for (let i = 1; i <= m.totalChapters; i++) {
-      const isStudied = m.studiedChapters.includes(i);
-      chaptersChecklist += `
-        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.8rem; margin:2px 6px;">
-          <input type="checkbox" ${isStudied ? 'checked' : ''} onchange="toggleChapterStudied('${m.id}', ${i})"> Ch ${i}
-        </label>
-      `;
-    }
-
-    const pct = Math.round((m.studiedChapters.length / m.totalChapters) * 100);
-
-    return `
-      <div class="card" style="margin-bottom:1rem;">
-        <div class="card-header">
-          <div>
-            <strong>${m.title}</strong>
-            <div style="font-size:0.8rem; color:var(--text-dim);">${m.type} · ${m.link ? `<a href="${m.link}" target="_blank">Resource Link</a>` : ''}</div>
-          </div>
-          <button class="btn-danger btn-sm" onclick="deleteCourseMaterial('${m.id}')"><i class="fa-solid fa-trash"></i></button>
-        </div>
-        <div class="progress-bar-container" style="margin-bottom:10px;">
-          <div class="progress-bar-fill" style="width: ${pct}%;"></div>
-        </div>
-        <div style="font-size:0.85rem; font-weight:700; margin-bottom:8px;">Chapters Studied (${m.studiedChapters.length} / ${m.totalChapters} - ${pct}%):</div>
-        <div>${chaptersChecklist}</div>
-      </div>
-    `;
-  }).join('');
-}
-
-function toggleChapterStudied(materialId, chNum) {
-  const item = state.courseMaterials.find(c => c.id === materialId);
-  if (item) {
-    if (item.studiedChapters.includes(chNum)) {
-      item.studiedChapters = item.studiedChapters.filter(c => c !== chNum);
-    } else {
-      item.studiedChapters.push(chNum);
-    }
-    saveState();
-  }
-}
-
-function deleteCourseMaterial(id) {
-  state.courseMaterials = state.courseMaterials.filter(c => c.id !== id);
+/* 9. SETTINGS & CUSTOMIZATION */
+function toggleQuickTheme() {
+  state.settings.theme = state.settings.theme === "light" ? "dark" : "light";
   saveState();
 }
 
-function openAddCourseMaterialModal() {
-  openModal("Add Course Material / Book", `
-    <div class="form-group">
-      <label>Title / Book Name:</label>
-      <input type="text" id="m-course-title" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Material Type:</label>
-      <select id="m-course-type" class="form-input">
-        <option value="Book">Book</option>
-        <option value="Documentation">Documentation</option>
-        <option value="Video Course">Video Course</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Resource Link:</label>
-      <input type="url" id="m-course-link" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Total Chapters / Modules:</label>
-      <input type="number" id="m-course-chapters" value="10" class="form-input">
-    </div>
-    <button class="btn-primary" onclick="submitAddCourseMaterial()">Save Material</button>
-  `);
-}
-
-function submitAddCourseMaterial() {
-  const title = document.getElementById("m-course-title").value;
-  const type = document.getElementById("m-course-type").value;
-  const link = document.getElementById("m-course-link").value;
-  const chapters = parseInt(document.getElementById("m-course-chapters").value) || 10;
-  const sem = parseInt(document.getElementById("course-sem-select").value) || 1;
-
-  if (!title) return alert("Title required!");
-
-  state.courseMaterials.push({
-    id: "c" + Date.now(),
-    sem, title, type, link, totalChapters: chapters, studiedChapters: []
-  });
-  closeModal();
+function setThemeMode(mode) {
+  state.settings.theme = mode;
   saveState();
 }
 
-/* ==========================================================================
-   12. SCHEDULE ENGINE
-   ========================================================================== */
-let activeScheduleDayFilter = "All";
-
-function filterScheduleDay(day) {
-  activeScheduleDayFilter = day;
-  document.querySelectorAll(".sched-day-btn").forEach(b => b.classList.remove("active"));
-  event.target.classList.add("active");
-  renderScheduleTab();
-}
-
-function renderScheduleTab() {
-  const items = state.schedule.filter(s => activeScheduleDayFilter === "All" || s.day === activeScheduleDayFilter);
-  const container = document.getElementById("schedule-items-container");
-
-  container.innerHTML = items.map(s => `
-    <div class="quest-item-card">
-      <div class="quest-left">
-        <input type="checkbox" ${s.done ? 'checked' : ''} onchange="toggleScheduleDone('${s.id}')">
-        <div>
-          <div class="quest-title ${s.done ? 'done' : ''}">${s.title}</div>
-          <small style="color:var(--text-dim)">${s.day} · ${s.time} · ${s.category}</small>
-        </div>
-      </div>
-      <button class="btn-danger btn-sm" onclick="deleteScheduleItem('${s.id}')"><i class="fa-solid fa-trash"></i></button>
-    </div>
-  `).join('');
-}
-
-function toggleScheduleDone(id) {
-  const item = state.schedule.find(s => s.id === id);
-  if (item) {
-    item.done = !item.done;
-    saveState();
-  }
-}
-
-function deleteScheduleItem(id) {
-  state.schedule = state.schedule.filter(s => s.id !== id);
+function updateFontFamilySetting(font) {
+  state.settings.fontFamily = font;
   saveState();
 }
 
-function openAddScheduleModal() {
-  openModal("Add Schedule Item", `
-    <div class="form-group">
-      <label>Day of Week:</label>
-      <select id="m-sched-day" class="form-input">
-        <option value="Monday">Monday</option>
-        <option value="Tuesday">Tuesday</option>
-        <option value="Wednesday">Wednesday</option>
-        <option value="Thursday">Thursday</option>
-        <option value="Friday">Friday</option>
-        <option value="Saturday">Saturday</option>
-        <option value="Sunday">Sunday</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Time Slot (e.g. 09:00 - 10:30):</label>
-      <input type="text" id="m-sched-time" value="09:00 - 10:30" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Activity Title:</label>
-      <input type="text" id="m-sched-title" class="form-input">
-    </div>
-    <div class="form-group">
-      <label>Category:</label>
-      <select id="m-sched-cat" class="form-input">
-        <option value="Study">Study Block</option>
-        <option value="Practice">Practice / Lab</option>
-        <option value="Rest">Rest / Break</option>
-      </select>
-    </div>
-    <button class="btn-primary" onclick="submitAddSchedule()">Save Schedule Block</button>
-  `);
-}
-
-function submitAddSchedule() {
-  const day = document.getElementById("m-sched-day").value;
-  const time = document.getElementById("m-sched-time").value;
-  const title = document.getElementById("m-sched-title").value;
-  const category = document.getElementById("m-sched-cat").value;
-
-  if (!title) return alert("Title required!");
-
-  state.schedule.push({
-    id: "s" + Date.now(),
-    day, time, title, category, done: false
-  });
-  closeModal();
+function updateFontSizeSetting(size) {
+  state.settings.fontSize = size;
   saveState();
 }
 
-/* ==========================================================================
-   13. MODALS & RESET HELPERS
-   ========================================================================== */
-function openModal(title, contentHtml) {
-  document.getElementById("modal-title").innerText = title;
-  document.getElementById("modal-body").innerHTML = contentHtml;
-  document.getElementById("app-modal-overlay").classList.add("active");
+function updateAppScaleSetting(scale) {
+  state.settings.appScale = scale;
+  saveState();
 }
 
-function closeModal() {
-  document.getElementById("app-modal-overlay").classList.remove("active");
+function saveProgressCardConfig() {
+  state.settings.progressCardConfig.showSemProg = document.getElementById("cfg-show-sem-prog").checked;
+  state.settings.progressCardConfig.showOverallProg = document.getElementById("cfg-show-overall-prog").checked;
+  state.settings.progressCardConfig.showChapterProg = document.getElementById("cfg-show-chapter-prog").checked;
+  saveState();
 }
 
 function resetAllProgress() {
-  if (confirm("Are you sure you want to reset all LMS data and start fresh?")) {
-    localStorage.removeItem("PRO_LMS_STATE");
-    state = DEFAULT_STATE;
-    saveState();
+  if (confirm("Reset ALL data and progress back to defaults?")) {
+    localStorage.removeItem("HCA_LMS_FULL_STATE_V2");
     location.reload();
   }
 }
